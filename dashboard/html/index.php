@@ -185,26 +185,26 @@
                     echo '<div class="container-fluid"><div class="row">';
 
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_klantnaam">Klantnaam</label> <input class="form-control" type="text" name="edit_klantnaam" value="' . $Klantnaam . '" required><br>';
+                    echo '<label class="form-label" for="edit_klantnaam">Name</label> <input class="form-control" type="text" name="edit_klantnaam" value="' . $Klantnaam . '" required><br>';
                     echo '</div>';
 
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_klantemail">Klantemail</label> <input class="form-control" type="text" name="edit_klantemail" value="' . $Klantemail . '" required><br>';
+                    echo '<label class="form-label" for="edit_klantemail">Email</label> <input class="form-control" type="text" name="edit_klantemail" value="' . $Klantemail . '" required><br>';
                     echo '</div>';
 
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_geboortedatum">Geboortedatum</label> <input class="form-control" type="text" name="edit_geboortedatum" value="' . $Geboortedatum . '" required><br>';
+                    echo '<label class="form-label" for="edit_geboortedatum">Date of birth</label> <input class="form-control" type="text" name="edit_geboortedatum" value="' . $Geboortedatum . '" required><br>';
                     echo '</div>';
 
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_passwoord">Passwoord</label> <input class="form-control" type="password" name="edit_passwoord" value="' . $Passwoord . '" required><br>';
+                    echo '<label class="form-label" for="edit_passwoord">Password</label> <input class="form-control" type="password" name="edit_passwoord" value="' . $Passwoord . '" required><br>';
                     echo '</div>';
 
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_rol">Rol<input class="form-control" type="text" name="edit_rol" value="' . $Rol . '" required><br>';
+                    echo '<label class="form-label" for="edit_rol">Role<input class="form-control" type="text" name="edit_rol" value="' . $Rol . '" required><br>';
                     echo '</div>';
                     echo '<div class="col-6">';                  
-                    echo '<label class="form-label" for="edit_registratiedatum">Registratiedatum<input class="form-control" type="text" name="edit_registratiedatum" value="' . $Registratiedatum . '" required><br>';
+                    echo '<label class="form-label" for="edit_registratiedatum">Registration date<input class="form-control" type="text" name="edit_registratiedatum" value="' . $Registratiedatum . '" required><br>';
                     echo '</div>';
                     
                     echo '</div></div>';
