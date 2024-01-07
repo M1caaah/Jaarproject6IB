@@ -42,50 +42,6 @@
                 <span class="hide-menu">Dashboard</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">UI COMPONENTS</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Buttons</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-alert-circle"></i>
-                </span>
-                <span class="hide-menu">Alerts</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-cards"></i>
-                </span>
-                <span class="hide-menu">Card</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-description"></i>
-                </span>
-                <span class="hide-menu">Forms</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.php" aria-expanded="false">
-                <span>
-                  <i class="ti ti-typography"></i>
-                </span>
-                <span class="hide-menu">Typography</span>
-              </a>
-            </li>
             
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -155,7 +111,195 @@
       </header>
       <!--  Header End -->
       <div class="container-fluid">
+      
+      <?php
+        $mysqli = new MySQLi("localhost", "root", "", "jaarproject");
+
+        /**
+         * Connects to the database, prepares and executes a SELECT query to get customer data, 
+         * outputs the data in an HTML table, and provides edit and delete options.
+         */
+        if (mysqli_connect_errno()) {
+          trigger_error('Fout bij verbinding: ' . $mysqli->error);
+          die();
+        }
+
+        $sql = "SELECT * FROM tblklant";
+        if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
+          $sql .= " WHERE klantnaam LIKE ?";
+        }
+
+        $stmt = $mysqli->prepare($sql);
+        if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
+          $searchTerm = '%' . $_GET['search_klantnaam'] . '%';
+          $stmt->bind_param("s", $searchTerm);
+        }
+
+        if (!$stmt->execute()) {
+          echo 'Het uitvoeren van de query is mislukt: ' . $stmt->error . ' in query:' . $sql;
+        } else {
+            $stmt->bind_result($KlantID, $Klantnaam, $Klantemail, $Geboortedatum, $Passwoord, $Rol, $Registratiedatum);
+            echo '<br><br><form name="form1" method="post" action="' . $_SERVER['PHP_SELF'] . '?actie=wis">';
+            echo '<table border="1"><tr><th> Select </th><th> CustomerID </th><th>Name</th><th> Email </th><th>Date of birth</th><th>Password</th><th>Role</th><th>Registration date</th><th>Edit</th></tr>';
+
+            while ($stmt->fetch()) {
+                $teverwijderen = $KlantID;
+                echo '<tr>';
+                echo '<td><input type="checkbox" name="klantids[]" value="' . $teverwijderen . '"></td>';
+                echo '<td>' . $teverwijderen . "</td><td> " . $Klantnaam . "</td><td>" . $Klantemail . "</td><td>" . $Geboortedatum . '</td>';
+                echo '<td>' . $Passwoord . '</td><td>' . $Rol . '</td><td>' . $Registratiedatum . '</td>';
+                
+                echo '<td><a href="' . $_SERVER['PHP_SELF'] . '?actie=edit&klantid=' . $teverwijderen . '">Edit</a></td>';
+                
+                echo '</tr>';
+            }
+
+            echo '</table>';
+            echo '<input class="btn btn-primary my-3" type="submit" name="btnwissen" id="wis" value="Delete selected items">';
+            echo '</form>';
+        }
+
+        $stmt->close();
         
+
+        /**
+         * Handles customer data for editing based on customer ID from GET parameter. 
+         * Prepares SELECT query with customer ID bind parameter.
+         * On success, outputs form with fetched data to edit customer.
+         * On error, outputs error message.
+         */
+        if (isset($_GET['actie']) && $_GET['actie'] == 'edit' && isset($_GET['klantid'])) {
+            $editSql = "SELECT * FROM tblklant WHERE KlantID = ?";
+            
+            if ($stmt = $mysqli->prepare($editSql)) {
+                $stmt->bind_param("i", $_GET['klantid']);
+                
+                if ($stmt->execute()) {
+                    $stmt->bind_result($KlantID, $Klantnaam, $Klantemail, $Geboortedatum, $Passwoord, $Rol, $Registratiedatum);
+                    $stmt->fetch();
+                    
+                    echo '<div class="card"><div class="card-body"><h5 class="card-title fw-semibold">Update customer</h5>';
+                    
+                    echo '<form name="editForm" method="post" action="' . $_SERVER['PHP_SELF'] . '">';
+                    echo '<input type="hidden" name="edit_klantid" value="' . $KlantID . '">';
+                    echo '<div class="container-fluid"><div class="row">';
+
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_klantnaam">Klantnaam</label> <input class="form-control" type="text" name="edit_klantnaam" value="' . $Klantnaam . '" required><br>';
+                    echo '</div>';
+
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_klantemail">Klantemail</label> <input class="form-control" type="text" name="edit_klantemail" value="' . $Klantemail . '" required><br>';
+                    echo '</div>';
+
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_geboortedatum">Geboortedatum</label> <input class="form-control" type="text" name="edit_geboortedatum" value="' . $Geboortedatum . '" required><br>';
+                    echo '</div>';
+
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_passwoord">Passwoord</label> <input class="form-control" type="password" name="edit_passwoord" value="' . $Passwoord . '" required><br>';
+                    echo '</div>';
+
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_rol">Rol<input class="form-control" type="text" name="edit_rol" value="' . $Rol . '" required><br>';
+                    echo '</div>';
+                    echo '<div class="col-6">';                  
+                    echo '<label class="form-label" for="edit_registratiedatum">Registratiedatum<input class="form-control" type="text" name="edit_registratiedatum" value="' . $Registratiedatum . '" required><br>';
+                    echo '</div>';
+                    
+                    echo '</div></div>';
+                    echo '<input class="btn btn-primary m-3" type="submit" name="btnUpdate" value="Update">';
+                    echo '</form></div></div>';
+                } else {
+                    echo 'Error fetching data for editing: ' . $stmt->error;
+                }
+
+                $stmt->close();
+            } else {
+                echo 'Error in edit query: ' . $mysqli->error;
+            }
+        }
+
+        /**
+         * Handles deleting selected customers from the database.
+         * Builds a DELETE query to delete the customers with the given IDs. 
+         * Uses prepare() and bind_param() to sanitize the input.
+         * Executes the query and prints a message based on success or failure.
+         */
+        if (isset($_POST['btnwissen'])) {
+            if (isset($_POST['klantids']) && is_array($_POST['klantids'])) {
+                $deleteSql = "DELETE FROM tblklant WHERE KlantID IN (" . implode(',', $_POST['klantids']) . ")";
+
+                if ($stmt = $mysqli->prepare($deleteSql)) {
+                    if ($stmt->execute()) {
+                        echo count($_POST['klantids']) . " klant(en) verwijderd!";
+                    } else {
+                        echo 'Het verwijderen van de geselecteerde klanten is mislukt: ' . $stmt->error;
+                    }
+
+                    $stmt->close();
+                } else {
+                    echo 'Er zit een fout in de delete-query: ' . $mysqli->error;
+                }
+            } else {
+                echo 'Geen klanten geselecteerd om te verwijderen.';
+            }
+        }
+        ?>
+
+        <div class="card">
+          <div class="card-body">
+            <form name="searchForm" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <label for="search_klantnaam">Search by Customer Name:</label>
+                <input type="text" name="search_klantnaam" id="search_klantnaam">
+                <input type="submit" name="btnSearch" value="Search">
+                <?php if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])): ?>
+                    <a href="<?php echo $_SERVER['PHP_SELF']; ?>" style="margin-left: 10px;">Undo Search</a>
+                <?php endif; ?>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Add new customer</h5>
+            <form name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-6">
+                    <label class="form-label" for="new_klantnaam">Name:</label>
+                    <input class="form-control" type="text" name="new_klantnaam" id="new_klantnaam" required>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label"   for="new_klantemail">email:</label>
+                    <input class="form-control" type="text" name="new_klantemail" id="new_klantemail" required>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label"   for="new_geboortedatum">Geboortedatum:</label>
+                    <input class="form-control" type="text" name="new_geboortedatum" id="new_geboortedatum" required>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label"  for="new_passwoord">Passwoord:</label>
+                    <input class="form-control"type="password" name="new_passwoord" id="new_passwoord" required>
+                  </div>
+                    <div class="col-6">
+                      <label class="form-label"  for="new_rol">Rol</label>
+                      <input class="form-control"type="text" name="new_rol" id="new_rol" required>
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label"  for="new_registratiedatum">Registratiedatum:</label>
+                      <input class="form-control"type="text" name="new_registratiedatum" id="new_registratiedatum" required>
+                    </div>
+                  </div>
+                </div>
+                <input class="btn btn-primary m-3" type="submit" name="btnToevoegen" id="toevoegen" value="Voeg toe">
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        
+      
         <div class="py-6 px-6 text-center">
           <p class="mb-0 fs-4">Design and Developed by <a href="https://adminmart.com/" target="_blank" class="pe-1 text-primary text-decoration-underline">AdminMart.com</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a></p>
         </div>
