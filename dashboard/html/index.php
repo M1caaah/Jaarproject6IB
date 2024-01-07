@@ -252,7 +252,7 @@
             <form name="searchForm" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <label for="search_klantnaam">Search by Customer Name:</label>
                 <input type="text" name="search_klantnaam" id="search_klantnaam">
-                <input type="submit" name="btnSearch" value="Search">
+                <input class="btn btn-primary" type="submit" name="btnSearch" value="Search">
                 <?php if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])): ?>
                     <a href="<?php echo $_SERVER['PHP_SELF']; ?>" style="margin-left: 10px;">Undo Search</a>
                 <?php endif; ?>
