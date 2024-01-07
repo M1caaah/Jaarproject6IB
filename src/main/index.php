@@ -12,14 +12,14 @@
   <title>Template for bitebazaar</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-tale-seo-agency.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/templatemo-tale-seo-agency.css">
+  <link rel="stylesheet" href="../../assets/css/owl.css">
+  <link rel="stylesheet" href="../../assets/css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
   <!--
@@ -54,7 +54,7 @@ https://templatemo.com/tm-582-tale-seo-agency
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
-              <img src="assets/images/logo.png" alt="" style="max-width: 300px; margin: -10px;">
+              <img src="../../assets/images/logo.png" alt="" style="max-width: 300px; margin: -10px;">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -117,42 +117,42 @@ https://templatemo.com/tm-582-tale-seo-agency
         <div class="col-lg-12">
           <div class="owl-features owl-carousel">
             <div class="item">
-              <img src="assets/images/cyberpunk.jpg" alt="">
+              <img src="../../assets/images/cyberpunk.jpg" alt="">
               <div class="down-content">
                 <h4>Cyberpunk 2077 - CD Key<br>€17.36</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
               </div>
             </div>
             <div class="item">
-              <img src="assets/images/lethalcompany.jpg" alt="">
+              <img src="../../assets/images/lethalcompany.jpg" alt="">
               <div class="down-content">
                 <h4>Lethal Company - CD Key<br>€9.36</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
               </div>
             </div>
             <div class="item">
-              <img src="assets/images/baldursgate.jpg" alt="">
+              <img src="../../assets/images/baldursgate.jpg" alt="">
               <div class="down-content">
                 <h4>Baldur's Gate 3 - CD Key<br>€22.34</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
               </div>
             </div>
             <div class="item">
-              <img src="assets/images/rainbowsixsiege.jpg" alt="">
+              <img src="../../assets/images/rainbowsixsiege.jpg" alt="">
               <div class="down-content">
                 <h4>Rainbow 6 Siege - CD Key<br>€5.00</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
               </div>
             </div>
             <div class="item">
-              <img src="assets/images/windowspro.jpg" alt="">
+              <img src="../../assets/images/windowspro.jpg" alt="">
               <div class="down-content">
                 <h4>Windows 11 Pro License - CD Key<br>€7.38</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
               </div>
             </div>
             <div class="item">
-              <img src="assets/images/gamepass.jpg" alt="">
+              <img src="../../assets/images/gamepass.jpg" alt="">
               <div class="down-content">
                 <h4>Xbox Game Pass 1 Month - CD Key<br>€7.98</h4>
                 <a href="#"><i class="fa fa-link"></i></a>
@@ -180,7 +180,7 @@ https://templatemo.com/tm-582-tale-seo-agency
             <div class="col-lg-6 col-sm-6">
               <div class="service-item">
                 <div class="icon">
-                  <img src="assets/images/services-01.jpg" alt="discover SEO" class="templatemo-feature">
+                  <img src="../../assets/images/services-01.jpg" alt="discover SEO" class="templatemo-feature">
                 </div>
                 <h4>Discover our Latest Games</h4>
               </div>
@@ -188,7 +188,7 @@ https://templatemo.com/tm-582-tale-seo-agency
             <div class="col-lg-6 col-sm-6">
               <div class="service-item">
                 <div class="icon">
-                  <img src="assets/images/services-02.jpg" alt="data analysis" class="templatemo-feature">
+                  <img src="../../assets/images/services-02.jpg" alt="data analysis" class="templatemo-feature">
                 </div>
                 <h4>Check out our Office Packages</h4>
               </div>
@@ -196,7 +196,7 @@ https://templatemo.com/tm-582-tale-seo-agency
             <div class="col-lg-6 col-sm-6">
               <div class="service-item">
                 <div class="icon">
-                  <img src="assets/images/services-03.jpg" alt="precise data" class="templatemo-feature">
+                  <img src="../../assets/images/services-03.jpg" alt="precise data" class="templatemo-feature">
                 </div>
                 <h4>Buy In-Game Currencies for a Bunch of Games</h4>
               </div>
@@ -204,7 +204,7 @@ https://templatemo.com/tm-582-tale-seo-agency
             <div class="col-lg-6 col-sm-6">
               <div class="service-item">
                 <div class="icon">
-                  <img src="assets/images/services-04.jpg" alt="SEO marketing" class="templatemo-feature">
+                  <img src="../../assets/images/services-04.jpg" alt="SEO marketing" class="templatemo-feature">
                 </div>
                 <h4>Get Subcriptions for Cheap</h4>
               </div>
@@ -318,14 +318,14 @@ https://templatemo.com/tm-582-tale-seo-agency
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../vendor/jquery/jquery.min.js"></script>
+  <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script src="../../assets/js/isotope.min.js"></script>
+  <script src="../../assets/js/owl-carousel.js"></script>
+  <script src="../../assets/js/tabs.js"></script>
+  <script src="../../assets/js/popup.js"></script>
+  <script src="../../assets/js/custom.js"></script>
 
 
 </body>
