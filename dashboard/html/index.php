@@ -129,38 +129,41 @@
           $sql .= " WHERE klantnaam LIKE ?";
         }
 
-        $stmt = $mysqli->prepare($sql);
-        if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
-          $searchTerm = '%' . $_GET['search_klantnaam'] . '%';
-          $stmt->bind_param("s", $searchTerm);
-        }
+        if ($stmt = $mysqli->prepare($sql)) {
+          
+          if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
+            $searchTerm = '%' . $_GET['search_klantnaam'] . '%';
+            $stmt->bind_param("s", $searchTerm);
+          }
 
-        if (!$stmt->execute()) {
-          echo 'Het uitvoeren van de query is mislukt: ' . $stmt->error . ' in query:' . $sql;
+          if (!$stmt->execute()) {
+            echo 'Het uitvoeren van de query is mislukt: ' . $stmt->error . ' in query:' . $sql;
+          } else {
+              $stmt->bind_result($KlantID, $Klantnaam, $Klantemail, $Geboortedatum, $Passwoord, $Rol, $Registratiedatum);
+              echo '<br><br><form name="form1" method="post" action="' . $_SERVER['PHP_SELF'] . '?actie=wis">';
+              echo '<table border="1"><tr><th> Select </th><th> CustomerID </th><th>Name</th><th> Email </th><th>Date of birth</th><th>Password</th><th>Role</th><th>Registration date</th><th>Edit</th></tr>';
+
+              while ($stmt->fetch()) {
+                  $teverwijderen = $KlantID;
+                  echo '<tr>';
+                  echo '<td><input type="checkbox" name="klantids[]" value="' . $teverwijderen . '"></td>';
+                  echo '<td>' . $teverwijderen . "</td><td> " . $Klantnaam . "</td><td>" . $Klantemail . "</td><td>" . $Geboortedatum . '</td>';
+                  echo '<td>' . $Passwoord . '</td><td>' . $Rol . '</td><td>' . $Registratiedatum . '</td>';
+                  
+                  echo '<td><a href="' . $_SERVER['PHP_SELF'] . '?actie=edit&klantid=' . $teverwijderen . '">Edit</a></td>';
+                  
+                  echo '</tr>';
+              }
+
+              echo '</table>';
+              echo '<input class="btn btn-primary my-3" type="submit" name="btnwissen" id="wis" value="Delete selected items">';
+              echo '</form>';
+          }
+
+          $stmt->close();
         } else {
-            $stmt->bind_result($KlantID, $Klantnaam, $Klantemail, $Geboortedatum, $Passwoord, $Rol, $Registratiedatum);
-            echo '<br><br><form name="form1" method="post" action="' . $_SERVER['PHP_SELF'] . '?actie=wis">';
-            echo '<table border="1"><tr><th> Select </th><th> CustomerID </th><th>Name</th><th> Email </th><th>Date of birth</th><th>Password</th><th>Role</th><th>Registration date</th><th>Edit</th></tr>';
-
-            while ($stmt->fetch()) {
-                $teverwijderen = $KlantID;
-                echo '<tr>';
-                echo '<td><input type="checkbox" name="klantids[]" value="' . $teverwijderen . '"></td>';
-                echo '<td>' . $teverwijderen . "</td><td> " . $Klantnaam . "</td><td>" . $Klantemail . "</td><td>" . $Geboortedatum . '</td>';
-                echo '<td>' . $Passwoord . '</td><td>' . $Rol . '</td><td>' . $Registratiedatum . '</td>';
-                
-                echo '<td><a href="' . $_SERVER['PHP_SELF'] . '?actie=edit&klantid=' . $teverwijderen . '">Edit</a></td>';
-                
-                echo '</tr>';
-            }
-
-            echo '</table>';
-            echo '<input class="btn btn-primary my-3" type="submit" name="btnwissen" id="wis" value="Delete selected items">';
-            echo '</form>';
+          echo 'Er zit een fout in de query: '.$mysqli->error;
         }
-
-        $stmt->close();
-        
 
         /**
          * Handles customer data for editing based on customer ID from GET parameter. 
