@@ -16,10 +16,10 @@
 
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/templatemo-tale-seo-agency.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="../../assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../assets/css/templatemo-tale-seo-agency.css">
+  <link rel="stylesheet" href="../../assets/css/owl.css">
+  <link rel="stylesheet" href="../../assets/css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <!--
 
@@ -52,23 +52,23 @@ https://templatemo.com/tm-582-tale-seo-agency
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
-              <img src="assets/images/logo.png" alt="" style="max-width: 300px; margin: -10px;">
+            <a href="index.php" class="logo">
+              <img src="../../assets/images/logo.png" alt="" style="max-width: 300px; margin: -10px;">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index.html">Services</a></li>
-              <li><a href="index.html">Bestsellers</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="index.php">Services</a></li>
+              <li><a href="index.php">Bestsellers</a></li>
               <li class="has-sub">
                 <a href="javascript:void(0)">Pages</a>
                 <ul class="sub-menu">
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="faqs.html">FAQs</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="faqs.php">FAQs</a></li>
                 </ul>
               </li>
-              <li><a href="index.html">Contact</a></li>
+              <li><a href="index.php">Contact</a></li>
             </ul>
             <a class="menu-trigger">
               <span>Menu</span>
@@ -91,11 +91,11 @@ https://templatemo.com/tm-582-tale-seo-agency
             <h4>Discover More <em>About Us</em></h4>
             <p>
               Welcome to ByteBazaar, your go-to destination for affordable CD keys. Founded with a mission to simplify access for developers and make gaming budget-friendly for players.</p>
-            <div class="main-button"><a href="faqs.html">Check our FAQs</a></div>
+            <div class="main-button"><a href="faqs.php">Check our FAQs</a></div>
           </div>
         </div>
         <div class="col-lg-5 align-self-center">
-          <img class="rounded-5" src="assets/images/about-us-image-edited.jpg" alt="">
+          <img class="rounded-5" src="../../assets/images/about-us-image-edited.jpg" alt="">
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@ https://templatemo.com/tm-582-tale-seo-agency
       <div class="row">
         <div class="col-lg-6">
           <div class="video-thumb">
-            <img src="assets/images/controller.jpg" alt="">
+            <img src="../../assets/images/controller.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6 align-self-center">
@@ -168,7 +168,7 @@ https://templatemo.com/tm-582-tale-seo-agency
                               where cost should never be a barrier to exploring the limitless possibilities of technology and gaming.</p>
                           </div>
                           <div class="col-lg-5 align-self-center">
-                            <img src="assets/images/happyclient-01.jpg" alt="">
+                            <img src="../../assets/images/happyclient-01.jpg" alt="">
                           </div>
                         </div>
                       </div>
@@ -187,7 +187,7 @@ https://templatemo.com/tm-582-tale-seo-agency
                               secure, and ethically acquired. Your trust in our commitment to authenticity is the foundation of our platform.</p>
                           </div>
                           <div class="col-lg-5 align-self-center">
-                            <img src="assets/images/happyclient-01.jpg" alt="">
+                            <img src="../../assets/images/happyclient-01.jpg" alt="">
                           </div>
                         </div>
                       </div>
@@ -205,7 +205,7 @@ https://templatemo.com/tm-582-tale-seo-agency
                               Your satisfaction and confidence in the reliability of ByteBazaar are paramount to our mission.</p>
                           </div>
                           <div class="col-lg-5 align-self-center">
-                            <img src="assets/images/happyclient-01.jpg" alt="">
+                            <img src="../../assets/images/happyclient-01.jpg" alt="">
                           </div>
                         </div>
                       </div>
@@ -224,7 +224,7 @@ https://templatemo.com/tm-582-tale-seo-agency
                               Your trust in the security of your transactions is at the heart of our commitment to excellence.</p>
                           </div>
                           <div class="col-lg-5 align-self-center">
-                            <img src="assets/images/happyclient-01.jpg" alt="">
+                            <img src="../../assets/images/happyclient-01.jpg" alt="">
                           </div>
                         </div>
                       </div>
@@ -257,11 +257,11 @@ https://templatemo.com/tm-582-tale-seo-agency
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script src="../../assets/js/isotope.min.js"></script>
+  <script src="../../assets/js/owl-carousel.js"></script>
+  <script src="../../assets/js/tabs.js"></script>
+  <script src="../../assets/js/popup.js"></script>
+  <script src="../../assets/js/custom.js"></script>
 
 </body>
 
