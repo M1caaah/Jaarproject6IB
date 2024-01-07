@@ -73,12 +73,6 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class="ti ti-bell-ringing"></i>
-                <div class="notification bg-primary rounded-circle"></div>
-              </a>
-            </li>
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -114,7 +108,6 @@
       
       <?php
         $mysqli = new MySQLi("localhost", "root", "", "jaarproject");
-
         /**
          * Connects to the database, prepares and executes a SELECT query to get customer data, 
          * outputs the data in an HTML table, and provides edit and delete options.
@@ -234,9 +227,7 @@
                 $deleteSql = "DELETE FROM tblklant WHERE KlantID IN (" . implode(',', $_POST['klantids']) . ")";
 
                 if ($stmt = $mysqli->prepare($deleteSql)) {
-                    if ($stmt->execute()) {
-                        echo count($_POST['klantids']) . " klant(en) verwijderd!";
-                    } else {
+                    if (!$stmt->execute()) {
                         echo 'Het verwijderen van de geselecteerde klanten is mislukt: ' . $stmt->error;
                     }
 
@@ -301,6 +292,64 @@
           </div>
         </div>
         
+
+        <?php
+        /** 
+         * Handles adding and updating customers in the database.
+         * Prints success or error messages based on query results.
+         */
+        if (isset($_POST['btnToevoegen'])) {
+            $new_klantnaam = $_POST['new_klantnaam'];
+            $new_klantemail = $_POST['new_klantemail'];
+            $new_geboortedatum = $_POST['new_geboortedatum'];
+            $new_passwoord = $_POST['new_passwoord'];
+            $new_rol = $_POST['new_rol'];
+            $new_registratiedatum = $_POST['new_registratiedatum'];
+
+            $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+
+            if ($stmt = $mysqli->prepare($insertSql)) {
+                $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+
+                if (!$stmt->execute()) {
+                    echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
+                }
+
+                $stmt->close();
+            } else {
+                echo 'Er zit een fout in de query: ' . $mysqli->error;
+            }
+        }
+
+        /**
+         * Updates an existing customer in the database.
+         * Prints success/error messages.
+         */
+        if (isset($_POST['btnUpdate'])) {
+            $edit_klantid = $_POST['edit_klantid'];
+            $edit_klantnaam = $_POST['edit_klantnaam'];
+            $edit_klantemail = $_POST['edit_klantemail'];
+            $edit_geboortedatum = $_POST['edit_geboortedatum'];
+            $edit_passwoord = $_POST['edit_passwoord'];
+            $edit_rol = $_POST['edit_rol'];
+            $edit_registratiedatum = $_POST['edit_registratiedatum'];
+
+            $updateSql = "UPDATE tblklant SET Klantnaam = ?, Klantemail = ?, Geboortedatum = ?, Passwoord = ?, Rol = ?, Registratiedatum = ? WHERE KlantID = ?";
+
+            if ($stmt = $mysqli->prepare($updateSql)) {
+                $stmt->bind_param("ssssssi", $edit_klantnaam, $edit_klantemail, $edit_geboortedatum, $edit_passwoord, $edit_rol, $edit_registratiedatum, $edit_klantid);
+
+                if ($stmt->execute()) {
+                } else {
+                    echo 'Het updaten van de klant is mislukt: ' . $stmt->error;
+                }
+
+                $stmt->close();
+            } else {
+                echo 'Er zit een fout in de update-query: ' . $mysqli->error;
+            }
+        }
+        ?>
         
       
         <div class="py-6 px-6 text-center">
