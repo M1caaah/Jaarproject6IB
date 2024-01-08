@@ -1,8 +1,10 @@
 <?php
+$mysqli = new MySQLi("localhost", "root", "", "jaarproject");
 /**
 * Updates an existing customer in the database.
 * Prints success/error messages.
 */
+
 if (isset($_POST['btnUpdate'])) {
 	$edit_klantid = $_POST['edit_klantid'];
 	$edit_klantemail = $_POST['edit_klantemail'];
