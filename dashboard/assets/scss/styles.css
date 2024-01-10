@@ -1,8 +1,4 @@
 @charset "UTF-8";
-.test {
-  background-color: #9352FF;
-}
-
 :root,
 [data-mdb-theme=light] {
   --mdb-red: #f44336;
