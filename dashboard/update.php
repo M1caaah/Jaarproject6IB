@@ -28,11 +28,11 @@
       <div class="list-group list-group-flush mx-3 mt-4">
         <span class="hide-menu">Clients</span>
         <hr>
-        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fab fa-sistrix fa-fw me-3"></i>
           <span>Search</span>
         </a>
-        <a href="update.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="update.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
           <span>Update</span>
         </a>
