@@ -76,8 +76,8 @@
       <!-- Brand -->
       <a class="navbar-brand" href="#">
         <img
-             src="assets/img/logos/dark-logo.svg"
-             height="25"
+             src="assets/img/logos/logo.png"
+             height="35"
              alt=""
              loading="lazy"
              />
