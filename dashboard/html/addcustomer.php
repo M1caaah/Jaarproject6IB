@@ -4,10 +4,10 @@
     <input type="text" name="new_klantnaam" id="new_klantnaam" required><br>
 
     <label for="new_klantemail">Klantemail:</label>
-    <input type="text" name="new_klantemail" id="new_klantemail" required><br>
+    <input type="email" name="new_klantemail" id="new_klantemail" required><br>
 
     <label for="new_geboortedatum">Geboortedatum:</label>
-    <input type="text" name="new_geboortedatum" id="new_geboortedatum" required><br>
+    <input type="date" name="new_geboortedatum" id="new_geboortedatum" required><br>
 
     <label for="new_passwoord">Passwoord:</label>
     <input type="password" name="new_passwoord" id="new_passwoord" required><br>
@@ -16,7 +16,10 @@
     <input type="text" name="new_rol" id="new_rol" required><br>
 
     <label for="new_registratiedatum">Registratiedatum:</label>
-    <input type="text" name="new_registratiedatum" id="new_registratiedatum" required><br>
+    <?php $today = new DateTime();
+    $dateString = $today->format('Y-m-d');
+    ?>
+    <input type="date" name="new_registratiedatum" id="new_registratiedatum" value="<?php echo $dateString;?>" required><br>
 
     <input type="submit" name="btnToevoegen" id="toevoegen" value="Voeg toe">
 </form>
@@ -45,7 +48,10 @@ if (isset($_POST['btnToevoegen'])) {
     if (!$stmt->execute()) {
       echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
     }
-    
+    else{
+      echo 'Het toevoegen van de klant is gelukt!';
+    }
+
     $stmt->close();
   } else {
     echo 'Er zit een fout in de query: ' . $mysqli->error;
