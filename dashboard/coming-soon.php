@@ -44,7 +44,7 @@
       <div class="list-group list-group-flush mx-3 mt-4">
         <span class="sidebar-header">Coming soon...</span>
         <hr>
-        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
         </a>
