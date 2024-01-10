@@ -1,33 +1,47 @@
+<script>
+  function check(){
+    var check = true;
+
+    if(document.getElementById("nameNew").value == "")
+    {
+      document.getElementById("nameCheck").innerHTML = "Please write a name."
+      check = false;
+    }else{
+      document.getElementById("nameCheck").innerHTML = "";
+    }
+  }
+</script>
+
 <form name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <h2>Voeg nieuwe klant toe:</h2>
-    <label for="new_klantnaam">Klantnaam:</label>
-    <label id="naamVerplicht"></label> 
-    <input type="text" name="new_klantnaam" id="new_klantnaam" required><br>
+    <label for="nameNew">Klantnaam:</label>
+    <label id="nameCheck"></label> 
+    <input type="text" name="nameNew" id="nameNew" required><br>
 
-    <label for="new_klantemail">Klantemail:</label>
-    <label id="emailVerplicht"></label> 
-    <input type="email" name="new_klantemail" id="new_klantemail" required><br>
+    <label for="emailNew">Klantemail:</label>
+    <label id="emailCheck"></label> 
+    <input type="email" name="emailNew" id="emailNew" required><br>
 
-    <label for="new_geboortedatum">Geboortedatum:</label>
-    <label id="geboorteVerplicht"></label> 
-    <input type="date" name="new_geboortedatum" id="new_geboortedatum" required><br>
+    <label for="birthNew">Geboortedatum:</label>
+    <label id="birthCheck"></label> 
+    <input type="date" name="birthNew" id="birthNew" required><br>
 
-    <label for="new_passwoord">Passwoord:</label>
-    <label id="passwoordVerplicht"></label>
-    <input type="password" name="new_passwoord" id="new_passwoord" required><br>
+    <label for="passwordNew">Passwoord:</label>
+    <label id="passwordCheck"></label>
+    <input type="password" name="passwordNew" id="passwordNew" required><br>
 
-    <label for="new_rol">Rol:</label>
-    <label id="rolVerplicht"></label>
-    <input type="text" name="new_rol" id="new_rol" required><br>
+    <label for="rolNew">Rol:</label>
+    <label id="rolCheck"></label>
+    <input type="text" name="rolNew" id="rolNew" required><br>
 
     <label for="new_registratiedatum">Registratiedatum:</label>
     <?php $today = new DateTime();
     $dateString = $today->format('Y-m-d');
     ?>
-    <label id="registratieVerplicht"></label>
-    <input type="date" name="new_registratiedatum" id="new_registratiedatum" value="<?php echo $dateString;?>" required><br>
+    <label id="registrationNew"></label>
+    <input type="date" name="registrationNew" id="registrationNew" value="<?php echo $dateString;?>" required><br>
 
-    <input type="submit" name="btnToevoegen" id="toevoegen" value="Voeg toe">
+    <input type="submit" name="btnAdd" id="add" value="Voeg toe">
 </form>
 
 
@@ -39,12 +53,12 @@
 
 $mysqli = new MySQLi("localhost", "root", "", "jaarproject");
 if (isset($_POST['btnToevoegen'])) {
-  $new_klantnaam = $_POST['edit_klantnaam'];
-  $new_klantemail = $_POST['new_klantemail'];
-  $new_geboortedatum = $_POST['new_geboortedatum'];
-  $new_passwoord = $_POST['new_passwoord'];
-  $new_rol = $_POST['new_rol'];
-  $new_registratiedatum = $_POST['new_registratiedatum'];
+  $new_klantnaam = $_POST['nameNew'];
+  $new_klantemail = $_POST['emailNew'];
+  $new_geboortedatum = $_POST['birthNew'];
+  $new_passwoord = $_POST['passwordNew'];
+  $new_rol = $_POST['rolNew'];
+  $new_registratiedatum = $_POST['registrationNew'];
   
   $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
   
