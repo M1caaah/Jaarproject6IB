@@ -27,6 +27,8 @@
  * Handles adding and updating customers in the database.
  * Prints success or error messages based on query results.
  */
+
+$mysqli = new MySQLi("localhost", "root", "", "jaarproject");
 if (isset($_POST['btnToevoegen'])) {
   $new_klantnaam = $_POST['new_klantnaam'];
   $new_klantemail = $_POST['new_klantemail'];
