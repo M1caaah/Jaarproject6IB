@@ -26,7 +26,7 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="hide-menu">Clients</span>
+        <span class="sidebar-header">Clients</span>
         <hr>
         <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fab fa-sistrix fa-fw me-3"></i>
@@ -40,7 +40,9 @@
           <i class="fas fa-user-plus fa-fw me-3"></i>
           <span>Add</span>
         </a>
-        <span class="hide-menu">Coming soon...</span>
+      </div>
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <span class="sidebar-header">Coming soon...</span>
         <hr>
         <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="far fa-circle-question fa-fw me-3"></i>
