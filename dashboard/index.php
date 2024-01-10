@@ -78,7 +78,7 @@
       <!-- Brand -->
       <a class="navbar-brand" href="#">
         <img
-             src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+             src="assets/img/logos/dark-logo.svg"
              height="25"
              alt=""
              loading="lazy"
