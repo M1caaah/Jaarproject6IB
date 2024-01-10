@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
   <!-- MDB -->
-  <link rel="stylesheet" href="assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css"></head>
 
@@ -26,24 +26,10 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Clients</span>
-        <hr>
-        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-          <i class="fab fa-sistrix fa-fw me-3"></i>
-          <span>Search</span>
-        </a>
-        <a href="update.php" class="list-group-item list-group-item-action py-2 ripple">
+      <a href="update.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
-          <span>Update</span>
+          <span>Clients</span>
         </a>
-        <a href="add.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-user-plus fa-fw me-3"></i>
-          <span>Add</span>
-        </a>
-      </div>
-      <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Coming soon...</span>
-        <hr>
         <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
