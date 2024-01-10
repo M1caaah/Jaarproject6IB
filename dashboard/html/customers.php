@@ -53,13 +53,12 @@ if (mysqli_connect_errno()) {
                 
                 while ($stmt->fetch()) {
                     $teverwijderen = $KlantID;
+                    $teversturen = $KlantID;
                     echo '<tr>';
                         echo '<td><input type="checkbox" name="klantids[]" value="' . $teverwijderen . '"></td>';
                         echo '<td>' . $teverwijderen . "</td><td> " . $Klantnaam . "</td><td>" . $Klantemail . "</td><td>" . $Geboortedatum . '</td>';
                         echo '<td>' . $Passwoord . '</td><td>' . $Rol . '</td><td>' . $Registratiedatum . '</td>';
-                        
-                        echo '<td><a href="' . $_SERVER['PHP_SELF'] . '?actie=edit&klantid=' . $teverwijderen . '">Edit</a></td>';
-                
+                        echo '<td><a href="' . 'changecustomer.php' . '?actie=edit&klantid=' . $teverwijderen . '">Edit</a></td>';
                         echo '</tr>';
                     }
                     
