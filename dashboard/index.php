@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
   <!-- MDB -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css" />
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css"></head>
 
@@ -26,7 +26,7 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-      <a href="update.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+      <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
           <span>Clients</span>
         </a>
@@ -116,8 +116,8 @@
 
 <!--Main layout-->
 <main style="margin-top: 58px">
-  <div class="container pt-4">
-
+  <div class="container pt-4 test">
+    <h1 class="">TEST</h1>
   </div>
 </main>
 
