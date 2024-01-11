@@ -142,59 +142,59 @@
               <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+              <form name="edituser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
                 <div class="col-md-6">
-                  <label for="nameNew" class="form-label">Klantnaam:</label>
+                  <label for="nameNew" class="form-label">Name:</label>
                   <input type="text" name="nameNew" id="nameNew" class="form-control" required>
                   <div class="invalid-feedback">
-                    Vul een geldige naam in.
+                    Enter a valid name.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="passwordNew" class="form-label">Passwoord:</label>
+                  <label for="passwordNew" class="form-label">Password:</label>
                   <input type="password" name="passwordNew" id="passwordNew" class="form-control" required>
                   <div class="invalid-feedback">
-                    Vul een geldig wachtwoord in.
+                    Enter a valid password.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="emailNew" class="form-label">Klantemail:</label>
+                  <label for="emailNew" class="form-label">Email:</label>
                   <input type="email" name="emailNew" id="emailNew" class="form-control" required>
                   <div class="invalid-feedback">
-                    Vul een geldig e-mailadres in.
+                    Vul een geldig e-mailadres.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="rolNew" class="form-label">Rol:</label>
+                  <label for="rolNew" class="form-label">Role:</label>
                   <input type="text" name="rolNew" id="rolNew" class="form-control" required>
                   <div class="invalid-feedback">
-                    Vul een geldige rol in.
+                    Enter a valid role.
                   </div>
                 </div>
                 
                 <div class="col-md-6">
-                  <label for="birthNew" class="form-label">Geboortedatum:</label>
+                  <label for="birthNew" class="form-label">Date of birth:</label>
                   <input type="date" name="birthNew" id="birthNew" class="form-control" required>
                   <div class="invalid-feedback">
-                    Vul een geldige geboortedatum in.
+                    Enter a valid date of birth.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="new_registratiedatum" class="form-label">Registratiedatum:</label>
+                  <label for="new_registratiedatum" class="form-label">Registration date:</label>
                   <?php $today = new DateTime();
                   $dateString = $today->format('Y-m-d');
                   ?>
-                  <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString;?>" required>
+                  <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString ?>" required>
                   <div class="invalid-feedback">
-                    Vul een geldige registratiedatum in.
+                    Enter a valid registration date.
                   </div>
                 </div>
-                <input type="submit" value="Add user" class="btn btn-primary" name="btnAdd">
+                <input type="submit" value="Update user" class="btn btn-primary" name="btnAdd">
               </form>
             </div>
           </div>
