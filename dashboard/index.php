@@ -153,7 +153,7 @@
     </div>
     <div class="row">
       <div class="container">
-        
+        <?php include 'searchresult.php' ?>
       </div>
     </div>
   </div>
