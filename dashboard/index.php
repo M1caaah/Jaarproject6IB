@@ -25,7 +25,7 @@
       <div class="list-group list-group-flush mx-3 mt-4">
       <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
-          <span>Clients</span>
+          <span>Users</span>
         </a>
         <a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
           <i class="far fa-circle-question fa-fw me-3"></i>
@@ -130,7 +130,7 @@
       </div>
       <div class="col-4">
       <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
-        Add new client
+        Add new user
       </button>
 
       <!-- Modal -->
@@ -138,7 +138,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add client</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
               <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -194,14 +194,14 @@
                     Vul een geldige registratiedatum in.
                   </div>
                 </div>
-                <input type="submit" value="Add client" class="btn btn-primary" name="btnAdd">
+                <input type="submit" value="Add user" class="btn btn-primary" name="btnAdd">
               </form>
             </div>
           </div>
         </div>
       </div>
 
-      <?php include 'addclient.php' ?>
+      <?php include 'adduser.php' ?>
       </div>
     </div>
       <div class="container my-3">

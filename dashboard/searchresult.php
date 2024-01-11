@@ -24,17 +24,18 @@
 
     // Prepare the SQL statement.
     $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ?";
-    
     // Prepare the statement.
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('s',$searchTerm);
   }
   else {
+    
     // Prepare the SQL statement.
     $sql = "SELECT * FROM `tblklant`";
 
     // Prepare the statement.
     $stmt = $conn->prepare($sql);
+
   }
 
   
@@ -51,13 +52,24 @@
           <div class="card-body">
             <h5 class="card-title"><?php echo $row['klantnaam']; ?></h5>
             <p class="card-text text-muted"><?php echo $row['klantemail']; ?></p>
-            <a type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
+            <a type="button" class="d-inline-block btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
             More info
             </a>
+            <div class="d-inline-block dropdown">
+              <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" data-mdb-dropdown-init aria-expanded="false">
+                Manage user
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Modal -->
       <div class="modal fade" id="klant<?php echo $row['klantID']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -104,7 +116,6 @@
   }
 
   $stmt->close();
-
   $conn->close();
 
 ?>
