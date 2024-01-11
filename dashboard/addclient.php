@@ -69,7 +69,6 @@
 
 
   if (isset($_POST['btnAdd'])) {
-    echo '<script>alert("Posted");</script>';
     $new_klantnaam = htmlspecialchars($_POST['nameNew']);
     $new_klantemail = htmlspecialchars($_POST['emailNew']);
     $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
@@ -83,9 +82,6 @@
     $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
     $stmt->execute();
     $stmt->close();
-  }
-  else {
-    echo '<script>alert("No post");</script>';
   }
 
   $mysqli->close();
