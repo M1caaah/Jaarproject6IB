@@ -1,14 +1,54 @@
 <script>
-  function check(){
+  function check() {
     var check = true;
 
-    if(document.getElementById("nameNew").value == "")
-    {
-      document.getElementById("nameCheck").innerHTML = "Please write a name."
+    var nameValue = document.getElementById("nameNew").value;
+    if (nameValue == "") {
+      document.getElementById("nameCheck").innerHTML = "Please write a name.";
       check = false;
-    }else{
+    } else {
       document.getElementById("nameCheck").innerHTML = "";
     }
+
+    var emailValue = document.getElementById("emailNew").value;
+    if (emailValue == "" || !isValidEmail(emailValue)) {
+      document.getElementById("emailCheck").innerHTML = "Please enter a valid email.";
+      check = false;
+    } else {
+      document.getElementById("emailCheck").innerHTML = "";
+    }
+
+    var birthValue = document.getElementById("birthNew").value;
+    if (birthValue == "") {
+      document.getElementById("birthCheck").innerHTML = "Please enter a valid birth date.";
+      check = false;
+    } else {
+      document.getElementById("birthCheck").innerHTML = "";
+    }
+
+    var passwordValue = document.getElementById("passwordNew").value;
+    if (passwordValue == "") {
+      document.getElementById("passwordCheck").innerHTML = "Please enter a password.";
+      check = false;
+    } else {
+      document.getElementById("passwordCheck").innerHTML = "";
+    }
+
+    var roleValue = document.getElementById("rolNew").value;
+    if (roleValue == "") {
+      document.getElementById("rolCheck").innerHTML = "Please enter a role.";
+      check = false;
+    } else {
+      document.getElementById("rolCheck").innerHTML = "";
+    }
+
+    return check;
+  }
+
+  function isValidEmail(email) {
+    // Simple email validation, will be improved later.
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 </script>
 
@@ -51,31 +91,34 @@
  * Prints success or error messages based on query results.
  */
 
-$mysqli = new MySQLi("localhost", "root", "", "jaarproject");
-if (isset($_POST['btnToevoegen'])) {
-  $new_klantnaam = $_POST['nameNew'];
-  $new_klantemail = $_POST['emailNew'];
-  $new_geboortedatum = $_POST['birthNew'];
-  $new_passwoord = $_POST['passwordNew'];
-  $new_rol = $_POST['rolNew'];
-  $new_registratiedatum = $_POST['registrationNew'];
-  
-  $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
-  
-  if ($stmt = $mysqli->prepare($insertSql)) {
-    $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
-    
-    if (!$stmt->execute()) {
-      echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
-    }
-    else{
-      echo 'Het toevoegen van de klant is gelukt!';
-    }
+ $mysqli = new MySQLi("localhost", "root", "", "jaarproject");
 
-    $stmt->close();
-  } else {
-    echo 'Er zit een fout in de query: ' . $mysqli->error;
-  }
-}
-
+ if ($mysqli->connect_error) {
+     die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+ }
+ 
+ if (isset($_POST['btnToevoegen'])) {
+     $new_klantnaam = $_POST['nameNew'];
+     $new_klantemail = $_POST['emailNew'];
+     $new_geboortedatum = $_POST['birthNew'];
+     $new_passwoord = $_POST['passwordNew'];
+     $new_rol = $_POST['rolNew'];
+     $new_registratiedatum = $_POST['registrationNew'];
+ 
+     $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+ 
+     if ($stmt = $mysqli->prepare($insertSql)) {
+         $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+ 
+         if ($stmt->execute()) {
+             echo 'Het toevoegen van de klant is gelukt!';
+         } else {
+             echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
+         }
+ 
+         $stmt->close();
+     } else {
+         echo 'Er zit een fout in de query: ' . $mysqli->error;
+     }
+ }
 ?>
