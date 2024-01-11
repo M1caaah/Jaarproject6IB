@@ -129,26 +129,79 @@
         </form>
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
-          Add new client
-        </button>
+      <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+        Add new client
+      </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add customer</h5>
-                <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">...</div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
-              </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add customer</h5>
+              <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="nameNew" class="form-label">Klantnaam:</label>
+                  <input type="text" name="nameNew" id="nameNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldige naam in.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="passwordNew" class="form-label">Passwoord:</label>
+                  <input type="password" name="passwordNew" id="passwordNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldig wachtwoord in.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="emailNew" class="form-label">Klantemail:</label>
+                  <input type="email" name="emailNew" id="emailNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldig e-mailadres in.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="rolNew" class="form-label">Rol:</label>
+                  <input type="text" name="rolNew" id="rolNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldige rol in.
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="birthNew" class="form-label">Geboortedatum:</label>
+                  <input type="date" name="birthNew" id="birthNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldige geboortedatum in.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="new_registratiedatum" class="form-label">Registratiedatum:</label>
+                  <?php $today = new DateTime();
+                  $dateString = $today->format('Y-m-d');
+                  ?>
+                  <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString;?>" required>
+                  <div class="invalid-feedback">
+                    Vul een geldige registratiedatum in.
+                  </div>
+                </div>
+                <input type="submit" value="Add client" class="btn btn-primary" name="btnAdd">
+              </form>
             </div>
           </div>
         </div>
+      </div>
+
+      <?php include 'addclient.php' ?>
       </div>
     </div>
       <div class="container my-3">

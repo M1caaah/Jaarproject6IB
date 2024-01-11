@@ -1,55 +1,55 @@
 <script>
-  function check() {
-    var check = true;
+  // function check() {
+  //   var check = true;
 
-    var nameValue = document.getElementById("nameNew").value;
-    if (nameValue == "") {
-      document.getElementById("nameCheck").innerHTML = "Please write a name.";
-      check = false;
-    } else {
-      document.getElementById("nameCheck").innerHTML = "";
-    }
+  //   var nameValue = document.getElementById("nameNew").value;
+  //   if (nameValue == "") {
+  //     document.getElementById("nameCheck").innerHTML = "Please write a name.";
+  //     check = false;
+  //   } else {
+  //     document.getElementById("nameCheck").innerHTML = "";
+  //   }
 
-    var emailValue = document.getElementById("emailNew").value;
-    if (emailValue == "" || !isValidEmail(emailValue)) {
-      document.getElementById("emailCheck").innerHTML = "Please enter a valid email.";
-      check = false;
-    } else {
-      document.getElementById("emailCheck").innerHTML = "";
-    }
+  //   var emailValue = document.getElementById("emailNew").value;
+  //   if (emailValue == "" || !isValidEmail(emailValue)) {
+  //     document.getElementById("emailCheck").innerHTML = "Please enter a valid email.";
+  //     check = false;
+  //   } else {
+  //     document.getElementById("emailCheck").innerHTML = "";
+  //   }
 
-    var birthValue = document.getElementById("birthNew").value;
-    if (birthValue == "") {
-      document.getElementById("birthCheck").innerHTML = "Please enter a valid birth date.";
-      check = false;
-    } else {
-      document.getElementById("birthCheck").innerHTML = "";
-    }
+  //   var birthValue = document.getElementById("birthNew").value;
+  //   if (birthValue == "") {
+  //     document.getElementById("birthCheck").innerHTML = "Please enter a valid birth date.";
+  //     check = false;
+  //   } else {
+  //     document.getElementById("birthCheck").innerHTML = "";
+  //   }
 
-    var passwordValue = document.getElementById("passwordNew").value;
-    if (passwordValue == "") {
-      document.getElementById("passwordCheck").innerHTML = "Please enter a password.";
-      check = false;
-    } else {
-      document.getElementById("passwordCheck").innerHTML = "";
-    }
+  //   var passwordValue = document.getElementById("passwordNew").value;
+  //   if (passwordValue == "") {
+  //     document.getElementById("passwordCheck").innerHTML = "Please enter a password.";
+  //     check = false;
+  //   } else {
+  //     document.getElementById("passwordCheck").innerHTML = "";
+  //   }
 
-    var roleValue = document.getElementById("rolNew").value;
-    if (roleValue == "") {
-      document.getElementById("rolCheck").innerHTML = "Please enter a role.";
-      check = false;
-    } else {
-      document.getElementById("rolCheck").innerHTML = "";
-    }
+  //   var roleValue = document.getElementById("rolNew").value;
+  //   if (roleValue == "") {
+  //     document.getElementById("rolCheck").innerHTML = "Please enter a role.";
+  //     check = false;
+  //   } else {
+  //     document.getElementById("rolCheck").innerHTML = "";
+  //   }
 
-    return check;
-  }
+  //   return check;
+  // }
 
-  function isValidEmail(email) {
-    // Simple email validation, will be improved later.
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
+  // function isValidEmail(email) {
+  //   // Simple email validation, will be improved later.
+  //   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailRegex.test(email);
+  // }
 </script>
 
 <form name="form2" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -107,18 +107,9 @@
 
   $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
 
-  if ($stmt = $mysqli->prepare($insertSql)) {
-      $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
-
-      if ($stmt->execute()) {
-          echo 'Het toevoegen van de klant is gelukt!';
-      } else {
-          echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
-      }
-
-      $stmt->close();
-  } else {
-      echo 'Er zit een fout in de query: ' . $mysqli->error;
-  }
+  $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+  $stmt = $mysqli->prepare($insertSql);
+  $stmt->execute();
+  $stmt->close();
 }
 ?>
