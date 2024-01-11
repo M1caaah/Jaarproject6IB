@@ -116,19 +116,21 @@
   <div class="container pt-4">
     <div class="row">
       <div class="col-8">
-        <form action="index.php" method="post">
+        <form action="index.php" method="get">
           <div class="input-group">
-            <div class="form-outline " data-mdb-input-init>
-              <input id="search-input" type="search" id="form1" name="form1" class="form-control " />
+            <div class="form-outline" data-mdb-input-init>
+              <input type="search" id="form1" name="search" class="form-control" />
               <label class="form-label" for="form1">Search</label>
             </div>
-            <button id="search-button" type="submit" name="btnSubmit" class="btn btn-primary btn-rounded"><i class="fas fa-search"></i></button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
         </form>
       </div>
       <div class="col-4">
         <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
-          Launch demo modal
+          Add new client
         </button>
 
         <!-- Modal -->
@@ -151,7 +153,7 @@
     </div>
     <div class="row">
       <div class="container">
-
+        
       </div>
     </div>
   </div>
