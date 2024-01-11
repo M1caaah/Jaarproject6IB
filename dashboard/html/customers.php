@@ -1,13 +1,13 @@
 <?php
-$mysqli = new MySQLi("localhost", "root", "", "jaarproject");
+$conn = new mysqli("localhost", "root", "", "jaarproject");
 //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
-$mysqli->set_charset("utf8mb4");
+$conn->set_charset("utf8mb4");
 
 if (isset($_POST['btnwissen'])) {
     if (isset($_POST['klantids']) && is_array($_POST['klantids'])) {
         $deleteSql = "DELETE FROM tblklant WHERE KlantID IN (" . implode(',', $_POST['klantids']) . ")";
         
-        if ($stmt = $mysqli->prepare($deleteSql)) {
+        if ($stmt = $conn->prepare($deleteSql)) {
             if ($stmt->execute()) {
                 echo count($_POST['klantids']) . " klant(en) verwijderd!";
             } else {
@@ -15,7 +15,7 @@ if (isset($_POST['btnwissen'])) {
             }
             $stmt->close();
         } else {
-            echo 'Er zit een fout in de delete-query: ' . $mysqli->error;
+            echo 'Er zit een fout in de delete-query: ' . $conn->error;
         }
     } else {
         echo 'Geen klanten geselecteerd om te verwijderen.';
@@ -23,14 +23,14 @@ if (isset($_POST['btnwissen'])) {
 }
 
 if (mysqli_connect_errno()) {
-    trigger_error('Fout bij verbinding: ' . $mysqli->error);
+    trigger_error('Fout bij verbinding: ' . $conn->error);
 } else {
     $sql = "SELECT * FROM tblklant";
     if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
         $sql .= " WHERE klantnaam LIKE ?";
     }
 
-    if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt = $conn->prepare($sql)) {
         if (isset($_GET['search_klantnaam']) && !empty($_GET['search_klantnaam'])) {
             $searchTerm = '%' . $_GET['search_klantnaam'] . '%';
             $stmt->bind_param("s", $searchTerm);
@@ -61,7 +61,7 @@ if (mysqli_connect_errno()) {
 
         $stmt->close();
     } else {
-        echo 'Er zit een fout in de query: ' . $mysqli->error;
+        echo 'Er zit een fout in de query: ' . $conn->error;
     }
 }
 ?>

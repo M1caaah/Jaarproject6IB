@@ -151,8 +151,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="container">
+      <div class="container my-3">
         <?php include 'searchresult.php' ?>
       </div>
     </div>
