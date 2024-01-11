@@ -26,11 +26,11 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-      <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
+      <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
           <i class="fas fa-user-gear fa-fw me-3"></i>
           <span>Clients</span>
         </a>
-        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 rounded-9 ripple active" aria-current="true">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
         </a>

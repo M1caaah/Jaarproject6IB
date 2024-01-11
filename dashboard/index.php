@@ -23,11 +23,11 @@
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-      <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+      <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
           <span>Clients</span>
         </a>
-        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
         </a>
@@ -113,21 +113,21 @@
 
 <!--Main layout-->
 <main style="margin-top: 58px">
-  <div class="container pt-4 test">
+  <div class="container pt-4">
     <div class="row">
-      <div class="col-8" style="background-color: red;">
+      <div class="col-8">
         <form action="index.php" method="post">
           <div class="input-group">
-            <div class="form-outline" data-mdb-input-init>
-              <input id="search-input" type="search" id="form1" name="form1" class="form-control" />
+            <div class="form-outline " data-mdb-input-init>
+              <input id="search-input" type="search" id="form1" name="form1" class="form-control " />
               <label class="form-label" for="form1">Search</label>
             </div>
-            <button id="search-button" type="submit" name="btnSubmit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+            <button id="search-button" type="submit" name="btnSubmit" class="btn btn-primary btn-rounded"><i class="fas fa-search"></i></button>
           </div>
         </form>
       </div>
-      <div class="col-4" style="background-color: blue;">
-        <button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+      <div class="col-4">
+        <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
           Launch demo modal
         </button>
 

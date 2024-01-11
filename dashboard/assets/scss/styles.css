@@ -77,6 +77,10 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
+.form-outline {
+  border-radius: 20px;
+}
+
 :root,
 [data-mdb-theme=light] {
   --mdb-red: #f44336;

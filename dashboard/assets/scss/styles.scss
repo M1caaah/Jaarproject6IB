@@ -1,7 +1,6 @@
 $primary: #9352FF;
 
 
-
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -81,7 +80,9 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-
+.form-outline {
+  border-radius: 20px;
+}
 
 
 
