@@ -20,10 +20,7 @@
   <!--Main Navigation-->
 <header>
   <!-- Sidebar -->
-  <nav
-       id="sidebarMenu"
-       class="collapse d-lg-block sidebar collapse bg-white"
-       >
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
       <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
@@ -117,7 +114,46 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
   <div class="container pt-4 test">
-    
+    <div class="row">
+      <div class="col-8" style="background-color: red;">
+        <form action="index.php" method="post">
+          <div class="input-group">
+            <div class="form-outline" data-mdb-input-init>
+              <input id="search-input" type="search" id="form1" name="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button id="search-button" type="submit" name="btnSubmit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+      </div>
+      <div class="col-4" style="background-color: blue;">
+        <button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+          Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add customer</h5>
+                <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">...</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+
+      </div>
+    </div>
   </div>
 </main>
 
