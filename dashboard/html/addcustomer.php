@@ -97,28 +97,28 @@
      die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
  }
  
- if (isset($_POST['btnToevoegen'])) {
-     $new_klantnaam = $_POST['nameNew'];
-     $new_klantemail = $_POST['emailNew'];
-     $new_geboortedatum = $_POST['birthNew'];
-     $new_passwoord = $_POST['passwordNew'];
-     $new_rol = $_POST['rolNew'];
-     $new_registratiedatum = $_POST['registrationNew'];
- 
-     $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
- 
-     if ($stmt = $mysqli->prepare($insertSql)) {
-         $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
- 
-         if ($stmt->execute()) {
-             echo 'Het toevoegen van de klant is gelukt!';
-         } else {
-             echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
-         }
- 
-         $stmt->close();
-     } else {
-         echo 'Er zit een fout in de query: ' . $mysqli->error;
-     }
- }
+ if (isset($_POST['btnAdd'])) {
+  $new_klantnaam = htmlspecialchars($_POST['nameNew']);
+  $new_klantemail = htmlspecialchars($_POST['emailNew']);
+  $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
+  $new_passwoord = htmlspecialchars($_POST['passwordNew']);
+  $new_rol = htmlspecialchars($_POST['rolNew']);
+  $new_registratiedatum = htmlspecialchars($_POST['registrationNew']);
+
+  $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+
+  if ($stmt = $mysqli->prepare($insertSql)) {
+      $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+
+      if ($stmt->execute()) {
+          echo 'Het toevoegen van de klant is gelukt!';
+      } else {
+          echo 'Het toevoegen van de klant is mislukt: ' . $stmt->error;
+      }
+
+      $stmt->close();
+  } else {
+      echo 'Er zit een fout in de query: ' . $mysqli->error;
+  }
+}
 ?>
