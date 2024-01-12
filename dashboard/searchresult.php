@@ -23,7 +23,7 @@
     $searchTerm = "%".$searchTerm."%";
 
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ?";
+    $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
     $stmt->bind_param('s',$searchTerm);
@@ -31,7 +31,7 @@
   else {
     
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant`";
+    $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
 
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
