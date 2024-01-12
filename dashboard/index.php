@@ -57,7 +57,7 @@
       </button>
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
         <img
              src="assets/img/logos/logo.png"
              height="35"
