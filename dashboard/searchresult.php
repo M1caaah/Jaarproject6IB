@@ -114,57 +114,56 @@
               <form name="edituser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
                 <div class="col-md-6">
-                  <label for="nameNew" class="form-label">Name:</label>
-                  <input type="text" name="nameNew" id="nameNew" class="form-control" value="<?php echo $row['klantnaam'] ?>" required>
+                  <label for="nameUpdate" class="form-label">Name:</label>
+                  <input type="text" name="nameUpdate" id="nameUpdate" class="form-control" value="<?php echo $row['klantnaam'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid name.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="passwordNew" class="form-label">Password:</label>
-                  <input type="password" name="passwordNew" id="passwordNew" class="form-control" value="<?php echo $row['passwoord'] ?>" required>
+                  <label for="passwordUpdate" class="form-label">Password:</label>
+                  <input type="password" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid password.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="emailNew" class="form-label">Email:</label>
-                  <input type="email" name="emailNew" id="emailNew" class="form-control" value="<?php echo $row['klantemail'] ?>" required>
+                  <label for="emailUpdate" class="form-label">Email:</label>
+                  <input type="email" name="emailUpdate" id="emailUpdate" class="form-control" value="<?php echo $row['klantemail'] ?>" required>
                   <div class="invalid-feedback">
-                    Vul een geldig e-mailadres.
+                    Enter a valid email address.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="rolNew" class="form-label">Role:</label>
-                  <input type="text" name="rolNew" id="rolNew" class="form-control" value="<?php echo $row['rol'] ?>" required>
+                  <label for="rolUpdate" class="form-label">Role:</label>
+                  <input type="text" name="rolUpdate" id="rolUpdate" class="form-control" value="<?php echo $row['rol'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid role.
                   </div>
                 </div>
                 
                 <div class="col-md-6">
-                  <label for="birthNew" class="form-label">Date of birth:</label>
-                  <input type="date" name="birthNew" id="birthNew" class="form-control" value="<?php echo $row['geboortedatum'] ?>" required>
+                  <label for="birthUpdate" class="form-label">Date of birth:</label>
+                  <input type="date" name="birthUpdate" id="birthUpdate" class="form-control" value="<?php echo $row['geboortedatum'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid date of birth.
                   </div>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="new_registratiedatum" class="form-label">Registration date:</label>
-                  <?php $today = new DateTime();
-                  $dateString = $today->format('Y-m-d');
-                  ?>
-                  <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $row['registratiedatum'] ?>" required>
+                  <label for="Update_registratiedatum" class="form-label">Registration date:</label>
+                  <input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid registration date.
                   </div>
                 </div>
-                <input type="submit" value="Update user" class="btn btn-primary" name="btnAdd">
+                <input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
+                <input type="submit" value="Update user" class="btn btn-primary" name="btnUpdate">
               </form>
+              <?php include 'updateuser.php'; ?>
             </div>
           </div>
         </div>

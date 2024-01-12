@@ -82,6 +82,7 @@
     $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
     $stmt->execute();
     $stmt->close();
+
   }
 
   $mysqli->close();
