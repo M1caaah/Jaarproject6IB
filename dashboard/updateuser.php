@@ -1,6 +1,4 @@
 <?php
-
-
 if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
   
   $update_klantnaam = htmlspecialchars($_POST['nameUpdate']);
@@ -20,6 +18,4 @@ if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
 
   $_POST = array();
 }
-  
-
 ?>

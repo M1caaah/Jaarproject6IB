@@ -91,6 +91,8 @@ $mysqli->close();
 ?>
 
 <?php
+//This is very much bruteforcing the problem of not making it regenerating on refresh. 
+//But this works. So I won't touch it for now.
 if ($success) {
     echo '<script>
            if (window.history.replaceState) {
