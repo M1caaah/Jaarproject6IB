@@ -57,18 +57,17 @@
 
 
 <?php
+include 'connection.php';
 
-  include 'connection.php';
+$mysqli = new MySQLi($server, $user, $password, $database);
 
-  $mysqli = new MySQLi($server, $user, $password, $database);
+if ($mysqli->connect_error) {
+    die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+}
 
-  if ($mysqli->connect_error) {
-      die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
-  }
-  
+$success = false;
 
-
-  if (isset($_POST['btnAdd'])) {
+if (isset($_POST['btnAdd'])) {
     $new_klantnaam = htmlspecialchars($_POST['nameNew']);
     $new_klantemail = htmlspecialchars($_POST['emailNew']);
     $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
@@ -80,14 +79,23 @@
 
     $stmt = $mysqli->prepare($insertSql);
     $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
-    $stmt->execute();
+    
+    if ($stmt->execute()) {
+        $success = true;
+    }
+
     $stmt->close();
+}
 
-    $_POST = array();
+$mysqli->close();
+?>
 
-
-  }
-
-  $mysqli->close();
-
+<?php
+if ($success) {
+    echo '<script>
+           if (window.history.replaceState) {
+               window.history.replaceState(null, null, window.location.href);
+           }
+           </script>';
+}
 ?>
