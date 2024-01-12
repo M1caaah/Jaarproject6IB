@@ -5,13 +5,7 @@
 
 
 <?php
-  if (isset($_POST['btnDelete'])){
-    echo "<script>alert('posted');</script>";
-  }
-
-
   if (isset($_POST['btnDelete']) && $_POST['klantID'] == $row['klantID']) {
-    echo "<script>alert('deleted');</script>";
     $id = $_POST['klantID'];
     
     $sql = "DELETE FROM tblklant WHERE klantID =?";
