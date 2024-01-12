@@ -47,18 +47,16 @@
     echo '<div class="row">';
     while($row = $result->fetch_assoc()) {
       ?>
-      <div class="col-4">
+      <div class="col-md-4 col-sm-6 col-12">
         <div class="card my-3">
           <div class="card-body">
             <h5 class="card-title"><?php echo $row['klantnaam']; ?></h5>
             <p class="card-text text-muted"><?php echo $row['klantemail']; ?></p>
-            <a type="button" class="d-inline-block btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
+            <a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
             More info
             </a>
-            <div class="d-inline-block dropdown">
-              <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" data-mdb-dropdown-init aria-expanded="false">
-                Manage user
-              </button>
+            <div class="dropdown manage-user" style="position: absolute; top: 10px; right: 10px;">
+              <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
               <ul class="dropdown-menu">
                 <li><a type="button" class="d-inline-block dropdown-item" data-mdb-modal-init data-mdb-target="#edit<?php echo $row['klantID']; ?>" href="#">Edit</a></li>
                 <li><?php include 'deleteuser.php'; ?></li>
