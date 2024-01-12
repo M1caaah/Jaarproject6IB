@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
   <!-- MDB -->
-  <link rel="stylesheet" href="assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css" />
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css"></head>
 
@@ -26,25 +26,11 @@
        >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Clients</span>
-        <hr>
-        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fab fa-sistrix fa-fw me-3"></i>
-          <span>Search</span>
-        </a>
-        <a href="update.php" class="list-group-item list-group-item-action py-2 ripple">
+      <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
           <i class="fas fa-user-gear fa-fw me-3"></i>
-          <span>Update</span>
+          <span>Clients</span>
         </a>
-        <a href="add.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-user-plus fa-fw me-3"></i>
-          <span>Add</span>
-        </a>
-      </div>
-      <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Coming soon...</span>
-        <hr>
-        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 rounded-9 ripple active" aria-current="true">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
         </a>
@@ -76,8 +62,8 @@
       <!-- Brand -->
       <a class="navbar-brand" href="#">
         <img
-             src="assets/img/logos/dark-logo.svg"
-             height="25"
+             src="assets/img/logos/logo.png"
+             height="35"
              alt=""
              loading="lazy"
              />
@@ -130,8 +116,8 @@
 
 <!--Main layout-->
 <main style="margin-top: 58px">
-  <div class="container pt-4">
-
+  <div class="container pt-4 test">
+    
   </div>
 </main>
 

@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
   <!-- MDB -->
-  <link rel="stylesheet" href="assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.min.css" />
   <!-- Custom stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css"></head>
 
@@ -20,31 +20,14 @@
   <!--Main Navigation-->
 <header>
   <!-- Sidebar -->
-  <nav
-       id="sidebarMenu"
-       class="collapse d-lg-block sidebar collapse bg-white"
-       >
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" >
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Clients</span>
-        <hr>
-        <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
-          <i class="fab fa-sistrix fa-fw me-3"></i>
-          <span>Search</span>
-        </a>
-        <a href="update.php" class="list-group-item list-group-item-action py-2 ripple">
+      <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple active" aria-current="true">
           <i class="fas fa-user-gear fa-fw me-3"></i>
-          <span>Update</span>
+          <span>Users</span>
         </a>
-        <a href="add.php" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-user-plus fa-fw me-3"></i>
-          <span>Add</span>
-        </a>
-      </div>
-      <div class="list-group list-group-flush mx-3 mt-4">
-        <span class="sidebar-header">Coming soon...</span>
-        <hr>
-        <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
           <i class="far fa-circle-question fa-fw me-3"></i>
           <span>Coming soon...</span>
         </a>
@@ -76,8 +59,8 @@
       <!-- Brand -->
       <a class="navbar-brand" href="#">
         <img
-             src="assets/img/logos/dark-logo.svg"
-             height="25"
+             src="assets/img/logos/logo.png"
+             height="35"
              alt=""
              loading="lazy"
              />
@@ -131,7 +114,100 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
   <div class="container pt-4">
+    <div class="row">
+      <div class="col-8">
+        <form action="index.php" method="get">
+          <div class="input-group">
+            <div class="form-outline" data-mdb-input-init>
+              <input type="search" id="form1" name="search" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-4">
+      <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+        Add new user
+      </button>
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
+              <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name="edituser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="nameNew" class="form-label">Name:</label>
+                  <input type="text" name="nameNew" id="nameNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Enter a valid name.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="passwordNew" class="form-label">Password:</label>
+                  <input type="password" name="passwordNew" id="passwordNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Enter a valid password.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="emailNew" class="form-label">Email:</label>
+                  <input type="email" name="emailNew" id="emailNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Vul een geldig e-mailadres.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="rolNew" class="form-label">Role:</label>
+                  <input type="text" name="rolNew" id="rolNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Enter a valid role.
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="birthNew" class="form-label">Date of birth:</label>
+                  <input type="date" name="birthNew" id="birthNew" class="form-control" required>
+                  <div class="invalid-feedback">
+                    Enter a valid date of birth.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="new_registratiedatum" class="form-label">Registration date:</label>
+                  <?php $today = new DateTime();
+                  $dateString = $today->format('Y-m-d');
+                  ?>
+                  <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString ?>" required>
+                  <div class="invalid-feedback">
+                    Enter a valid registration date.
+                  </div>
+                </div>
+                <input type="submit" value="Update user" class="btn btn-primary" name="btnAdd">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <?php include 'adduser.php' ?>
+      </div>
+    </div>
+      <div class="container my-3">
+        <?php include 'searchresult.php' ?>
+      </div>
+    </div>
   </div>
 </main>
 
