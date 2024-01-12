@@ -1,11 +1,9 @@
 <?php
-
   include 'connection.php';
-
   $mysql = new MySQLi($server,$user,$password,$database);
   
   //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
-  $mysql->set_charset("utf8mb4");
+  $mysql->set_charset("utf8mb4"); 
 
   if ($mysql->connect_error) {
     die("Connection failed: " . $mysql->connect_error);
@@ -36,8 +34,6 @@
     $stmt = $mysql->prepare($sql);
 
   }
-
-  
   $stmt->execute();
 
   $result = $stmt->get_result();
