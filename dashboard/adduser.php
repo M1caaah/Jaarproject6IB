@@ -83,7 +83,11 @@
     $stmt->execute();
     $stmt->close();
 
+    $_POST = array();
+
+
   }
 
   $mysqli->close();
+
 ?>
