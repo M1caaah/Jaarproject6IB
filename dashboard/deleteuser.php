@@ -10,7 +10,7 @@
     
     $sql = "DELETE FROM tblklant WHERE klantID =?";
 
-    $stmtDelete = $conn->prepare($sql);
+    $stmtDelete = $mysql->prepare($sql);
     $stmtDelete->bind_param("i", $id);
     $stmtDelete->execute();
     $stmtDelete->close();

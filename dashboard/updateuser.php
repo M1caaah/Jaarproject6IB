@@ -13,7 +13,7 @@ if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
 
   $insertSql = "UPDATE tblklant SET klantnaam = ?, klantemail = ?, geboortedatum = ?, passwoord = ?, rol = ?, registratiedatum = ? WHERE klantID = ?";
 
-  $stmtUpdate = $conn->prepare($insertSql);
+  $stmtUpdate = $mysql->prepare($insertSql);
   $stmtUpdate->bind_param("sssssss", $update_klantnaam, $update_klantemail, $update_geboortedatum, $update_passwoord, $update_rol, $update_registratiedatum, $update_id);
   $stmtUpdate->execute();
   $stmtUpdate->close();

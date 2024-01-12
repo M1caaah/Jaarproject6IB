@@ -154,7 +154,7 @@
 
                 <div class="col-md-6">
                   <label for="passwordNew" class="form-label">Password:</label>
-                  <input type="password" name="passwordNew" id="passwordNew" class="form-control" required>
+                  <input type="text" name="passwordNew" id="passwordNew" class="form-control" required>
                   <div class="invalid-feedback">
                     Enter a valid password.
                   </div>
@@ -194,7 +194,7 @@
                     Enter a valid registration date.
                   </div>
                 </div>
-                <input type="submit" value="Update user" class="btn btn-primary" name="btnAdd">
+                <input type="submit" value="Add user" class="btn btn-primary" name="btnAdd">
               </form>
             </div>
           </div>

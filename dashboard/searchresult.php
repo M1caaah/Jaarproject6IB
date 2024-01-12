@@ -2,21 +2,21 @@
 
   include 'connection.php';
 
-  $conn = new MySQLi($server,$user,$password,$database);
+  $mysql = new MySQLi($server,$user,$password,$database);
   
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  if ($mysql->connect_error) {
+    die("Connection failed: " . $mysql->connect_error);
   }
   
   //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
-  $conn->set_charset("utf8mb4");
+  $mysql->set_charset("utf8mb4");
 
 
   if (isset($_GET['search'])) {
     
     // Prepare the search statement statement.
     $searchTerm = $_GET['search'];
-    $searchTerm = mysqli_real_escape_string($conn,$searchTerm);
+    $searchTerm = mysqli_real_escape_string($mysql,$searchTerm);
     $searchTerm = htmlspecialchars($searchTerm);
     $searchTerm = trim($searchTerm);
     $searchTerm = strtolower($searchTerm);
@@ -25,7 +25,7 @@
     // Prepare the SQL statement.
     $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ?";
     // Prepare the statement.
-    $stmt = $conn->prepare($sql);
+    $stmt = $mysql->prepare($sql);
     $stmt->bind_param('s',$searchTerm);
   }
   else {
@@ -34,7 +34,7 @@
     $sql = "SELECT * FROM `tblklant`";
 
     // Prepare the statement.
-    $stmt = $conn->prepare($sql);
+    $stmt = $mysql->prepare($sql);
 
   }
 
@@ -123,7 +123,7 @@
 
                 <div class="col-md-6">
                   <label for="passwordUpdate" class="form-label">Password:</label>
-                  <input type="password" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>" required>
+                  <input type="text`" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>" required>
                   <div class="invalid-feedback">
                     Enter a valid password.
                   </div>
@@ -182,6 +182,6 @@
   }
 
   $stmt->close();
-  $conn->close();
+  $mysql->close();
 
 ?>
