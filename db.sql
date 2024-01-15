@@ -70,12 +70,12 @@ INSERT INTO `tblklant` (`klantID`, `klantnaam`, `klantemail`, `geboortedatum`, `
 (1, 'Micah Botha', 'bothamicah@lyceumgent.be', '2006-08-21', 'password', 'admin', '2024-07-01', 1),
 (2, 'Rayan Sayah', 'sayahrayan@lyceumgent.be', '2012-02-03', 'notpassword', 'user', '2024-07-01', 1),
 (3, 'Tim Meesen', 'meesentim@lyceumgent.be', '1978-05-12', 'hello :D', 'user', '2024-07-01', 1),
-(4, 'Steffy De Schijter', 'deschijtersteffy@lyceumgent.be', '0000-00-00', 'E', 'user', '2024-07-01', 1),
-(5, 'Brendt Van Den Eynde', 'vandeneyndebrenda@lyceumgent.be', '0000-00-00', ':D', 'user', '2024-07-01', 1),
-(6, 'Raîf Demirogullari', 'demirogullariraîf@lyceumgent.be', '0000-00-00', 'D:', 'user', '2024-07-01', 1),
-(7, 'Emre Güler', 'güleremre@lyceumgent.be', '0000-00-00', ':(', 'user', '2024-07-01', 1),
-(8, 'Amin Shabazov', 'shabazovamin@lyceumgent.be', '0000-00-00', '>:(', 'user', '2024-07-01', 1),
-(9, 'Maggie Van Damme', 'vandammemagie@lyceumgent.be', '0000-00-00', '):<', 'user', '2024-07-01', 1);
+(4, 'Stef De Feyter', 'deschijtersteffy@lyceumgent.be', '2004-10-23', 'E', 'user', '2024-07-01', 1),
+(5, 'Brendt Van Den Eynde', 'vandeneyndebrenda@lyceumgent.be', '2006-3-14', ':D', 'user', '2024-07-01', 1),
+(6, 'Raîf Demirogullari', 'demirogullariraîf@lyceumgent.be', '2004-09-27', 'D:', 'user', '2024-07-01', 1),
+(7, 'Emre Güler', 'güleremre@lyceumgent.be', '2005-04-21', ':(', 'user', '2024-07-01', 1),
+(8, 'Amin Shabazov', 'shabazovamin@lyceumgent.be', '2006-06-10', '>:(', 'user', '2024-07-01', 1),
+(9, 'Maggie Van Damme', 'vandammemagie@lyceumgent.be', '1923-01-24', '):<', 'user', '2024-07-01', 1);
 
 --
 -- Indexen voor geëxporteerde tabellen
