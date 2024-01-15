@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2024 at 08:12 PM
--- Server version: 5.7.17
--- PHP Version: 5.6.30
+-- Gegenereerd op: 12 jan 2024 om 14:02
+-- Serverversie: 5.7.17
+-- PHP-versie: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblartikel`
+-- Tabelstructuur voor tabel `tblartikel`
 --
 
 CREATE TABLE `tblartikel` (
@@ -36,7 +36,7 @@ CREATE TABLE `tblartikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblartikel`
+-- Gegevens worden geëxporteerd voor tabel `tblartikel`
 --
 
 INSERT INTO `tblartikel` (`productid`, `productnaam`, `omschrijving`, `prijs`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `tblartikel` (`productid`, `productnaam`, `omschrijving`, `prijs`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblklant`
+-- Tabelstructuur voor tabel `tblklant`
 --
 
 CREATE TABLE `tblklant` (
@@ -57,55 +57,56 @@ CREATE TABLE `tblklant` (
   `geboortedatum` date NOT NULL,
   `passwoord` varchar(65) NOT NULL,
   `rol` varchar(65) NOT NULL,
-  `registratiedatum` date NOT NULL
+  `registratiedatum` date NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblklant`
+-- Gegevens worden geëxporteerd voor tabel `tblklant`
 --
 
-INSERT INTO `tblklant` (`klantID`, `klantnaam`, `klantemail`, `geboortedatum`, `passwoord`, `rol`, `registratiedatum`) VALUES
-(0, 'Obi Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', 'pizza', 'admin', '2024-07-01'),
-(1, 'Micah Botha', 'bothamicah@lyceumgent.be', '2006-08-21', 'password', 'admin', '2024-07-01'),
-(2, 'Rayan Sayah', 'sayahrayan@lyceumgent.be', '2012-02-03', 'notpassword', 'user', '2024-07-01'),
-(3, 'Tim Meesen', 'meesentim@lyceumgent.be', '1978-05-12', 'hello :D', 'user', '2024-07-01'),
-(4, 'Steffy De Schijter', 'deschijtersteffy@lyceumgent.be', '0000-00-00', 'E', 'user', '2024-07-01'),
-(5, 'Brendt Van Den Eynde', 'vandeneyndebrenda@lyceumgent.be', '0000-00-00', ':D', 'user', '2024-07-01'),
-(6, 'Raîf Demirogullari', 'demirogullariraîf@lyceumgent.be', '0000-00-00', 'D:', 'user', '2024-07-01'),
-(7, 'Emre Güler', 'güleremre@lyceumgent.be', '0000-00-00', ':(', 'user', '2024-07-01'),
-(8, 'Amin Shabazov', 'shabazovamin@lyceumgent.be', '0000-00-00', '>:(', 'user', '2024-07-01'),
-(9, 'Maggie Van Damme', 'vandammemagie@lyceumgent.be', '0000-00-00', '):<', 'user', '2024-07-01');
+INSERT INTO `tblklant` (`klantID`, `klantnaam`, `klantemail`, `geboortedatum`, `passwoord`, `rol`, `registratiedatum`, `active`) VALUES
+(0, 'Obi Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', 'pizza', 'admin', '2024-07-01', 1),
+(1, 'Micah Botha', 'bothamicah@lyceumgent.be', '2006-08-21', 'password', 'admin', '2024-07-01', 1),
+(2, 'Rayan Sayah', 'sayahrayan@lyceumgent.be', '2012-02-03', 'notpassword', 'user', '2024-07-01', 1),
+(3, 'Tim Meesen', 'meesentim@lyceumgent.be', '1978-05-12', 'hello :D', 'user', '2024-07-01', 1),
+(4, 'Steffy De Schijter', 'deschijtersteffy@lyceumgent.be', '0000-00-00', 'E', 'user', '2024-07-01', 1),
+(5, 'Brendt Van Den Eynde', 'vandeneyndebrenda@lyceumgent.be', '0000-00-00', ':D', 'user', '2024-07-01', 1),
+(6, 'Raîf Demirogullari', 'demirogullariraîf@lyceumgent.be', '0000-00-00', 'D:', 'user', '2024-07-01', 1),
+(7, 'Emre Güler', 'güleremre@lyceumgent.be', '0000-00-00', ':(', 'user', '2024-07-01', 1),
+(8, 'Amin Shabazov', 'shabazovamin@lyceumgent.be', '0000-00-00', '>:(', 'user', '2024-07-01', 1),
+(9, 'Maggie Van Damme', 'vandammemagie@lyceumgent.be', '0000-00-00', '):<', 'user', '2024-07-01', 1);
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `tblartikel`
+-- Indexen voor tabel `tblartikel`
 --
 ALTER TABLE `tblartikel`
   ADD PRIMARY KEY (`productid`);
 
 --
--- Indexes for table `tblklant`
+-- Indexen voor tabel `tblklant`
 --
 ALTER TABLE `tblklant`
   ADD PRIMARY KEY (`klantID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `tblartikel`
+-- AUTO_INCREMENT voor een tabel `tblartikel`
 --
 ALTER TABLE `tblartikel`
   MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `tblklant`
+-- AUTO_INCREMENT voor een tabel `tblklant`
 --
 ALTER TABLE `tblklant`
-  MODIFY `klantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;COMMIT;
+  MODIFY `klantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

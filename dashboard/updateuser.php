@@ -1,6 +1,10 @@
+<script>
+  function refresh(){
+    location.reload();
+  }
+</script>
+
 <?php
-
-
 if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
   
   $update_klantnaam = htmlspecialchars($_POST['nameUpdate']);
@@ -19,7 +23,15 @@ if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
   $stmtUpdate->close();
 
   $_POST = array();
+  echo '<script>refresh();</script>';
+  //This is very much bruteforcing the problem of not making it regenerating on refresh. 
+  //But this works. So I won't touch it for now.
+  if ($success) {
+    echo '<script>
+         if (window.history.replaceState) {
+             window.history.replaceState(null, null, window.location.href);
+         }
+         </script>';
 }
-  
-
+}
 ?>

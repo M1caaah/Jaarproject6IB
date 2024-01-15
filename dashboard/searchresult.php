@@ -1,16 +1,13 @@
 <?php
-
   include 'connection.php';
-
   $mysql = new MySQLi($server,$user,$password,$database);
   
+  //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
+  $mysql->set_charset("utf8mb4"); 
+
   if ($mysql->connect_error) {
     die("Connection failed: " . $mysql->connect_error);
   }
-  
-  //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
-  $mysql->set_charset("utf8mb4");
-
 
   if (isset($_GET['search'])) {
     
@@ -23,7 +20,7 @@
     $searchTerm = "%".$searchTerm."%";
 
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ?";
+    $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
     $stmt->bind_param('s',$searchTerm);
@@ -31,14 +28,12 @@
   else {
     
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant`";
+    $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
 
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
 
   }
-
-  
   $stmt->execute();
 
   $result = $stmt->get_result();
