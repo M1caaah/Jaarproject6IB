@@ -10,6 +10,11 @@ if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
   $update_klantnaam = htmlspecialchars($_POST['nameUpdate']);
   $update_klantemail = htmlspecialchars($_POST['emailUpdate']);
   $update_geboortedatum = htmlspecialchars($_POST['birthUpdate']);
+  if (strtotime($update_geboortedatum) > strtotime(date('Y-m-d'))) {
+    // Todo add error message and fix the date problem.
+    
+    exit; 
+  }
   $update_passwoord = htmlspecialchars($_POST['passwordUpdate']);
   $update_rol = htmlspecialchars($_POST['rolUpdate']);
   $update_registratiedatum = htmlspecialchars($_POST['registrationUpdate']);
