@@ -1,10 +1,20 @@
 <script>
 	function validateForm(formType) {
+
 		let check = true;
-		alert(emailUpdate);
 
 		let nameUpdate = document.getElementById("nameUpdate");
 		let nameCheck = document.getElementById("nameCheck");
+		let emailUpdate = document.getElementById("emailUpdate");
+		let emailCheck = document.getElementById("emailCheck");
+		let birthUpdate = document.getElementById("birthUpdate");
+		let birthCheck = document.getElementById("birthCheck");
+		let passwordUpdate = document.getElementById("passwordUpdate");
+		let passwordCheck = document.getElementById("passwordCheck");
+		let roleUpdate = document.getElementById("roleUpdate");
+		let roleCheck = document.getElementById("rolCheck");
+
+
 		if (nameUpdate.value === "") {
 			check = false;
 			nameCheck.innerText = "Please write a name.";
@@ -12,11 +22,6 @@
 
 		}
 
-		let emailUpdate = document.getElementById("emailUpdate");
-		
-		alert(emailUpdate); // Now it will work as emailUpdate is defined
-		alert(emailUpdate.value);
-		let emailCheck = document.getElementById("emailCheck");
 		if (emailUpdate.value === "" || !isValidEmail(emailUpdate.value)) {
 			check = false;
 			emailCheck.innerText = "Please write a valid email.";
@@ -24,8 +29,6 @@
 
 		}
 
-		let birthUpdate = document.getElementById("birthUpdate");
-		let birthCheck = document.getElementById("birthCheck");
 		let birthDate = new Date(birthUpdate.value);
 		let today = new Date();
 		if (birthUpdate.value === "") {
@@ -37,17 +40,13 @@
 			birthCheck.innerText = "Birth date cannot be later than today.";
 		}
 
-		let passwordUpdate = document.getElementById("passwordUpdate");
-		let passwordCheck = document.getElementById("passwordCheck");
-		if (passwordValue === "") {
+		if (passwordUpdate.value === "") {
 			check = false;
 			passwordCheck.innerText = "Please write a password.";
 		} else {
 
 		}
 
-		let roleUpdate = document.getElementById("roleUpdate");
-		let roleCheck = document.getElementById("rolCheck");
 		if (roleUpdate.value === "") {
 			check = false
 			roleCheck.innerHTML = "Please write a role.";
@@ -56,11 +55,7 @@
 		}
 
 		if (check) {
-			if (formType === "update") {
-				updateuser.submit();
-			} else if (formType === "add") {
-				adduser.submit();
-			}
+			document.forms.editUser.submit();
 		}
 	}
 
@@ -184,7 +179,7 @@ if ($result->num_rows > 0) {
 						<button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form name="edituser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+						<form name="editUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
 							<div class="col-md-6">
 								<label for="nameUpdate" class="form-label">Name:</label>
@@ -206,8 +201,8 @@ if ($result->num_rows > 0) {
 							</div>
 
 							<div class="col-md-6">
-								<label for="rolUpdate" class="form-label">Role:</label>
-								<input type="text" name="rolUpdate" id="rolUpdate" class="form-control" value="<?php echo $row['rol'] ?>">
+								<label for="roleUpdate" class="form-label">Role:</label>
+								<input type="text" name="roleUpdate" id="roleUpdate" class="form-control" value="<?php echo $row['rol'] ?>">
 								<label name="rolCheck" id="rolCheck" value="">
 							</div>
 
@@ -225,6 +220,7 @@ if ($result->num_rows > 0) {
 							<input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
 							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm('<?php echo 'update'; ?>')">
 						</form>
+						<?php include 'updateuser.php'; ?>
 					</div>
 				</div>
 			</div>

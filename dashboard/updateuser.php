@@ -1,9 +1,3 @@
-<script>
-	function refresh() {
-		location.reload();
-	}
-</script>
-
 <?php
 if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
 
