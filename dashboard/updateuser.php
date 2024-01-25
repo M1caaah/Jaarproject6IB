@@ -1,16 +1,11 @@
 <?php
-if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
+if (isset($_POST['nameUpdate']) && $_POST['klantID'] == $row['klantID']) {
 
 	$update_klantnaam = htmlspecialchars($_POST['nameUpdate']);
 	$update_klantemail = htmlspecialchars($_POST['emailUpdate']);
 	$update_geboortedatum = htmlspecialchars($_POST['birthUpdate']);
-	if (strtotime($update_geboortedatum) >= strtotime(date('Y-m-d'))) {
-		// Todo: add error message for invalid date of birth
-		echo "Invalid date of birth. Please enter a date before today.";
-		exit;
-	}
 	$update_passwoord = htmlspecialchars($_POST['passwordUpdate']);
-	$update_rol = htmlspecialchars($_POST['rolUpdate']);
+	$update_rol = htmlspecialchars($_POST['roleUpdate']);
 	$update_registratiedatum = htmlspecialchars($_POST['registrationUpdate']);
 	$update_id = htmlspecialchars($row['klantID']);
 
@@ -22,15 +17,5 @@ if (isset($_POST['btnUpdate']) && $_POST['klantID'] == $row['klantID']) {
 	$stmtUpdate->close();
 
 	$_POST = array();
-	echo '<script>refresh();</script>';
-	//This is very much bruteforcing the problem of not making it regenerating on refresh. 
-	//But this works. So I won't touch it for now.
-	if ($success) {
-		echo '<script>
-         if (window.history.replaceState) {
-             window.history.replaceState(null, null, window.location.href);
-         }
-         </script>';
-	}
 }
 ?>

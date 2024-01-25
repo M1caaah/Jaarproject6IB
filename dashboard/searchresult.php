@@ -218,7 +218,7 @@ if ($result->num_rows > 0) {
 								<label name="registrationCheck" id="registrationCheck" value="">
 							</div>
 							<input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
-							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm('<?php echo 'update'; ?>')">
+							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
 						</form>
 						<?php include 'updateuser.php'; ?>
 					</div>
