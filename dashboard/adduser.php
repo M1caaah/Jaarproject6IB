@@ -1,58 +1,58 @@
 <script>
-  // function check() {
-  //   alert("checking");
-  //   let check = true;
+  function validateForm() {
+    alert("checking");
+    let check = true;
 
-  //   let nameValue = document.getElementById("nameNew").value;
-  //   if (nameValue == "") {
-  //     document.getElementById("nameCheck").innerHTML = "Please write a name.";
-  //     check = false;
-  //   } else {
-  //     document.getElementById("nameCheck").innerHTML = "";
-  //   }
+    let nameValue = document.getElementById("nameNew").value;
+    if (nameValue == "") {
+      document.getElementById("nameCheck").innerHTML = "Please write a name.";
+      check = false;
+    } else {
+      document.getElementById("nameCheck").innerHTML = "";
+    }
 
-  //   let emailValue = document.getElementById("emailNew").value;
-  //   if (emailValue == "" || !isValidEmail(emailValue)) {
-  //     document.getElementById("emailCheck").innerHTML = "Please enter a valid email.";
-  //     check = false;
-  //   } else {
-  //     document.getElementById("emailCheck").innerHTML = "";
-  //   }
+    let emailValue = document.getElementById("emailNew").value;
+    if (emailValue == "" || !isValidEmail(emailValue)) {
+      document.getElementById("emailCheck").innerHTML = "Please enter a valid email.";
+      check = false;
+    } else {
+      document.getElementById("emailCheck").innerHTML = "";
+    }
 
-  //   let birthValue = document.getElementById("birthNew").value;
-  //   if (birthValue == "") {
-  //     document.getElementById("birthCheck").innerHTML = "Please enter a valid birth date.";
-  //     check = false;
-  //   } else {
-  //     document.getElementById("birthCheck").innerHTML = "";
-  //   }
+    let birthValue = document.getElementById("birthNew").value;
+    if (birthValue == "") {
+      document.getElementById("birthCheck").innerHTML = "Please enter a valid birth date.";
+      check = false;
+    } else {
+      document.getElementById("birthCheck").innerHTML = "";
+    }
 
-  //   let passwordValue = document.getElementById("passwordNew").value;
-  //   if (passwordValue == "") {
-  //     document.getElementById("passwordCheck").innerHTML = "Please enter a password.";
-  //     check = false;
-  //   } else {
-  //     document.getElementById("passwordCheck").innerHTML = "";
-  //   }
+    let passwordValue = document.getElementById("passwordNew").value;
+    if (passwordValue == "") {
+      document.getElementById("passwordCheck").innerHTML = "Please enter a password.";
+      check = false;
+    } else {
+      document.getElementById("passwordCheck").innerHTML = "";
+    }
 
-  //   let roleValue = document.getElementById("rolNew").value;
-  //   if (roleValue == "") {
-  //     document.getElementById("rolCheck").innerHTML = "Please enter a role.";
-  //     check = false;
-  //   } else {
-  //     document.getElementById("rolCheck").innerHTML = "";
-  //   }
+    let roleValue = document.getElementById("rolNew").value;
+    if (roleValue == "") {
+      document.getElementById("rolCheck").innerHTML = "Please enter a role.";
+      check = false;
+    } else {
+      document.getElementById("rolCheck").innerHTML = "";
+    }
 
-  //   if (check) {
+    if (check) {
       
-  //   }
-  // }
+    }
+  }
 
-  // function isValidEmail(email) {
-  //   // Simple email validation, will be improved later.
-  //   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   return emailRegex.test(email);
-  // }
+  function isValidEmail(email) {
+    // Simple email validation, will be improved later.
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 </script>
 
 
