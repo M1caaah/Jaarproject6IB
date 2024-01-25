@@ -17,6 +17,83 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<script>
+	function validateNewForm(formType) {
+
+		let check = true;
+
+		let nameNew = document.getElementById("nameNew");
+		let nameNewCheck = document.getElementById("nameNewCheck");
+		let emailNew = document.getElementById("emailNew");
+		let emailNewCheck = document.getElementById("emailNewCheck");
+		let birthNew = document.getElementById("birthNew");
+		let birthNewCheck = document.getElementById("birthNewCheck");
+		let passwordNew = document.getElementById("passwordNew");
+		let passwordNewCheck = document.getElementById("passwordNewCheck");
+		let roleNew = document.getElementById("roleNew");
+		let roleNewCheck = document.getElementById("roleNewCheck");
+
+
+		if (nameNew.value === "") {
+			check = false;
+			nameNewCheck.innerText = "Please write a name.";
+		} else {
+
+		}
+
+		if (emailNew.value === "" || !isValidEmail(emailNew.value)) {
+			check = false;
+			emailNewCheck.innerText = "Please write a valid email.";
+		} else {
+
+		}
+
+		let birthDate = new Date(birthNew.value);
+		let today = new Date();
+		if (birthNew.value === "") {
+			check = false;
+			birthNewCheck.innerText = "Please write a date of birth.";
+		} else if (birthDate > today) {
+			// Check if birth date is later than today
+			check = false;
+			birthNewCheck.innerText = "Birth date cannot be later than today.";
+		}
+
+		if (passwordNew.value === "") {
+			check = false;
+			passwordNewCheck.innerText = "Please write a password.";
+		} else {
+
+		}
+
+		if (roleNew.value === "") {
+			check = false
+			roleNewCheck.innerHTML = "Please write a role.";
+		} else {
+
+		}
+
+		if (check) {
+			document.forms.addUser.submit();
+		}
+	}
+
+	function isValidEmail(email) {
+		// Use a regular expression to validate email format
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!email) {
+			return false;
+		}
+
+		if (!emailRegex.test(email)) {
+			return false;
+		}
+
+		return true;
+	}
+</script>
+
 <body>
 
 	<!--Main Navigation-->
@@ -112,46 +189,37 @@
 									<button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form name="edituser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+									<form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
 										<div class="col-md-6">
 											<label for="nameNew" class="form-label">Name:</label>
-											<input type="text" name="nameNew" id="nameNew" class="form-control">
-											<div class="invalid-feedback">
-												Enter a valid name.
-											</div>
+											<input type="text" name="nameNew" id="nameNew" class="form-control" value="">
+											<label name="nameNewCheck" id="nameNewCheck" value="">
 										</div>
 
 										<div class="col-md-6">
 											<label for="passwordNew" class="form-label">Password:</label>
-											<input type="text" name="passwordNew" id="passwordNew" class="form-control">
-											<div class="invalid-feedback">
-												Enter a valid password.
-											</div>
+											<input type="text`" name="passwordNew" id="passwordNew" class="form-control" value="">
+											<label name="passwordNewCheck" id="passwordNewCheck" value=""></label>
 										</div>
 
 										<div class="col-md-6">
 											<label for="emailNew" class="form-label">Email:</label>
-											<input type="email" name="emailNew" id="emailNew" class="form-control">
-											<div class="invalid-feedback">
-												Vul een geldig e-mailadres.
-											</div>
+											<input type="text" name="emailNew" id="emailNew" class="form-control" value="">
+											<label name="emailNewCheck" id="emailNewCheck" value="">
+
 										</div>
 
 										<div class="col-md-6">
-											<label for="rolNew" class="form-label">Role:</label>
-											<input type="text" name="rolNew" id="rolNew" class="form-control">
-											<div class="invalid-feedback">
-												Enter a valid role.
-											</div>
+											<label for="roleNew" class="form-label">Role:</label>
+											<input type="text" name="roleNew" id="roleNew" class="form-control" value="">
+											<label name="roleNewCheck" id="roleNewCheck" value="">
 										</div>
 
 										<div class="col-md-6">
 											<label for="birthNew" class="form-label">Date of birth:</label>
-											<input type="date" name="birthNew" id="birthNew" class="form-control">
-											<div class="invalid-feedback">
-												Enter a valid date of birth.
-											</div>
+											<input type="date" name="birthNew" id="birthNew" class="form-control" value="">
+											<label name="birthNewCheck" id="birthNewCheck" value="">
 										</div>
 
 										<div class="col-md-6">
@@ -160,11 +228,8 @@
 											$dateString = $today->format('Y-m-d');
 											?>
 											<input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString ?>">
-											<div class="invalid-feedback">
-												Enter a valid registration date.
-											</div>
 										</div>
-										<input type="button" value="Add user" class="btn btn-primary" name="btnAdd" onclick="validateForm()">
+										<input type="button" value="Add user" class="btn btn-primary" name="btnAdd" onclick="validateNewForm()">
 									</form>
 								</div>
 							</div>

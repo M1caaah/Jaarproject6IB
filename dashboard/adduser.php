@@ -9,12 +9,12 @@ if ($mysqli->connect_error) {
 
 $success = false;
 
-if (isset($_POST['btnAdd'])) {
+if (isset($_POST['nameNew'])) {
     $new_klantnaam = htmlspecialchars($_POST['nameNew']);
     $new_klantemail = htmlspecialchars($_POST['emailNew']);
     $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
     $new_passwoord = htmlspecialchars($_POST['passwordNew']);
-    $new_rol = htmlspecialchars($_POST['rolNew']);
+    $new_rol = htmlspecialchars($_POST['roleNew']);
     $new_registratiedatum = htmlspecialchars($_POST['registrationNew']);
 
     // Check if the email is already in use
