@@ -119,16 +119,29 @@
         <form action="index.php" method="get">
           <div class="input-group">
             <div class="form-outline" data-mdb-input-init>
-              <input type="search" id="form1" name="search" class="form-control" />
+              <input type="search" id="form1" name="search" class="form-control" value="<?php if (isset($_GET['search'])) echo $_GET['search'];?>" />
               <label class="form-label" for="form1">Search</label>
             </div>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i>
             </button>
           </div>
+		  <label class="mt-3 me-3">Search by:</label>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="rdbSearch" id="rdbName" value="name" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == 'name') echo 'checked';?> />
+				<label class="form-check-label" for="rdbName">Name</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="rdbSearch" id="rdbEmail" value="email" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == 'email') echo 'checked';?> />
+				<label class="form-check-label" for="rdbEmail">Email</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="rdbSearch" id="rdbRole" value="role" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == 'role') echo 'checked';?> />
+				<label class="form-check-label" for="rdbRole">Role</label>
+			</div>
         </form>
       </div>
-      <div class="col-4">
+      <div class="col-2">
       <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
         Add new user
       </button>
@@ -207,7 +220,7 @@
       <div class="container my-3">
         <?php include 'searchresult.php' ?>
       </div>
-    </div>
+	</div>
   </div>
 </main>
 
