@@ -1,44 +1,58 @@
 <script>
 	function validateForm(formType) {
-		alert("checking");
 		let check = true;
+		alert(emailUpdate);
 
-		let nameValue = document.getElementById("nameUpdate").innerHTML;
-		if (nameValue == "") {
+		let nameUpdate = document.getElementById("nameUpdate");
+		let nameCheck = document.getElementById("nameCheck");
+		if (nameUpdate.value === "") {
 			check = false;
-			document.getElementById("nameCheck").innerHTML = "Please write a name.";
-		}
-
-		let emailValue = document.getElementById("emailUpdate").innerHTML;
-		if (emailValue == "" || !isValidEmail(emailValue)) {
-			check = false;
-			document.getElementById("emailCheck").innerHTML = "Please write a valid email.";
-		}
-
-		let birthValue = document.getElementById("birthUpdate").innerHTML;
-		if (birthValue == "") {
-			check = false;
-			document.getElementById("birthUpdate").innerHTML = "Please write a date of birth.";
+			nameCheck.innerText = "Please write a name.";
 		} else {
-			// Check if birth date is later than today
-			let birthDate = new Date(birthValue);
-			let today = new Date();
-			if (birthDate > today) {
-				check = false;
-				document.getElementById("birthUpdate").innerHTML = "Birth date cannot be later than today.";
-			}
+
 		}
 
-		let passwordValue = document.getElementById("passwordUpdate").innerHTML;
-		if (passwordValue == "") {
+		let emailUpdate = document.getElementById("emailUpdate");
+		
+		alert(emailUpdate); // Now it will work as emailUpdate is defined
+		alert(emailUpdate.value);
+		let emailCheck = document.getElementById("emailCheck");
+		if (emailUpdate.value === "" || !isValidEmail(emailUpdate.value)) {
 			check = false;
-			document.getElementById("passwordCheck").innerHTML = "Please write a password.";
+			emailCheck.innerText = "Please write a valid email.";
+		} else {
+
 		}
 
-		let roleValue = document.getElementById("passwordUpdate").innerHTML;
-		if (roleValue == "") {
+		let birthUpdate = document.getElementById("birthUpdate");
+		let birthCheck = document.getElementById("birthCheck");
+		let birthDate = new Date(birthUpdate.value);
+		let today = new Date();
+		if (birthUpdate.value === "") {
+			check = false;
+			birthCheck.innerText = "Please write a date of birth.";
+		} else if (birthDate > today) {
+			// Check if birth date is later than today
+			check = false;
+			birthCheck.innerText = "Birth date cannot be later than today.";
+		}
+
+		let passwordUpdate = document.getElementById("passwordUpdate");
+		let passwordCheck = document.getElementById("passwordCheck");
+		if (passwordValue === "") {
+			check = false;
+			passwordCheck.innerText = "Please write a password.";
+		} else {
+
+		}
+
+		let roleUpdate = document.getElementById("roleUpdate");
+		let roleCheck = document.getElementById("rolCheck");
+		if (roleUpdate.value === "") {
 			check = false
-			document.getElementById("rolCheck").innerHTML = "Please write a role.";
+			roleCheck.innerHTML = "Please write a role.";
+		} else {
+
 		}
 
 		if (check) {
@@ -51,9 +65,18 @@
 	}
 
 	function isValidEmail(email) {
-		// Simple email validation, will be improved later.
-		let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		return emailRegex.test(email);
+		// Use a regular expression to validate email format
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!email) {
+			return false;
+		}
+
+		if (!emailRegex.test(email)) {
+			return false;
+		}
+
+		return true;
 	}
 </script>
 
@@ -166,38 +189,38 @@ if ($result->num_rows > 0) {
 							<div class="col-md-6">
 								<label for="nameUpdate" class="form-label">Name:</label>
 								<input type="text" name="nameUpdate" id="nameUpdate" class="form-control" value="<?php echo $row['klantnaam'] ?>">
-								<label name="nameCheck" id="nameCheck" class="form-control" value="">
+								<label name="nameCheck" id="nameCheck" value="">
 							</div>
 
 							<div class="col-md-6">
 								<label for="passwordUpdate" class="form-label">Password:</label>
 								<input type="text`" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>">
-								<label name="passwordCheck" id="passwordCheck" class="form-control" value=""></label>
+								<label name="passwordCheck" id="passwordCheck" value=""></label>
 							</div>
 
 							<div class="col-md-6">
 								<label for="emailUpdate" class="form-label">Email:</label>
-								<input type="email" name="emailUpdate" id="emailUpdate" class="form-control" value="<?php echo $row['klantemail'] ?>">
-								<label name="emailCheck" id="emailCheck" class="form-control" value="">
+								<input type="text" name="emailUpdate" id="emailUpdate" class="form-control" value="<?php echo $row['klantemail'] ?>">
+								<label name="emailCheck" id="emailCheck" value="">
 
 							</div>
 
 							<div class="col-md-6">
 								<label for="rolUpdate" class="form-label">Role:</label>
 								<input type="text" name="rolUpdate" id="rolUpdate" class="form-control" value="<?php echo $row['rol'] ?>">
-								<label name="rolCheck" id="rolCheck" class="form-control" value="">
+								<label name="rolCheck" id="rolCheck" value="">
 							</div>
 
 							<div class="col-md-6">
 								<label for="birthUpdate" class="form-label">Date of birth:</label>
 								<input type="date" name="birthUpdate" id="birthUpdate" class="form-control" value="<?php echo $row['geboortedatum'] ?>">
-								<label name="birthCheck" id="birthCheck" class="form-control" value="">
+								<label name="birthCheck" id="birthCheck" value="">
 							</div>
 
 							<div class="col-md-6">
 								<label for="Update_registratiedatum" class="form-label">Registration date:</label>
 								<input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>">
-								<label name="registrationCheck" id="registrationCheck" class="form-control" value="">
+								<label name="registrationCheck" id="registrationCheck" value="">
 							</div>
 							<input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
 							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm('<?php echo 'update'; ?>')">
