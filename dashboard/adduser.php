@@ -75,19 +75,32 @@ if (isset($_POST['btnAdd'])) {
     $new_rol = htmlspecialchars($_POST['rolNew']);
     $new_registratiedatum = htmlspecialchars($_POST['registrationNew']);
 
-    $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+    // Check if the email is already in use
+    $checkEmailSql = "SELECT * FROM tblklant WHERE Klantemail = ?";
+    $checkEmailStmt = $mysqli->prepare($checkEmailSql);
+    $checkEmailStmt->bind_param("s", $new_klantemail);
+    $checkEmailStmt->execute();
+    $checkEmailResult = $checkEmailStmt->get_result();
 
-    $stmt = $mysqli->prepare($insertSql);
-    $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
-    
-    if ($stmt->execute()) {
-        $success = true;
+    if ($checkEmailResult->num_rows > 0) {
+        // Email already in use, handle accordingly (show error message, etc.)
+        echo "Error: Email already in use";
+    } else {
+        // Email is unique, proceed with the insertion
+        $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+
+        $stmt = $mysqli->prepare($insertSql);
+        $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+
+        if ($stmt->execute()) {
+            $success = true;
+        }
+
+        $stmt->close();
     }
 
-    $stmt->close();
+    $checkEmailStmt->close();
 }
-
-$mysqli->close();
 ?>
 
 <?php
