@@ -98,7 +98,15 @@ if (isset($_GET['search'])) {
 	$searchTerm = "%" . $searchTerm . "%";
 
 	// Prepare the SQL statement.
-	$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
+	if ($_GET['rdbSearch'] == "name") {
+		$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
+	}
+	else if ($_GET['rdbSearch'] == "email") {
+		$sql = "SELECT * FROM `tblklant` WHERE `klantemail` LIKE ? AND `active` = 1";
+	}
+	else {
+		$sql = "SELECT * FROM `tblklant` WHERE `rol` LIKE ? AND `active` = 1";
+	}
 	// Prepare the statement.
 	$stmt = $mysql->prepare($sql);
 	$stmt->bind_param('s', $searchTerm);

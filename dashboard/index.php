@@ -166,7 +166,7 @@
 					<form action="index.php" method="get">
 						<div class="input-group">
 							<div class="form-outline" data-mdb-input-init>
-								<input type="search" id="form1" name="search" class="form-control" />
+								<input type="search" id="form1" name="search" class="form-control" value="<?php if (isset($_GET['search'])) { echo $_GET['search']; }?>" />
 								<label class="form-label" for="form1">Search</label>
 							</div>
 							<button type="submit" class="btn btn-primary">
