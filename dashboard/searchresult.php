@@ -1,5 +1,5 @@
 <script>
-	function validateForm(formType) {
+	function validateForm() {
 
 		let check = true;
 

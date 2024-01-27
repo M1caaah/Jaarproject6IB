@@ -173,6 +173,22 @@
 								<i class="fas fa-search"></i>
 							</button>
 						</div>
+						<br>
+						<span class="me-3">Search by: </span>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="name"/>
+							<label class="form-check-label" for="rdbName">Name</label>
+						</div>
+
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="email"/>
+							<label class="form-check-label" for="rdbEmail">Email</label>
+						</div>
+
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="role"/>
+							<label class="form-check-label" for="rdbRole">Role</label>
+						</div>
 					</form>
 				</div>
 				<div class="col-4">
