@@ -176,17 +176,17 @@
 						<br>
 						<span class="me-3">Search by: </span>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="name"/>
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
 							<label class="form-check-label" for="rdbName">Name</label>
 						</div>
 
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="email"/>
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="email" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "email") { echo "checked"; } }?>/>
 							<label class="form-check-label" for="rdbEmail">Email</label>
 						</div>
 
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="role"/>
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio3" value="role" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "role") { echo "checked"; } }?>/>
 							<label class="form-check-label" for="rdbRole">Role</label>
 						</div>
 					</form>

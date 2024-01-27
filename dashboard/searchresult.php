@@ -77,6 +77,7 @@
 
 <?php
 include 'connection.php';
+
 $mysql = new MySQLi($server, $user, $password, $database);
 
 //This is a interesting way fix the charset problem. I should change it in the database. But it works for now.
