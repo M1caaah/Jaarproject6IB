@@ -29,7 +29,7 @@ class Router
         if (!$callback)
         {
             Application::$app->response->setStatusCode(404);
-            return 'Not Found';
+            return  $this->renderView("_404");
         }
 
         if (is_string($callback))
@@ -43,7 +43,7 @@ class Router
     public function renderView($view)
     {
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->viewContent($view);
         return str_replace('{{content}}',$viewContent,$layoutContent);
     }
 
@@ -54,7 +54,7 @@ class Router
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view)
+    protected function viewContent($view)
     {
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
