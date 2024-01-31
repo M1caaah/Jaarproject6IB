@@ -41,13 +41,17 @@ class Router
             return $this->renderView($callback);
         }
 
+        if (is_array($callback))
+        {
+            $callback[0] = new $callback[0];
+        }
         return call_user_func($callback);
     }
 
-    public function renderView($view)
+    public function renderView($view, $params = [])
     {
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->viewContent($view);
+        $viewContent = $this->viewContent($view, $params);
         return str_replace('{{content}}',$viewContent,$layoutContent);
     }
 
@@ -58,7 +62,7 @@ class Router
         return ob_get_clean();
     }
 
-    protected function viewContent($view)
+    protected function viewContent($view, $params)
     {
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
