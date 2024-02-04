@@ -54,17 +54,17 @@ class Router
 
     // Rendering the view
 
-    public function renderView($view, $params = [])
+    public function renderView($view, $layout = '', $params = [])
     {
-        $layoutContent = $this->layoutContent();
+        $layoutContent = $this->layoutContent($layout);
         $viewContent = $this->viewContent($view, $params);
         return str_replace('{{content}}',$viewContent,$layoutContent);
     }
 
-    protected function layoutContent()
+    protected function layoutContent($layout)
     {
         ob_start();
-        include_once Application::$ROOT_DIR."/views/layouts/main.php";
+        include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
