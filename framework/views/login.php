@@ -1,4 +1,4 @@
-<h1 class="mt-5 ms-5">Contact view</h1>
+<h1 class="mt-5 ms-5">Login view</h1>
 <form action="" method="post">
     <div class="container w-25"><!-- Email input -->
         <div class="form-outline mb-4">
@@ -14,5 +14,4 @@
         <!-- Submit button -->
         <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Sign in</button>
     </div>
-
 </form>
