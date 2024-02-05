@@ -1,5 +1,6 @@
 <?php
-include '../connection.php';
+
+include 'connection.php';
 
 $mysqli = new MySQLi($server, $user, $password, $database);
 
