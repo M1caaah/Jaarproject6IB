@@ -99,13 +99,10 @@ if (isset($_GET['search'])) {
 
     // Prepare the SQL statement.
     if ($_GET['rdbSearch'] == "name") {
-        $sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
+        $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
     }
     else if ($_GET['rdbSearch'] == "email") {
-        $sql = "SELECT * FROM `tblklant` WHERE `klantemail` LIKE ? AND `active` = 1";
-    }
-    else {
-        $sql = "SELECT * FROM `tblklant` WHERE `rol` LIKE ? AND `active` = 1";
+        $sql = "SELECT * FROM `tblklant` WHERE `artikelMinLeeftijd` LIKE ? AND `active` = 1";
     }
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
@@ -113,7 +110,7 @@ if (isset($_GET['search'])) {
 } else {
 
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
+    $sql = "SELECT * FROM `tblartikel` WHERE `active` = 1";
 
     // Prepare the statement.
     $stmt = $mysql->prepare($sql);
@@ -122,6 +119,7 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
+//Hey micaaaaaaaaaa, if you do this bbg, i will give you Rayan's private maid dress image collection
 if ($result->num_rows > 0) {
     echo '<div class="row">';
     while ($row = $result->fetch_assoc()) {
