@@ -54,7 +54,7 @@ class Router
 
     // Rendering the view
 
-    public function renderView($view, $layout = '', $params = [])
+    public function renderView($view, $layout = 'main', $params = [])
     {
         $layoutContent = $this->layoutContent($layout);
         $viewContent = $this->viewContent($view, $params);

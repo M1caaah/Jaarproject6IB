@@ -4,11 +4,11 @@ namespace app\core;
 
 abstract class Model
 {
-    public const RULE_REQUIRED = 0;
-    public const RULE_EMAIL = 1;
-    public const RULE_MIN = 2;
-    public const RULE_MAX = 3;
-    public const RULE_MATCH = 4;
+    public const RULE_REQUIRED = 'required';
+    public const RULE_EMAIL = 'email';
+    public const RULE_MIN = 'min';
+    public const RULE_MAX = 'max';
+    public const RULE_MATCH = 'match';
 
     public array $errors = [];
 
@@ -27,27 +27,49 @@ abstract class Model
 
     public function validate()
     {
-        foreach ($this->rules() as $attribute => $rules) {
+        foreach ($this->rules() as $attribute => $rules)
+        {
             $value = $this->{$attribute};
-            foreach ($rules as $rule) {
+            foreach ($rules as $rule)
+            {
                 $ruleCode = $rule;
-                if (!is_int($ruleCode))
+                if (!is_string($ruleCode))
                 {
                     $ruleCode = $rule[0];
                 }
-                if ($ruleCode === self::RULE_REQUIRED && !$value)
+
+                if ($ruleCode === self::RULE_REQUIRED && empty($value))
                 {
+                    echo "$attribute has failed required check value: $value";
                     $this->addError($attribute, self::RULE_REQUIRED);
+                }
+                if ($ruleCode === self::RULE_EMAIL && filter_var($value, FILTER_VALIDATE_EMAIL))
+                {
+                    echo "$attribute has failed email check value: $value";
+                    $this->addError($attribute, self::RULE_EMAIL);
+                }
+                if ($ruleCode === self::RULE_MIN && strlen($value) < $rule['min'])
+                {
+                    echo "$attribute has failed min check value: $value";
+                    $this->addError($attribute, self::RULE_MIN);
+                }
+                if ($ruleCode === self::RULE_MAX && strlen($value) > $rule['max'])
+                {
+                    echo "$attribute has failed min check value: $value";
+                    $this->addError($attribute, self::RULE_MAX);
                 }
             }
         }
-
         return empty($this->errors);
     }
 
-    public function addError(string $attribute, string $rule)
+    public function addError(string $attribute, string $rule, $params = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
+        foreach ($params as $key => $param)
+        {
+            $message = str_replace("{{$key}}", $param, $message);
+        }
         $this->errors[$attribute][] = $message;
     }
 
