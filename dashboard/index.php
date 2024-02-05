@@ -13,8 +13,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 	<!-- MDB -->
 	<link rel="stylesheet" href="assets/css/styles.min.css" />
-	<!-- Custom stylesheet -->
-	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <script>
@@ -106,10 +104,14 @@
 						<i class="fas fa-user-gear fa-fw me-3"></i>
 						<span>Users</span>
 					</a>
-					<a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
+					<a href="products.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
 						<i class="far fa-circle-question fa-fw me-3"></i>
-						<span>Coming soon...</span>
+						<span>Products</span>
 					</a>
+                    <a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
+                        <i class="far fa-circle-question fa-fw me-3"></i>
+                        <span>Coming soon...</span>
+                    </a>
 				</div>
 			</div>
 		</nav>
@@ -252,11 +254,11 @@
 						</div>
 					</div>
 
-					<?php include 'adduser.php' ?>
+					<?php include 'users/adduser.php' ?>
 				</div>
 			</div>
 			<div class="container my-3">
-				<?php include 'searchresult.php' ?>
+				<?php include 'users/searchresult.php' ?>
 			</div>
 		</div>
 		</div>
