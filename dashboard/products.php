@@ -163,7 +163,104 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
     <div class="container pt-4">
+        <div class="row">
+            <div class="col-8">
+                <form action="index.php" method="get">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="form1" name="search" class="form-control" value="<?php if (isset($_GET['search'])) { echo $_GET['search']; }?>" />
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <br>
+                    <span class="me-3">Search by: </span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
+                        <label class="form-check-label" for="rdbName">Name</label>
+                    </div>
 
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="email" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "email") { echo "checked"; } }?>/>
+                        <label class="form-check-label" for="rdbEmail">Email</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio3" value="role" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "role") { echo "checked"; } }?>/>
+                        <label class="form-check-label" for="rdbRole">Role</label>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+                    Add new user
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
+                                <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label for="nameNew" class="form-label">Name:</label>
+                                        <input type="text" name="nameNew" id="nameNew" class="form-control" value="">
+                                        <label name="nameNewCheck" id="nameNewCheck" value="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="passwordNew" class="form-label">Password:</label>
+                                        <input type="text`" name="passwordNew" id="passwordNew" class="form-control" value="">
+                                        <label name="passwordNewCheck" id="passwordNewCheck" value=""></label>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="emailNew" class="form-label">Email:</label>
+                                        <input type="text" name="emailNew" id="emailNew" class="form-control" value="">
+                                        <label name="emailNewCheck" id="emailNewCheck" value="">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="roleNew" class="form-label">Role:</label>
+                                        <input type="text" name="roleNew" id="roleNew" class="form-control" value="">
+                                        <label name="roleNewCheck" id="roleNewCheck" value="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="birthNew" class="form-label">Date of birth:</label>
+                                        <input type="date" name="birthNew" id="birthNew" class="form-control" value="">
+                                        <label name="birthNewCheck" id="birthNewCheck" value="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="new_registratiedatum" class="form-label">Registration date:</label>
+                                        <?php $today = new DateTime();
+                                        $dateString = $today->format('Y-m-d');
+                                        ?>
+                                        <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString ?>">
+                                    </div>
+                                    <input type="button" value="Add user" class="btn btn-primary" name="btnAdd" onclick="validateNewForm()">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php include 'products/addproduct.php' ?>
+            </div>
+        </div>
+        <div class="container my-3">
+            <?php include 'products/searchproduct.php' ?>
+        </div>
+    </div>
     </div>
 </main>
 

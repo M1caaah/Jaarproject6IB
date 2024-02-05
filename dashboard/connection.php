@@ -1,6 +1,6 @@
 <?php
 
-  $server = 'localhost';
+  $server = '';
   $user = 'root';
   $password = '';
   $database = 'jaarproject';
