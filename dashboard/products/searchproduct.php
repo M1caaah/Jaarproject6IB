@@ -124,49 +124,54 @@ if ($result->num_rows > 0) {
     echo '<div class="row">';
     while ($row = $result->fetch_assoc()) {
         ?>
-        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3">
+                <div class="bg-image hover-overlay">
+                    <img src="<?php echo $row['imageSource'] ?>" class="img-fluid" alt="baldurs gate" style="width: 200px; height: 200px;"/>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $row['klantnaam']; ?></h5>
-                    <p class="card-text text-muted"><?php echo $row['klantemail']; ?></p>
-                    <a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
+                    <h5 class="card-title"><?php echo $row['artikelNaam']; ?></h5>
+                    <p>&euro;<?php echo sprintf("%.2f", $row['artikelPrijs']) ?></p>
+                    <a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['artikelID']; ?>" href="#">
                         More info
                     </a>
-                    <div class="dropdown manage-user" style="position: absolute; top: 10px; right: 10px;">
+                    <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
                         <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
-                        <ul class="dropdown-menu">
-                            <li><a type="button" class="d-inline-block dropdown-item" data-mdb-modal-init data-mdb-target="#edit<?php echo $row['klantID']; ?>" href="#">Edit</a></li>
-                            <li><?php include 'deleteuser.php'; ?></li>
+                        <ul class="dropdown-menu shadow-3-strong">
+                            <li>
+                                <a type="button" class="d-inline-block dropdown-item" data-mdb-modal-init data-mdb-target="#edit<?php echo $row['artikelID']; ?>" href="#">Edit</a>
+                            </li>
+                            <li><?php include 'deleteproduct.php'; ?></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal more info -->
-        <div class="modal fade" id="klant<?php echo $row['klantID']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- More info -->
+        <div class="modal fade" id="klant<?php echo $row['artikelID']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title"><?php echo $row['klantnaam']; ?></h5>
+                        <h5 class="modal-title"><?php echo $row['artikelNaam']; ?></h5>
                         <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-12">
-                                <p class="card-text"><b>Email:</b><br> <?php echo $row['klantemail']; ?></p>
+                            <div class="col-6">
+                                <p class="card-text"><b>Naam:</b><br> <?php echo $row['artikelNaam']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Geboortedatum:</b><br> <?php echo $row['geboortedatum']; ?></p>
+                                <p class="card-text"><b>Product ID:</b><br> <?php echo $row['artikelID']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Passwoord:</b><br> <?php echo $row['passwoord']; ?></p>
+                                <p class="card-text"><b>Prijs:</b><br> &euro;<?php echo $row['artikelPrijs']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Rol:</b><br> <?php echo $row['rol']; ?></p>
+                                <p class="card-text"><b>Voorraad:</b><br> <?php echo $row['artikelVoorraad']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Registratiedatum:</b><br> <?php echo $row['registratiedatum']; ?></p>
+                                <p class="card-text"><b>Minimum leeftijd:</b><br> <?php echo $row['artikelMinLeeftijd']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -177,12 +182,12 @@ if ($result->num_rows > 0) {
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="edit<?php echo $row['klantID']; ?>" tabindex="-1" aria-hidden="true">
+        <!-- Edit -->
+        <div class="modal fade" id="edit<?php echo $row['artikelID']; ?>" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit user: <?php echo $row['klantnaam'] ?></h5>
+                        <h5 class="modal-title">Edit product: <?php echo $row['artikelNaam'] ?></h5>
                         <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -224,7 +229,7 @@ if ($result->num_rows > 0) {
                                 <input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>">
                                 <label name="registrationCheck" id="registrationCheck" value="">
                             </div>
-                            <input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
+                            <input type="hidden" name="artikelID" value="<?php echo $row['artikelID'] ?>">
                             <input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
                         </form>
                         <?php include 'updateuser.php'; ?>
