@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         ?>
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
-            <div class="card my-3">
+            <div class="card my-3" style="width: 200px;">
                 <div class="bg-image hover-overlay">
                     <img src="<?php echo IMGSOURCE.$row['artikelAfbeelding'] ?>" class="img-fluid" alt="<?php echo $row['artikelAfbeelding'] ?>" style="width: 200px; height: 200px;"/>
                 </div>
