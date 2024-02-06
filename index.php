@@ -53,7 +53,7 @@ https://templatemo.com/tm-582-tale-seo-agency
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
               <img src="assets/images/logo.png" alt="" style="max-width: 300px; margin: -10px;">
             </a>
             <!-- ***** Logo End ***** -->
@@ -65,8 +65,8 @@ https://templatemo.com/tm-582-tale-seo-agency
               <li class="has-sub">
                 <a href="javascript:void(0)">Pages</a>
                 <ul class="sub-menu">
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="faqs.html">FAQs</a></li>
+                  <li><a href="about.php">About Us</a></li>
+                  <li><a href="faqs.php">FAQs</a></li>
                 </ul>
               </li>
               <li class="scroll-to-section"><a href="#contact">Contact</a></li>
@@ -89,11 +89,11 @@ https://templatemo.com/tm-582-tale-seo-agency
           <div class="caption header-text">
             <h4>Dive <em>Into The Gaming</em> World <span>With ByteBazaar</span></h4>
             <div class="line-dec"></div>
-            <p>ByteBazaar is the best Steam key shop around. Check out our games at a super cheap price so you can start gaming at a budget!<br> <a href="index.html">Home</a>, <a
-                href="about.html">About</a>, and <a href="faqs.html">FAQ</a>.</p>
+            <p>ByteBazaar is the best Steam key shop around. Check out our games at a super cheap price so you can start gaming at a budget!<br> <a href="index.php">Home</a>, <a
+                href="about.php">About</a>, and <a href="faqs.php">FAQ</a>.</p>
             <div class="main-button scroll-to-section"><a href="#services">Discover More</a></div>
             <span>or</span>
-            <div class="second-button"><a href="faqs.html">Check our FAQs</a></div>
+            <div class="second-button"><a href="faqs.php">Check our FAQs</a></div>
           </div>
         </div>
       </div>
