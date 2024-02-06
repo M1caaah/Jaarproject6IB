@@ -1,3 +1,8 @@
+<?php
+    define("IMGSOURCE", "assets/img/productimages/");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,82 +20,7 @@
     <link rel="stylesheet" href="assets/css/styles.min.css" />
 </head>
 
-<script>
-    function validateNewForm(formType) {
 
-        let check = true;
-
-        let nameNew = document.getElementById("nameNew");
-        let nameNewCheck = document.getElementById("nameNewCheck");
-        let emailNew = document.getElementById("emailNew");
-        let emailNewCheck = document.getElementById("emailNewCheck");
-        let birthNew = document.getElementById("birthNew");
-        let birthNewCheck = document.getElementById("birthNewCheck");
-        let passwordNew = document.getElementById("passwordNew");
-        let passwordNewCheck = document.getElementById("passwordNewCheck");
-        let roleNew = document.getElementById("roleNew");
-        let roleNewCheck = document.getElementById("roleNewCheck");
-
-
-        if (nameNew.value === "") {
-            check = false;
-            nameNewCheck.innerText = "Please write a name.";
-        } else {
-
-        }
-
-        if (emailNew.value === "" || !isValidEmail(emailNew.value)) {
-            check = false;
-            emailNewCheck.innerText = "Please write a valid email.";
-        } else {
-
-        }
-
-        let birthDate = new Date(birthNew.value);
-        let today = new Date();
-        if (birthNew.value === "") {
-            check = false;
-            birthNewCheck.innerText = "Please write a date of birth.";
-        } else if (birthDate > today) {
-            // Check if birth date is later than today
-            check = false;
-            birthNewCheck.innerText = "Birth date cannot be later than today.";
-        }
-
-        if (passwordNew.value === "") {
-            check = false;
-            passwordNewCheck.innerText = "Please write a password.";
-        } else {
-
-        }
-
-        if (roleNew.value === "") {
-            check = false
-            roleNewCheck.innerHTML = "Please write a role.";
-        } else {
-
-        }
-
-        if (check) {
-            document.forms.addUser.submit();
-        }
-    }
-
-    function isValidEmail(email) {
-        // Use a regular expression to validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!email) {
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            return false;
-        }
-
-        return true;
-    }
-</script>
 
 <body>
 
@@ -195,15 +125,15 @@
             </div>
             <div class="col-4">
                 <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
-                    Add new user
+                    Add new product
                 </button>
 
-                <!-- Modal -->
+                <!-- Add modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add user</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
                                 <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -211,49 +141,40 @@
 
                                     <div class="col-md-6">
                                         <label for="nameNew" class="form-label">Name:</label>
-                                        <input type="text" name="nameNew" id="nameNew" class="form-control" value="">
-                                        <label name="nameNewCheck" id="nameNewCheck" value="">
+                                        <input required type="text" name="nameEdit" id="nameEdit" class="form-control">
+                                        <label id="nameCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="passwordNew" class="form-label">Password:</label>
-                                        <input type="text`" name="passwordNew" id="passwordNew" class="form-control" value="">
-                                        <label name="passwordNewCheck" id="passwordNewCheck" value=""></label>
+                                        <label for="priceNew" class="form-label">Price:</label>
+                                        <input required type="number" step="0.01" name="priceNew" id="priceNew" class="form-control">
+                                        <label id="priceCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="emailNew" class="form-label">Email:</label>
-                                        <input type="text" name="emailNew" id="emailNew" class="form-control" value="">
-                                        <label name="emailNewCheck" id="emailNewCheck" value="">
-
+                                        <label for="stockNew" class="form-label">Stock:</label>
+                                        <input required type="number" step="1" name="stockNew" id="stockNew" class="form-control">
+                                        <label id="stockCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="roleNew" class="form-label">Role:</label>
-                                        <input type="text" name="roleNew" id="roleNew" class="form-control" value="">
-                                        <label name="roleNewCheck" id="roleNewCheck" value="">
+                                        <label for="minAgeNew" class="form-label">Minimum age:</label>
+                                        <input required type="number" step="1" name="minAgeNew" id="minAgeNew" class="form-control">
+                                        <label id="minAgeCheck"></label>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="birthNew" class="form-label">Date of birth:</label>
-                                        <input type="date" name="birthNew" id="birthNew" class="form-control" value="">
-                                        <label name="birthNewCheck" id="birthNewCheck" value="">
+                                    <div class="col-md-12">
+                                        <label for="imageNew" class="form-label">Image:</label>
+                                        <input required type="file" name="imageNew" id="imageNew" class="form-control">
+                                        <label id="imageCheck"></label>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="new_registratiedatum" class="form-label">Registration date:</label>
-                                        <?php $today = new DateTime();
-                                        $dateString = $today->format('Y-m-d');
-                                        ?>
-                                        <input type="date" name="registrationNew" id="registrationNew" class="form-control" value="<?php echo $dateString ?>">
-                                    </div>
-                                    <input type="button" value="Add user" class="btn btn-primary" name="btnAdd" onclick="validateNewForm()">
+                                    <input type="button" value="Add product" class="btn btn-primary" name="btnAddProduct">
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <?php include 'products/addproduct.php' ?>
             </div>
         </div>

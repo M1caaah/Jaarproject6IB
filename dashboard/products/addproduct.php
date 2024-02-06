@@ -12,7 +12,7 @@ $success = false;
 
 if (isset($_POST['nameNew'])) {
     $new_productname = htmlspecialchars($_POST['productNameNew']);
-    $new_productamount = htmlspecialchars($_POST['productAmountNew']);
+    $new_productamount = htmlspecialchars($_POST['productStockNew']);
     $new_productprice = htmlspecialchars($_POST['productPriceNew']);
     $new_productimage = htmlspecialchars($_POST['productImageNew']);
     $new_productMinAge = htmlspecialchars($_POST['productMinAge']);

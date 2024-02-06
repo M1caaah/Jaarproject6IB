@@ -1,80 +1,3 @@
-<script>
-    function validateForm() {
-
-        let check = true;
-
-        let nameUpdate = document.getElementById("nameUpdate");
-        let nameCheck = document.getElementById("nameCheck");
-        let emailUpdate = document.getElementById("emailUpdate");
-        let emailCheck = document.getElementById("emailCheck");
-        let birthUpdate = document.getElementById("birthUpdate");
-        let birthCheck = document.getElementById("birthCheck");
-        let passwordUpdate = document.getElementById("passwordUpdate");
-        let passwordCheck = document.getElementById("passwordCheck");
-        let roleUpdate = document.getElementById("roleUpdate");
-        let roleCheck = document.getElementById("rolCheck");
-
-
-        if (nameUpdate.value === "") {
-            check = false;
-            nameCheck.innerText = "Please write a name.";
-        } else {
-
-        }
-
-        if (emailUpdate.value === "" || !isValidEmail(emailUpdate.value)) {
-            check = false;
-            emailCheck.innerText = "Please write a valid email.";
-        } else {
-
-        }
-
-        let birthDate = new Date(birthUpdate.value);
-        let today = new Date();
-        if (birthUpdate.value === "") {
-            check = false;
-            birthCheck.innerText = "Please write a date of birth.";
-        } else if (birthDate > today) {
-            // Check if birth date is later than today
-            check = false;
-            birthCheck.innerText = "Birth date cannot be later than today.";
-        }
-
-        if (passwordUpdate.value === "") {
-            check = false;
-            passwordCheck.innerText = "Please write a password.";
-        } else {
-
-        }
-
-        if (roleUpdate.value === "") {
-            check = false
-            roleCheck.innerHTML = "Please write a role.";
-        } else {
-
-        }
-
-        if (check) {
-            document.forms.editUser.submit();
-        }
-    }
-
-    function isValidEmail(email) {
-        // Use a regular expression to validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!email) {
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            return false;
-        }
-
-        return true;
-    }
-</script>
-
 <?php
 include 'connection.php';
 
@@ -127,7 +50,7 @@ if ($result->num_rows > 0) {
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3">
                 <div class="bg-image hover-overlay">
-                    <img src="<?php echo $row['imageSource'] ?>" class="img-fluid" alt="baldurs gate" style="width: 200px; height: 200px;"/>
+                    <img src="<?php echo IMGSOURCE.$row['imageSource'] ?>" class="img-fluid" alt="baldurs gate" style="width: 200px; height: 200px;"/>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['artikelNaam']; ?></h5>
@@ -159,19 +82,19 @@ if ($result->num_rows > 0) {
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6">
-                                <p class="card-text"><b>Naam:</b><br> <?php echo $row['artikelNaam']; ?></p>
+                                <p class="card-text"><b>Name:</b><br> <?php echo $row['artikelNaam']; ?></p>
                             </div>
                             <div class="col-6">
                                 <p class="card-text"><b>Product ID:</b><br> <?php echo $row['artikelID']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Prijs:</b><br> &euro;<?php echo $row['artikelPrijs']; ?></p>
+                                <p class="card-text"><b>Price:</b><br> &euro;<?php echo $row['artikelPrijs']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Voorraad:</b><br> <?php echo $row['artikelVoorraad']; ?></p>
+                                <p class="card-text"><b>Stock:</b><br> <?php echo $row['artikelVoorraad']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Minimum leeftijd:</b><br> <?php echo $row['artikelMinLeeftijd']; ?></p>
+                                <p class="card-text"><b>Minimum age:</b><br> <?php echo $row['artikelMinLeeftijd']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -191,48 +114,36 @@ if ($result->num_rows > 0) {
                         <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form name="editUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+                        <form name="editProduct" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
                             <div class="col-md-6">
-                                <label for="nameUpdate" class="form-label">Name:</label>
-                                <input type="text" name="nameUpdate" id="nameUpdate" class="form-control" value="<?php echo $row['klantnaam'] ?>">
-                                <label name="nameCheck" id="nameCheck" value="">
+                                <label for="nameEdit" class="form-label">Name:</label>
+                                <input required type="text" name="nameEdit" id="nameEdit" class="form-control" value="<?php echo $row['artikelNaam'] ?>">
+                                <label id="nameCheck"></label>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="passwordUpdate" class="form-label">Password:</label>
-                                <input type="text`" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>">
-                                <label name="passwordCheck" id="passwordCheck" value=""></label>
+                                <label for="priceEdit" class="form-label">Price:</label>
+                                <input required type="number" step="0.01" name="priceEdit" id="priceEdit" class="form-control" value="<?php echo $row['artikelPrijs'] ?>">
+                                <label id="priceCheck"></label>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="emailUpdate" class="form-label">Email:</label>
-                                <input type="text" name="emailUpdate" id="emailUpdate" class="form-control" value="<?php echo $row['klantemail'] ?>">
-                                <label name="emailCheck" id="emailCheck" value="">
-
+                                <label for="stockEdit" class="form-label">Stock:</label>
+                                <input required type="number" step="1" name="stockEdit" id="stockEdit" class="form-control" value="<?php echo $row['artikelVoorraad'] ?>">
+                                <label id="stockCheck"></label>
                             </div>
 
                             <div class="col-md-6">
-                                <label for="roleUpdate" class="form-label">Role:</label>
-                                <input type="text" name="roleUpdate" id="roleUpdate" class="form-control" value="<?php echo $row['rol'] ?>">
-                                <label name="rolCheck" id="rolCheck" value="">
+                                <label for="minAgeEdit" class="form-label">Minimum age:</label>
+                                <input required type="number" step="1" name="minAgeEdit" id="minAgeEdit" class="form-control" value="<?php echo $row['artikelMinLeeftijd'] ?>">
+                                <label id="minAgeCheck"></label>
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="birthUpdate" class="form-label">Date of birth:</label>
-                                <input type="date" name="birthUpdate" id="birthUpdate" class="form-control" value="<?php echo $row['geboortedatum'] ?>">
-                                <label name="birthCheck" id="birthCheck" value="">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="Update_registratiedatum" class="form-label">Registration date:</label>
-                                <input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>">
-                                <label name="registrationCheck" id="registrationCheck" value="">
-                            </div>
-                            <input type="hidden" name="artikelID" value="<?php echo $row['artikelID'] ?>">
-                            <input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
+                            <input type="hidden" name="productID" value="<?php echo $row['artikelID'] ?>">
+                            <input type="submit" value="Update product" class="btn btn-primary" name="btnUpdateProduct">
                         </form>
-                        <?php include 'updateuser.php'; ?>
+                        <?php include 'products/updateproduct.php'; ?>
                     </div>
                 </div>
             </div>

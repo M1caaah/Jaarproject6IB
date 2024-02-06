@@ -1,16 +1,16 @@
 <?php
-if (isset($_POST['nameUpdate']) && $_POST['artikelID'] == $row['artikelID']) { //Change this accordingly micah
-    $update_productid = htmlspecialchars($_POST['productNameUpdate']);
-    $update_productname = htmlspecialchars($_POST['productNameUpdate']);
-    $update_productamount = htmlspecialchars($_POST['productAmountUpdate']);
-    $update_productprice = htmlspecialchars($_POST['productPriceUpdate']);
-    $update_productimage = htmlspecialchars($_POST['productImageUpdate']);
-    $update_productMinAge = htmlspecialchars($_POST['productMinAgeUpdate']);
+if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['artikelID']) { //Change this accordingly micah
+    $update_productid = htmlspecialchars($_POST['productID']);
+    $update_productname = htmlspecialchars($_POST['nameEdit']);
+    $update_productamount = htmlspecialchars($_POST['stockEdit']);
+    $update_productprice = htmlspecialchars($_POST['priceEdit']);
+//    $update_productimage = htmlspecialchars($_POST['']);
+    $update_productMinAge = htmlspecialchars($_POST['minAgeEdit']);
 
-    $insertSql = "UPDATE tblartikel SET artikelID = ?, artikelNaam = ?, artikelVoorraad = ?, artikelPrijs = ?, artikelAfbeelding = ?, artikelMinLeeftijd = ? WHERE artikelID = ?";
+    $insertSql = "UPDATE tblartikel SET artikelID = ?, artikelNaam = ?, artikelVoorraad = ?, artikelPrijs = ?, artikelMinLeeftijd = ? WHERE artikelID = ?";
 
     $stmtUpdate = $mysql->prepare($insertSql);
-    $stmtUpdate->bind_param("sssssss", $update_productid, $update_productname, $update_productamount, $update_productprice, $update_productimage, $update_productMinAge, $update_productid);
+    $stmtUpdate->bind_param("ssssss", $update_productid, $update_productname, $update_productamount, $update_productprice, $update_productMinAge, $update_productid);
     $stmtUpdate->execute();
     $stmtUpdate->close();
 
