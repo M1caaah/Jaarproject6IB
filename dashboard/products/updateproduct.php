@@ -1,5 +1,6 @@
 <?php
-if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['artikelID']) { //Change this accordingly micah
+if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['artikelID']) {
+
     $update_productid = htmlspecialchars($_POST['productID']);
     $update_productname = htmlspecialchars($_POST['nameEdit']);
     $update_productamount = htmlspecialchars($_POST['stockEdit']);
@@ -15,5 +16,7 @@ if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['arti
     $stmtUpdate->close();
 
     $_POST = array();
+
+    echo '<script> if (window.history.replaceState) { window.history.replaceState(null, null, window.location.href) } </script>';
 }
 ?>

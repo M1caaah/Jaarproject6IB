@@ -95,7 +95,7 @@
     <div class="container pt-4">
         <div class="row">
             <div class="col-8">
-                <form action="index.php" method="get">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
                     <div class="input-group">
                         <div class="form-outline" data-mdb-input-init>
                             <input type="search" id="form1" name="search" class="form-control" value="<?php if (isset($_GET['search'])) { echo $_GET['search']; }?>" />
@@ -104,22 +104,6 @@
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-search"></i>
                         </button>
-                    </div>
-                    <br>
-                    <span class="me-3">Search by: </span>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
-                        <label class="form-check-label" for="rdbName">Name</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="email" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "email") { echo "checked"; } }?>/>
-                        <label class="form-check-label" for="rdbEmail">Email</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio3" value="role" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "role") { echo "checked"; } }?>/>
-                        <label class="form-check-label" for="rdbRole">Role</label>
                     </div>
                 </form>
             </div>
@@ -165,7 +149,7 @@
 
                                     <div class="col-md-12">
                                         <label for="imageNew" class="form-label">Image:</label>
-                                        <input required type="file" accept="image/jpeg, image/png" name="imageNew" id="imageNew" class="form-control">
+                                        <input required type="file" accept="image/*" name="imageNew" id="imageNew" class="form-control">
                                         <label id="imageCheck"></label>
                                     </div>
 

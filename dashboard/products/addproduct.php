@@ -12,7 +12,13 @@ $success = false;
 
 if (isset($_POST['btnAddProduct'])) {
 
-    $target_dir = "../assets/images/productimages";
+    $target_dir = 'assets/img/productimages';
+
+    $new_productname = htmlspecialchars($_POST['nameNew']);
+    $new_productamount = htmlspecialchars($_POST['stockNew']);
+    $new_productprice = htmlspecialchars($_POST['priceNew']);
+    $new_productMinAge = htmlspecialchars($_POST['minAgeNew']);
+    $new_productimage = '';
 
     if (isset($_FILES["imageNew"])) {
 
@@ -21,15 +27,12 @@ if (isset($_POST['btnAddProduct'])) {
         if (file_exists($target_file)) {
             unlink($target_file);
         }
-
+        move_uploaded_file($_FILES["imageNew"]["tmp_name"], $target_file);
         $new_productimage = basename($_FILES["imageNew"]["name"]);
     }
 
 
-    $new_productname = htmlspecialchars($_POST['nameNew']);
-    $new_productamount = htmlspecialchars($_POST['stockNew']);
-    $new_productprice = htmlspecialchars($_POST['priceNew']);
-    $new_productMinAge = htmlspecialchars($_POST['minAgeNew']);
+
 
     // Email is unique, proceed with the insertion
     $insertSql = "INSERT INTO tblartikel (artikelNaam, artikelVoorraad, artikelPrijs, artikelAfbeelding, artikelMinLeeftijd) VALUES (?, ?, ?, ?, ?)";

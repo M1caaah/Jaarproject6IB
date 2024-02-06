@@ -20,14 +20,8 @@ if (isset($_GET['search'])) {
     $searchTerm = strtolower($searchTerm);
     $searchTerm = "%" . $searchTerm . "%";
 
-    // Prepare the SQL statement.
-    if ($_GET['rdbSearch'] == "name") {
-        $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
-    }
-    else if ($_GET['rdbSearch'] == "email") {
-        $sql = "SELECT * FROM `tblklant` WHERE `artikelMinLeeftijd` LIKE ? AND `active` = 1";
-    }
     // Prepare the statement.
+    $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
     $stmt = $mysql->prepare($sql);
     $stmt->bind_param('s', $searchTerm);
 } else {
@@ -50,7 +44,7 @@ if ($result->num_rows > 0) {
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3">
                 <div class="bg-image hover-overlay">
-                    <img src="<?php echo IMGSOURCE.$row['imageSource'] ?>" class="img-fluid" alt="<?php echo $row['imageSource'] ?>" style="width: 200px; height: 200px;"/>
+                    <img src="<?php echo IMGSOURCE.$row['artikelAfbeelding'] ?>" class="img-fluid" alt="<?php echo $row['artikelAfbeelding'] ?>" style="width: 200px; height: 200px;"/>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['artikelNaam']; ?></h5>
