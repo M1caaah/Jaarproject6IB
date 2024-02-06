@@ -10,7 +10,7 @@ if ($mysqli->connect_error) {
 
 $success = false;
 
-if (isset($_POST['nameNew'])) {
+if (isset($_POST['btnAddProduct'])) {
 
     $target_dir = "../assets/images/productimages";
 
@@ -22,20 +22,20 @@ if (isset($_POST['nameNew'])) {
             unlink($target_file);
         }
 
-        $new_productimage = $_FILES["imageNew"]["name"];
+        $new_productimage = basename($_FILES["imageNew"]["name"]);
     }
 
 
-    $new_productname = htmlspecialchars($_POST['productNameNew']);
-    $new_productamount = htmlspecialchars($_POST['productStockNew']);
-    $new_productprice = htmlspecialchars($_POST['productPriceNew']);
-    $new_productMinAge = htmlspecialchars($_POST['productMinAge']);
+    $new_productname = htmlspecialchars($_POST['nameNew']);
+    $new_productamount = htmlspecialchars($_POST['stockNew']);
+    $new_productprice = htmlspecialchars($_POST['priceNew']);
+    $new_productMinAge = htmlspecialchars($_POST['minAgeNew']);
 
     // Email is unique, proceed with the insertion
-    $insertSql = "INSERT INTO tblartikel (artikelNaam, artikelVoorraad, artikelPrijs, artikelAfbeelding, artikelMinLeeftijd) VALUES (?, ?, ?, ?, ?, ?)";
+    $insertSql = "INSERT INTO tblartikel (artikelNaam, artikelVoorraad, artikelPrijs, artikelAfbeelding, artikelMinLeeftijd) VALUES (?, ?, ?, ?, ?)";
 
     $stmt = $mysqli->prepare($insertSql);
-    $stmt->bind_param("ssssss", $new_productname, $new_productamount, $new_productprice, $new_productimage, $new_productMinAge);
+    $stmt->bind_param("sssss", $new_productname, $new_productamount, $new_productprice, $new_productimage, $new_productMinAge);
 
     if ($stmt->execute()) {
         $success = true;

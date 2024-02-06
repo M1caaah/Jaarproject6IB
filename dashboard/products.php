@@ -137,11 +137,11 @@
                                 <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+                                <form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" class="row g-3">
 
                                     <div class="col-md-6">
                                         <label for="nameNew" class="form-label">Name:</label>
-                                        <input required type="text" name="nameEdit" id="nameEdit" class="form-control">
+                                        <input required type="text" name="nameNew" id="nameNew" class="form-control">
                                         <label id="nameCheck"></label>
                                     </div>
 

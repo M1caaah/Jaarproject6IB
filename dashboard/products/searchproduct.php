@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3">
                 <div class="bg-image hover-overlay">
-                    <img src="<?php echo IMGSOURCE.$row['imageSource'] ?>" class="img-fluid" alt="baldurs gate" style="width: 200px; height: 200px;"/>
+                    <img src="<?php echo IMGSOURCE.$row['imageSource'] ?>" class="img-fluid" alt="<?php echo $row['imageSource'] ?>" style="width: 200px; height: 200px;"/>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['artikelNaam']; ?></h5>
