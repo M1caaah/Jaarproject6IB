@@ -11,37 +11,38 @@ if ($mysqli->connect_error) {
 $success = false;
 
 if (isset($_POST['nameNew'])) {
+
+    $target_dir = "../assets/images/productimages";
+
+    if (isset($_FILES["imageNew"])) {
+
+        // Check if file already exists
+        $target_file = $target_dir . '/' . basename($_FILES["imageNew"]["name"]);
+        if (file_exists($target_file)) {
+            unlink($target_file);
+        }
+
+        $new_productimage = $_FILES["imageNew"]["name"];
+    }
+
+
     $new_productname = htmlspecialchars($_POST['productNameNew']);
     $new_productamount = htmlspecialchars($_POST['productStockNew']);
     $new_productprice = htmlspecialchars($_POST['productPriceNew']);
-    $new_productimage = htmlspecialchars($_POST['productImageNew']);
     $new_productMinAge = htmlspecialchars($_POST['productMinAge']);
 
-    // Check if the email is already in use
-    $checkEmailSql = "SELECT * FROM tblartikel WHERE artikelNaam = ?";
-    $checkEmailStmt = $mysqli->prepare($checkEmailSql); //Micah link pls thank you i love you mwah.
-    $checkEmailStmt->bind_param("s", $new_productname);
-    $checkEmailStmt->execute();
-    $checkEmailResult = $checkEmailStmt->get_result(); //Micah link pls thank you i love you mwah.
+    // Email is unique, proceed with the insertion
+    $insertSql = "INSERT INTO tblartikel (artikelNaam, artikelVoorraad, artikelPrijs, artikelAfbeelding, artikelMinLeeftijd) VALUES (?, ?, ?, ?, ?, ?)";
 
-    if ($checkEmailResult->num_rows > 0) {
-        // Email already in use, handle accordingly (show error message, etc.)
-        echo "Error: Email already in use";
-    } else {
-        // Email is unique, proceed with the insertion
-        $insertSql = "INSERT INTO tblartikel (artikelNaam, artikelVoorraad, artikelPrijs, artikelAfbeelding, artikelMinLeeftijd) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($insertSql);
+    $stmt->bind_param("ssssss", $new_productname, $new_productamount, $new_productprice, $new_productimage, $new_productMinAge);
 
-        $stmt = $mysqli->prepare($insertSql);
-        $stmt->bind_param("ssssss", $new_productname, $new_productamount, $new_productprice, $new_productimage, $new_productMinAge);
-
-        if ($stmt->execute()) {
-            $success = true;
-        }
-
-        $stmt->close();
+    if ($stmt->execute()) {
+        $success = true;
     }
 
-    $checkEmailStmt->close();
+    $stmt->close();
+
 }
 ?>
 

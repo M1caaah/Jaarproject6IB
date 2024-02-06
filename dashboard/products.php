@@ -165,11 +165,11 @@
 
                                     <div class="col-md-12">
                                         <label for="imageNew" class="form-label">Image:</label>
-                                        <input required type="file" name="imageNew" id="imageNew" class="form-control">
+                                        <input required type="file" accept="image/jpeg, image/png" name="imageNew" id="imageNew" class="form-control">
                                         <label id="imageCheck"></label>
                                     </div>
 
-                                    <input type="button" value="Add product" class="btn btn-primary" name="btnAddProduct">
+                                    <input type="submit" value="Add product" class="btn btn-primary" name="btnAddProduct">
                                 </form>
                             </div>
                         </div>
