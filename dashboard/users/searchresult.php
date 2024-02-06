@@ -76,6 +76,7 @@
 </script>
 
 <?php
+
 include 'connection.php';
 
 $mysql = new MySQLi($server, $user, $password, $database);

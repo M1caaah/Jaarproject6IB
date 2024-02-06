@@ -1,3 +1,8 @@
+<?php
+    define("IMGSOURCE", "assets/img/productimages/");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,82 +20,7 @@
     <link rel="stylesheet" href="assets/css/styles.min.css" />
 </head>
 
-<script>
-    function validateNewForm(formType) {
 
-        let check = true;
-
-        let nameNew = document.getElementById("nameNew");
-        let nameNewCheck = document.getElementById("nameNewCheck");
-        let emailNew = document.getElementById("emailNew");
-        let emailNewCheck = document.getElementById("emailNewCheck");
-        let birthNew = document.getElementById("birthNew");
-        let birthNewCheck = document.getElementById("birthNewCheck");
-        let passwordNew = document.getElementById("passwordNew");
-        let passwordNewCheck = document.getElementById("passwordNewCheck");
-        let roleNew = document.getElementById("roleNew");
-        let roleNewCheck = document.getElementById("roleNewCheck");
-
-
-        if (nameNew.value === "") {
-            check = false;
-            nameNewCheck.innerText = "Please write a name.";
-        } else {
-
-        }
-
-        if (emailNew.value === "" || !isValidEmail(emailNew.value)) {
-            check = false;
-            emailNewCheck.innerText = "Please write a valid email.";
-        } else {
-
-        }
-
-        let birthDate = new Date(birthNew.value);
-        let today = new Date();
-        if (birthNew.value === "") {
-            check = false;
-            birthNewCheck.innerText = "Please write a date of birth.";
-        } else if (birthDate > today) {
-            // Check if birth date is later than today
-            check = false;
-            birthNewCheck.innerText = "Birth date cannot be later than today.";
-        }
-
-        if (passwordNew.value === "") {
-            check = false;
-            passwordNewCheck.innerText = "Please write a password.";
-        } else {
-
-        }
-
-        if (roleNew.value === "") {
-            check = false
-            roleNewCheck.innerHTML = "Please write a role.";
-        } else {
-
-        }
-
-        if (check) {
-            document.forms.addUser.submit();
-        }
-    }
-
-    function isValidEmail(email) {
-        // Use a regular expression to validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!email) {
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            return false;
-        }
-
-        return true;
-    }
-</script>
 
 <body>
 
@@ -99,16 +29,16 @@
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
         <div class="position-sticky">
-            <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple>
+            <div class="list-group list-group mx-3 mt-4">
+                <a href="index.php" class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-user-gear fa-fw me-3"></i>
                     <span>Users</span>
                 </a>
-                <a href="products.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple active" aria-current="true">
-                    <i class="far fa-circle-question fa-fw me-3"></i>
+                <a href="products.php" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                    <i class="fas fa-bag-shopping fa-fw me-3"></i>
                     <span>Products</span>
                 </a>
-                <a href="coming-soon.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple">
+                <a href="coming-soon.php" class="list-group-item list-group-item-action py-2 ripple">
                     <i class="far fa-circle-question fa-fw me-3"></i>
                     <span>Coming soon...</span>
                 </a>
@@ -163,7 +93,79 @@
 <!--Main layout-->
 <main style="margin-top: 58px">
     <div class="container pt-4">
+        <div class="row">
+            <div class="col-8">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="form1" name="search" class="form-control" value="<?php if (isset($_GET['search'])) { echo $_GET['search']; }?>" />
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+                    Add new product
+                </button>
 
+                <!-- Add modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
+                                <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label for="nameNew" class="form-label">Name:</label>
+                                        <input required type="text" name="nameNew" id="nameNew" class="form-control">
+                                        <label id="nameCheck"></label>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="priceNew" class="form-label">Price:</label>
+                                        <input required type="number" step="0.01" name="priceNew" id="priceNew" class="form-control">
+                                        <label id="priceCheck"></label>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="stockNew" class="form-label">Stock:</label>
+                                        <input required type="number" step="1" name="stockNew" id="stockNew" class="form-control">
+                                        <label id="stockCheck"></label>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="minAgeNew" class="form-label">Minimum age:</label>
+                                        <input required type="number" step="1" name="minAgeNew" id="minAgeNew" class="form-control">
+                                        <label id="minAgeCheck"></label>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="imageNew" class="form-label">Image:</label>
+                                        <input required type="file" accept="image/*" name="imageNew" id="imageNew" class="form-control">
+                                        <label id="imageCheck"></label>
+                                    </div>
+
+                                    <input type="submit" value="Add product" class="btn btn-primary" name="btnAddProduct">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php include 'products/addproduct.php' ?>
+            </div>
+        </div>
+        <div class="container my-3">
+            <?php include 'products/searchproduct.php' ?>
+        </div>
+    </div>
     </div>
 </main>
 
