@@ -6,7 +6,15 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\Application;
 
-$app = new Application(dirname(__DIR__));
+$config =
+    [
+        'host' => 'localhost',
+        'user' => 'root',
+        'password' => '',
+        'dbname' => 'jaarproject',
+    ];
+
+$app = new Application(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/home', [SiteController::class, 'home']);
