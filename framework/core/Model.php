@@ -38,38 +38,29 @@ abstract class Model
                     $ruleCode = $rule[0];
                 }
 
-                if ($ruleCode === self::RULE_REQUIRED && empty($value))
+                if ($ruleCode === self::RULE_REQUIRED && !$value)
                 {
-                    echo "$attribute has failed required check for ".self::RULE_REQUIRED.". value: $value";
-                    echo "<br>";
                     $this->addError($attribute, self::RULE_REQUIRED);
                 }
-                if ($ruleCode === self::RULE_EMAIL && filter_var($value, FILTER_VALIDATE_EMAIL))
+                if ($ruleCode === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL))
                 {
-                    echo "$attribute has failed email check for ".self::RULE_EMAIL.". value: $value";
-                    echo "<br>";
                     $this->addError($attribute, self::RULE_EMAIL);
                 }
                 if ($ruleCode === self::RULE_MIN && strlen($value) < $rule['min'])
                 {
-                    echo "$attribute has failed min check for ".self::RULE_MIN.". value: $value";
-                    echo "<br>";
-                    $this->addError($attribute, self::RULE_MIN);
+                    $this->addError($attribute, self::RULE_MIN, $rule);
                 }
                 if ($ruleCode === self::RULE_MAX && strlen($value) > $rule['max'])
                 {
-                    echo "$attribute has failed min check for ".self::RULE_MAX.". value: $value";
-                    echo "<br>";
-                    $this->addError($attribute, self::RULE_MAX);
+                    $this->addError($attribute, self::RULE_MAX, $rule);
                 }
                 if ($ruleCode === self::RULE_MATCH && $value !== $this->{$rule['match']})
                 {
-                    echo "$attribute has failed match check for ".self::RULE_MATCH.". value: $value";
-                    echo "<br>";
-                    $this->addError($attribute, self::RULE_MATCH);
+                    $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
             }
         }
+        echo empty($this->errors);
         return empty($this->errors);
     }
 
