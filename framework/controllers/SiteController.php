@@ -13,7 +13,7 @@ class SiteController extends Controller
         $params = [
             'name' => "M1caaah"
         ];
-        return $this->render('home', $params);
+        return $this->render('home', 'main', $params);
     }
 
     public function handleHome()
@@ -26,7 +26,7 @@ class SiteController extends Controller
         $params = [
             'name' => "M1caaah"
         ];
-        return $this->render('contact', $params);
+        return $this->render('contact', 'main', $params);
     }
 
     public function handleContact(Request $request)
