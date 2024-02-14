@@ -11,7 +11,7 @@ $config =
         'host' => 'localhost',
         'user' => 'root',
         'password' => '',
-        'dbname' => 'jaarproject',
+        'dbname' => 'bytebazaar',
     ];
 
 $app = new Application(dirname(__DIR__), $config);
