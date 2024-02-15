@@ -21,4 +21,9 @@ class Database
             exit();
         }
     }
+
+    public function prepare($sql)
+    {
+        return $this->mysqli->prepare($sql);
+    }
 }

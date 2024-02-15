@@ -11,5 +11,7 @@
             "email": "micah.botha@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-mysqli": "*"
+    }
 }
