@@ -6,13 +6,12 @@ use app\core\Model;
 
 class Form
 {
-    public static function begin($action, $method): Form
+    public static function begin($action, $method): void
     {
         echo "<form action='$action' method='$method'>";
-        return new Form();
     }
 
-    public static function end()
+    public static function end(): void
     {
         echo "</form>";
     }
