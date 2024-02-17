@@ -10,6 +10,7 @@ class User extends DbModel
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
+    public string $birthdate = '';
     public string $password = '';
     public string $confirmPassword = '';
 

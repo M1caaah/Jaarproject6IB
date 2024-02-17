@@ -8,15 +8,18 @@ abstract class DbModel extends Model
     abstract public function attributes(): array;
     abstract public function datatypes(): array;
 
-    public function save()
+    public function save(): true
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $datatypes = $this->datatypes();
+        $datatypes = implode('', $this->datatypes());
         $params = array_map(fn($attr) => "?", $attributes);
 
         $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") VALUES (".implode(',', $params).")");
-        $statement->bind_param(implode('', $datatypes), ...array_values($attributes));
+        foreach ($attributes as $attribute) {
+            $values[] = $this->{$attribute};
+        }
+        $statement->bind_param($datatypes, ...$values);
 
         $statement->execute();
         return true;
