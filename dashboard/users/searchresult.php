@@ -191,13 +191,15 @@ if ($result->num_rows > 0) {
 					<a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
 						More info
 					</a>
-					<div class="dropdown manage-user" style="position: absolute; top: 10px; right: 10px;">
-						<button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
-						<ul class="dropdown-menu">
-							<li><a type="button" class="d-inline-block dropdown-item" data-mdb-modal-init data-mdb-target="#edit<?php echo $row['klantID']; ?>" href="#">Edit</a></li>
-							<li><?php include 'deleteuser.php'; ?></li>
-						</ul>
-					</div>
+					<form action="users/handleusers.php" method="post">
+                        <div class="dropdown manage-user" style="position: absolute; top: 10px; right: 10px;">
+                            <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
+                            <ul class="dropdown-menu">
+                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Edit"></li>
+                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Delete"></li>
+                            </ul>
+                        </div>
+                    </form>
 				</div>
 			</div>
 		</div>
@@ -234,69 +236,6 @@ if ($result->num_rows > 0) {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="edit<?php echo $row['klantID']; ?>" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Edit user: <?php echo $row['klantnaam'] ?></h5>
-						<button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form name="editUser<?php echo $row['klantID'];?>" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3 editForm">
-
-							<div class="col-md-6">
-								<label for="nameUpdate" class="form-label">Name:</label>
-								<input type="text" name="nameUpdate" id="nameUpdate" class="form-control" value="<?php echo $row['klantnaam'] ?>">
-								<label name="nameCheck" id="nameCheck" value="">
-							</div>
-
-							<div class="col-md-6">
-								<label for="lastnameUpdate" class="form-label">Last name:</label>
-								<input type="text" name="lastnameUpdate" id="lastnameUpdate" class="form-control" value="<?php echo $row['klantachternaam']; ?>">
-								<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
-							</div>
-
-
-							<div class="col-md-6">
-								<label for="passwordUpdate" class="form-label">Password:</label>
-								<input type="password" name="passwordUpdate" id="passwordUpdate" class="form-control">
-								<label name="passwordCheck" id="passwordCheck" value=""></label>
-							</div>
-
-							<div class="col-md-6">
-								<label for="emailUpdate" class="form-label">Email:</label>
-								<input type="text" name="emailUpdate" id="emailUpdate" class="form-control" value="<?php echo $row['klantemail'] ?>">
-								<label name="emailCheck" id="emailCheck" value="">
-
-							</div>
-
-							<div class="col-md-6">
-								<label for="roleUpdate" class="form-label">Role:</label>
-								<input type="text" name="roleUpdate" id="roleUpdate" class="form-control" value="<?php echo $row['rol'] ?>">
-								<label name="rolCheck" id="rolCheck" value="">
-							</div>
-
-							<div class="col-md-6">
-								<label for="birthUpdate" class="form-label">Date of birth:</label>
-								<input type="date" name="birthUpdate" id="birthUpdate" class="form-control" value="<?php echo $row['geboortedatum'] ?>">
-								<label name="birthCheck" id="birthCheck" value="">
-							</div>
-
-							<div class="col-md-6">
-								<label for="Update_registratiedatum" class="form-label">Registration date:</label>
-								<input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>">
-								<label name="registrationCheck" id="registrationCheck" value="">
-							</div>
-							<input type="text" id="id" name="klantID" value="<?php echo $row['klantID'] ?>">
-							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
-						</form>
-						<?php include 'updateuser.php'; ?>
 					</div>
 				</div>
 			</div>

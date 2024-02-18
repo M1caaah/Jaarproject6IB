@@ -44,9 +44,7 @@ if (isset($_POST['nameNew'])) {
 
     $checkEmailStmt->close();
 }
-?>
 
-<?php
 //This is very much bruteforcing the problem of not making it regenerating on refresh. 
 //But this works. So I won't touch it for now.
 if ($success) {
@@ -56,4 +54,3 @@ if ($success) {
            }
            </script>';
 }
-?>
