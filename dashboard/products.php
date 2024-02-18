@@ -107,15 +107,15 @@
 						</div>
 						<br>
 						<span class="me-3">Search by: </span>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
-							<label class="form-check-label" for="rdbName">Name</label>
-						</div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
+                        <label class="form-check-label" for="inlineRadio1">Name</label>
+                        </div>
 
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "price") { echo "checked"; } }?>/>
-							<label class="form-check-label" for="rdbName">Price</label>
-						</div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="price" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "price") { echo "checked"; } }?>/>
+                        <label class="form-check-label" for="inlineRadio2">Price</label>
+                        </div>
                     </div>
                     <div class="col-4">
                         <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
