@@ -185,27 +185,41 @@
 							</button>
 						</div>
 						<br>
+						<div class="col-4">
+							<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+								<div class="input-group">
+									<select class="form-select" name="sortBy" aria-label="Sort By">
+										<option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>First Name (A-Z)</option>
+										<option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>First Name (Z-A)</option>
+										<option value="lastname_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Last Name (A-Z)</option>
+										<option value="lastname_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Last Name (Z-A)</option>
+										</select>
+										<button type="submit" class="btn btn-primary">
+											<i class="fas fa-sort"></i> Sort
+										</button>
+								</div>
+							</form>
+						</div>
+						<br>
 						<span class="me-3">Search by: </span>
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
-							<label class="form-check-label" for="rdbName">Name</label>
-						</div>
-
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "lastname") { echo "checked"; } }?>/>
-							<label class="form-check-label" for="rdbName">Last Name</label>
-						</div>
-
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio3" value="email" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "email") { echo "checked"; } }?>/>
-							<label class="form-check-label" for="rdbEmail">Email</label>
-						</div>
-
-						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio4" value="role" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "role") { echo "checked"; } }?>/>
-							<label class="form-check-label" for="rdbRole">Role</label>
-						</div>
+    						<div class="form-check form-check-inline">
+        						<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == "name") { echo "checked"; } elseif (!isset($_GET['rdbSearch'])) { echo "checked"; } ?>>
+        						<label class="form-check-label" for="inlineRadio1">Name</label>
+    						</div>
+    						<div class="form-check form-check-inline">
+        						<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="lastname" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == "lastname") { echo "checked"; } ?>>
+        						<label class="form-check-label" for="inlineRadio2">Last Name</label>
+    						</div>
+    						<div class="form-check form-check-inline">
+        						<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio3" value="email" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == "email") { echo "checked"; } ?>>
+        						<label class="form-check-label" for="inlineRadio3">Email</label>
+    						</div>
+    						<div class="form-check form-check-inline">
+        						<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio4" value="role" <?php if (isset($_GET['rdbSearch']) && $_GET['rdbSearch'] == "role") { echo "checked"; } ?>>
+        						<label class="form-check-label" for="inlineRadio4">Role</label>
+    					</div>
 					</form>
+					<br>
 				</div>
 				<div class="col-4">
 					<button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">

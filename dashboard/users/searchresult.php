@@ -107,15 +107,14 @@ if ($mysql->connect_error) {
 
 if (isset($_GET['search'])) {
 
-	// Prepare the search statement statement.
-	$searchTerm = $_GET['search'];
-	$searchTerm = mysqli_real_escape_string($mysql, $searchTerm);
-	$searchTerm = htmlspecialchars($searchTerm);
-	$searchTerm = trim($searchTerm);
-	$searchTerm = strtolower($searchTerm);
-	$searchTerm = "%" . $searchTerm . "%";
+    // Prepare the search statement.
+    $searchTerm = $_GET['search'];
+    $searchTerm = mysqli_real_escape_string($mysql, $searchTerm);
+    $searchTerm = htmlspecialchars($searchTerm);
+    $searchTerm = trim($searchTerm);
+    $searchTerm = "%" . $searchTerm . "%";
 
-	// Prepare the SQL statement.
+    // Prepare the SQL statement.
 	if ($_GET['rdbSearch'] == "name") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
 	} else if ($_GET['rdbSearch'] == "last name") {
@@ -125,16 +124,57 @@ if (isset($_GET['search'])) {
 	} else {
 		$sql = "SELECT * FROM `tblklant` WHERE `rol` LIKE ? AND `active` = 1";
 	}
-	// Prepare the statement.
-	$stmt = $mysql->prepare($sql);
-	$stmt->bind_param('s', $searchTerm);
+
+    // Apply sorting if specified
+    if(isset($_GET['sortBy'])) {
+        switch($_GET['sortBy']) {
+            case 'name_asc':
+                $sql .= " ORDER BY `klantnaam` ASC";
+                break;
+            case 'name_desc':
+                $sql .= " ORDER BY `klantnaam` DESC";
+                break;
+            case 'lastname_asc':
+                $sql .= " ORDER BY `klantachternaam` ASC";
+                break;
+            case 'lastname_desc':
+                $sql .= " ORDER BY `klantachternaam` DESC";
+                break;
+            default:
+                break;
+        }
+    }
+
+    // Prepare the statement.
+    $stmt = $mysql->prepare($sql);
+    $stmt->bind_param('s', $searchTerm);
 } else {
 
-	// Prepare the SQL statement.
-	$sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
+    // Prepare the SQL statement.
+    $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
 
-	// Prepare the statement.
-	$stmt = $mysql->prepare($sql);
+    // Apply sorting if specified
+    if(isset($_GET['sortBy'])) {
+        switch($_GET['sortBy']) {
+            case 'name_asc':
+                $sql .= " ORDER BY `klantnaam` ASC";
+                break;
+            case 'name_desc':
+                $sql .= " ORDER BY `klantnaam` DESC";
+                break;
+            case 'lastname_asc':
+                $sql .= " ORDER BY `klantachternaam` ASC";
+                break;
+            case 'lastname_desc':
+                $sql .= " ORDER BY `klantachternaam` DESC";
+                break;
+            default:
+                break;
+        }
+    }
+
+    // Prepare the statement.
+    $stmt = $mysql->prepare($sql);
 }
 $stmt->execute();
 
