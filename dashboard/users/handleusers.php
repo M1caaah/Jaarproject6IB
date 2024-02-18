@@ -22,15 +22,17 @@ foreach ($data as $key) {
         $id = substr($key, 3);
     }
 }
-$action = $_POST["ID-$id"]==='delete' ? 'delete' : 'edit';
 
-if($action === 'delete') {
+
+$action = $_POST["ID-$id"];
+
+if($action === 'Delete') {
     $sql = "DELETE FROM tblklant WHERE klantID = $id";
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
     $stmt->close();
 }
-else {
+else if($action === 'Edit') {
     $sql = "SELECT * FROM tblklant WHERE klantID = $id";
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
@@ -50,7 +52,24 @@ else {
     $regdate = $result['registratiedatum'];
 
     include 'edituser.php';
+}
+else if($action === 'Update') {
+    $sql = "UPDATE tblklant SET klantnaam = ?, klantachternaam = ?, klantemail = ?, geboortedatum = ?, rol_id = ?, registratiedatum = ?, passwoord = ? WHERE klantID = ? AND active = 1";
+    $stmt = $mysqli->prepare($sql);
+    $id = htmlspecialchars($_POST['id']);
+    $name = htmlspecialchars($_POST['nameUpdate']);
+    $lastname = htmlspecialchars($_POST['lastnameUpdate']);
+    $email = htmlspecialchars($_POST['emailUpdate']);
+    $birth = htmlspecialchars($_POST['birthUpdate']);
+    $role = $_POST['roleUpdate'];
+    $registration = htmlspecialchars($_POST['registrationUpdate']);
+    $password = password_hash($_POST['passwordUpdate'], PASSWORD_DEFAULT);
+    $stmt->bind_param("ssssissi", $name, $lastname, $email, $birth, $role, $registration, $password, $id);
+    $stmt->execute();
+    $stmt->close();
 
+    unset($_POST);
+    header('Location: ../index.php');
 }
 
 

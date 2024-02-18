@@ -150,7 +150,7 @@
                 <input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $regdate ?>">
                 <label id="registrationCheck"></label>
             </div>
-            <input type="hidden" id="id" name="ID-<?php echo $id?>" value="<?php echo $id?>">
+            <input type="hidden" id="id" name="ID-<?php echo $id?>" value="Update">
             <input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
         </form>
     </div>

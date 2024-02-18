@@ -1,26 +1,3 @@
-<?php
-
-include 'connection.php';
-
-if (isset($_POST['btnDelete']) && $_POST['klantID'] == $row['klantID']) {
-    $id = $_POST['klantID'];
-
-    $sql = "UPDATE tblklant SET active = 0 WHERE klantID =?";
-
-    $stmtDelete = $mysql->prepare($sql);
-    $stmtDelete->bind_param("i", $id);
-    $stmtDelete->execute();
-    $stmtDelete->close();
-    $_POST = array();
-}
-
-?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
