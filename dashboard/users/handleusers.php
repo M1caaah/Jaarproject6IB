@@ -8,6 +8,9 @@ require_once '../connection.php';
 **/
 
 $mysqli = new MySQLi($server, $user, $password, $database);
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $currentUrl = $_SERVER['REQUEST_URI'];
@@ -23,7 +26,6 @@ foreach ($data as $key) {
     }
 }
 
-
 $action = $_POST["ID-$id"];
 
 if($action === 'Delete') {
@@ -31,6 +33,8 @@ if($action === 'Delete') {
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
     $stmt->close();
+    unset($_POST);
+    header('Location: ../index.php');
 }
 else if($action === 'Edit') {
     $sql = "SELECT * FROM tblklant WHERE klantID = $id";

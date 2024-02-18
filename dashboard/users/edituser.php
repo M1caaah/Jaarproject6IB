@@ -178,21 +178,21 @@
             console.log(nameCheck)
             nameCheck.innerText = "Please write a name.";
         } else {
-
+            nameCheck.innerText = "";
         }
 
         if (lastnameUpdate.value === "") {
             check = false;
             lastnameCheck.innerText = "Please write a last name.";
         } else {
-
+            lastnameCheck.innerText = "";
         }
 
         if (emailUpdate.value === "" || !isValidEmail(emailUpdate.value)) {
             check = false;
             emailCheck.innerText = "Please write a valid email.";
         } else {
-
+            emailCheck.innerText = "";
         }
 
 
@@ -205,6 +205,8 @@
             // Check if birth date is later than today
             check = false;
             birthCheck.innerText = "Birth date cannot be later than today.";
+        } else {
+            birthCheck.innerText = "";
         }
 
         let registrationDate = new Date(registrationUpdate.value);
@@ -214,6 +216,8 @@
         } else if (registrationDate < birthDate) {
             check = false;
             registrationCheck.innerText = "Registration date cannot be earlier than birth date.";
+        } else {
+            registrationCheck.innerText = "";
         }
 
         if (roleUpdate.value === "") {
@@ -231,15 +235,7 @@
         // Use a regular expression to validate email format
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!email) {
-            return false;
-        }
-
-        if (!emailRegex.test(email)) {
-            return false;
-        }
-
-        return true;
+        return email && emailRegex.test(email);
     }
 </script>
 

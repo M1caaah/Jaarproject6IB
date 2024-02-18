@@ -1,97 +1,3 @@
-<script>
-	function validateForm() {
-		let check = true;
-		let nameUpdate = document.getElementById("nameUpdate");
-		let nameCheck = document.getElementById("nameCheck");
-		let lastnameUpdate = document.getElementById("lastnameUpdate");
-		let lastnameCheck = document.getElementById("lastnameCheck");
-		let emailUpdate = document.getElementById("emailUpdate");
-		let emailCheck = document.getElementById("emailCheck");
-		let birthUpdate = document.getElementById("birthUpdate");
-		let birthCheck = document.getElementById("birthCheck");
-		let passwordUpdate = document.getElementById("passwordUpdate");
-		let passwordCheck = document.getElementById("passwordCheck");
-		let roleUpdate = document.getElementById("roleUpdate");
-		let roleCheck = document.getElementById("rolCheck");
-
-
-		if (nameUpdate.value === "") {
-			check = false;
-			nameCheck.innerText = "Please write a name.";
-		} else {
-
-		}
-
-		if (lastnameUpdate.value === "") {
-			check = false;
-			lastnameCheck.innerText = "Please write a last name.";
-		} else {
-
-		}
-
-		if (emailUpdate.value === "" || !isValidEmail(emailUpdate.value)) {
-			check = false;
-			emailCheck.innerText = "Please write a valid email.";
-		} else {
-
-		}
-
-		let birthDate = new Date(birthUpdate.value);
-		let today = new Date();
-		if (birthUpdate.value === "") {
-			check = false;
-			birthCheck.innerText = "Please write a date of birth.";
-		} else if (birthDate > today) {
-			// Check if birth date is later than today
-			check = false;
-			birthCheck.innerText = "Birth date cannot be later than today.";
-		}
-
-		let registrationDate = new Date(registrationUpdate.value);
-		if (registrationUpdate.value === "") {
-			check = false;
-			registrationUpdate.innerText = "Please write a date of birth.";
-		} else if (registrationDate < birthDate) {
-			check = false;
-			registrationCheck.innerText = "Registration date cannot be earlier than birth date.";
-		}
-
-		if (passwordUpdate.value === "") {
-			check = false;
-			passwordCheck.innerText = "Please write a password.";
-		} else {
-
-		}
-
-		if (roleUpdate.value === "") {
-			check = false
-			roleCheck.innerHTML = "Please write a role.";
-		} else {
-
-		}	
-
-		if (check) {
-		console.log(forms[id]);
-		 forms[id].submit();
-		}
-	}
-
-	function isValidEmail(email) {
-		// Use a regular expression to validate email format
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-		if (!email) {
-			return false;
-		}
-
-		if (!emailRegex.test(email)) {
-			return false;
-		}
-
-		return true;
-	}
-</script>
-
 <?php
 include 'connection.php';
 
@@ -113,13 +19,13 @@ if (isset($_GET['search'])) {
     // Prepare the SQL statement.
 	
 	if ($_GET['rdbSearch'] == "name") {
-		$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
+		$sql = "SELECT * FROM `tblklant`k,`tblrol`r WHERE `klantnaam` LIKE ? AND `active` = 1 AND k.`rol_id` = r.`rol_id`";
 	} else if ($_GET['rdbSearch'] == "lastname") {
-		$sql = "SELECT * FROM `tblklant` WHERE `klantachternaam` LIKE ? AND `active` = 1";
+		$sql = "SELECT * FROM `tblklant`k,`tblrol`r WHERE `klantachternaam` LIKE ? AND `active` = 1 AND k.`rol_id` = r.`rol_id`";
 	} else if ($_GET['rdbSearch'] == "email") {
-		$sql = "SELECT * FROM `tblklant` WHERE `klantemail` LIKE ? AND `active` = 1";
+		$sql = "SELECT * FROM `tblklant`k,`tblrol`r WHERE `klantemail` LIKE ? AND `active` = 1 AND k.`rol_id` = r.`rol_id`";
 	} else {
-		$sql = "SELECT * FROM `tblklant` WHERE `rol` LIKE ? AND `active` = 1";
+		$sql = "SELECT * FROM `tblklant`k,`tblrol`r WHERE `rolnaam` LIKE ? AND `active` = 1 AND k.`rol_id` = r.`rol_id`";
 	}
 
     // Apply sorting if specified
@@ -148,7 +54,7 @@ if (isset($_GET['search'])) {
 } else {
 
     // Prepare the SQL statement.
-    $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
+    $sql = "SELECT * FROM `tblklant`k, `tblrol`r WHERE `active` = 1 AND k.`rol_id` = r.`rol_id`";
 
     if(isset($_GET['sortBy'])) {
         switch($_GET['sortBy']) {
@@ -173,12 +79,18 @@ if (isset($_GET['search'])) {
     $stmt = $mysql->prepare($sql);
 }
 $stmt->execute();
+$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-$result = $stmt->get_result();
+$sql = "SELECT * FROM tblrol";
+$stmt = $mysql->prepare($sql);
+$stmt->execute();
+$roles = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close();
 
-if ($result->num_rows > 0) {
+
+if ($result) {
 	echo '<div class="row">';
-	while ($row = $result->fetch_assoc()) {
+    foreach ($result as $row) {
 ?>
 		<div class="col-md-4 col-sm-6 col-12">
 			<div class="card my-3">
@@ -214,6 +126,9 @@ if ($result->num_rows > 0) {
 							<div class="col-6">
 								<p class="card-text"><b>Achternaam:</b><br> <?php echo $row['klantachternaam']; ?></p>
 							</div>
+                            <div class="col-6">
+                                <p class="card-text"><b>Achternaam:</b><br> <?php echo $row['klantachternaam']; ?></p>
+                            </div>
 							<div class="col-12">
 								<p class="card-text"><b>Email:</b><br> <?php echo $row['klantemail']; ?></p>
 							</div>
@@ -221,10 +136,7 @@ if ($result->num_rows > 0) {
 								<p class="card-text"><b>Geboortedatum:</b><br> <?php echo $row['geboortedatum']; ?></p>
 							</div>
 							<div class="col-6">
-								<p class="card-text"><b>Passwoord:</b><br> <?php echo $row['passwoord']; ?></p>
-							</div>
-							<div class="col-6">
-								<p class="card-text"><b>Rol:</b><br> <?php echo $row['rol']; ?></p>
+								<p class="card-text"><b>Rol:</b><br> <?php echo $row['rolnaam']; ?></p>
 							</div>
 							<div class="col-6">
 								<p class="card-text"><b>Registratiedatum:</b><br> <?php echo $row['registratiedatum']; ?></p>
@@ -249,6 +161,5 @@ if ($result->num_rows > 0) {
 <?php
 }
 
-$stmt->close();
 $mysql->close();
 ?>
