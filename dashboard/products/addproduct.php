@@ -2,6 +2,10 @@
 
 include 'connection.php';
 
+/** @var string $server */
+/** @var string $user */
+/** @var string $password */
+/** @var string $database */
 $mysqli = new MySQLi($server, $user, $password, $database);
 
 if ($mysqli->connect_error) {

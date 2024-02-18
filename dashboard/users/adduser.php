@@ -14,7 +14,7 @@ if (isset($_POST['nameNew'])) {
     $new_klantacternaam = htmlspecialchars($_POST['lastnameNew']);
     $new_klantemail = htmlspecialchars($_POST['emailNew']);
     $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
-    $new_passwoord = htmlspecialchars($_POST['passwordNew']);
+    $new_passwoord = password_hash(htmlspecialchars($_POST['passwordNew']), PASSWORD_DEFAULT);
     $new_rol = htmlspecialchars($_POST['roleNew']);
     $new_registratiedatum = htmlspecialchars($_POST['registrationNew']);
 
