@@ -49,6 +49,15 @@
 			birthCheck.innerText = "Birth date cannot be later than today.";
 		}
 
+		let registrationDate = new Date(registrationUpdate.value);
+		if (registrationUpdate.value === "") {
+			check = false;
+			registrationUpdate.innerText = "Please write a date of birth.";
+		} else if (registrationDate < birthDate) {
+			check = false;
+			registrationCheck.innerText = "Registration date cannot be earlier than birth date.";
+		}
+
 		if (passwordUpdate.value === "") {
 			check = false;
 			passwordCheck.innerText = "Please write a password.";
