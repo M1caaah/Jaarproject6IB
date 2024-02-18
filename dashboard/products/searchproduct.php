@@ -34,7 +34,6 @@ if ($mysql->connect_error) {
 }
 
 if (isset($_GET['search'])) {
-    // Prepare the search statement statement.
     $searchTerm = $_GET['search'];
     $searchTerm = mysqli_real_escape_string($mysql, $searchTerm);
     $searchTerm = htmlspecialchars($searchTerm);
@@ -54,16 +53,57 @@ if (isset($_GET['search'])) {
         $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
     }
 
-    // Prepare the statement.
-    $stmt = $mysql->prepare($sql);
-    $stmt->bind_param('s', $searchTerm);
+    if(isset($_GET['sortBy'])) {
+        switch($_GET['sortBy']) {
+            case 'name_asc':
+                $sql .= " ORDER BY `artikelNaam` ASC";
+                break;
+            case 'name_desc':
+                $sql .= " ORDER BY `artikelNaam` DESC";
+                break;
+            case 'price_asc':
+                $sql .= " ORDER BY `artikelPrijs` ASC";
+                break;
+            case 'price_desc':
+                $sql .= " ORDER BY `artikelPrijs` DESC";
+                break;
+            default:
+                break;
+        }
+    }
 } else {
-    // Prepare the SQL statement.
+    // Prepare the SQL statement without search criteria.
     $sql = "SELECT * FROM `tblartikel` WHERE `active` = 1";
 
-    // Prepare the statement.
-    $stmt = $mysql->prepare($sql);
+    if(isset($_GET['sortBy'])) {
+        switch($_GET['sortBy']) {
+            case 'name_asc':
+                $sql .= " ORDER BY `artikelNaam` ASC";
+                break;
+            case 'name_desc':
+                $sql .= " ORDER BY `artikelNaam` DESC";
+                break;
+            case 'price_asc':
+                $sql .= " ORDER BY `artikelPrijs` ASC";
+                break;
+            case 'price_desc':
+                $sql .= " ORDER BY `artikelPrijs` DESC";
+                break;
+            default:
+                break;
+        }
+    }
 }
+
+// Prepare the statement.
+$stmt = $mysql->prepare($sql);
+
+// Bind parameters if needed.
+if (isset($_GET['search'])) {
+    $stmt->bind_param('s', $searchTerm);
+}
+
+// Execute the statement.
 $stmt->execute();
 
 $result = $stmt->get_result();
