@@ -1,6 +1,6 @@
 <?php
 
-/** @var $model \app\core\Model */
+/** @var $model \app\models\User */
 
 use app\core\form\Form;
 

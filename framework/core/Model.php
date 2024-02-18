@@ -57,6 +57,7 @@ abstract class Model
                 }
                 if ($ruleCode === self::RULE_MATCH && $value !== $this->{$rule['match']})
                 {
+                    $rule['match'] = $this->getLabel($rule['match']);
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
                 if ($ruleCode === self::RULE_UNIQUE)
@@ -110,5 +111,10 @@ abstract class Model
     {
         $errors = $this->errors[$attribute] ?? [];
         return $errors[0] ?? '';
+    }
+
+    public function getLabel(string $attribute): string
+    {
+        return $this->labels()[$attribute] ?? $attribute;
     }
 }
