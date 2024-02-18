@@ -5,6 +5,8 @@
 
 		let nameUpdate = document.getElementById("nameUpdate");
 		let nameCheck = document.getElementById("nameCheck");
+		let lastnameUpdate = document.getElementById("lastnameUpdate");
+		let lastnameCheck = document.getElementById("lastnameCheck");
 		let emailUpdate = document.getElementById("emailUpdate");
 		let emailCheck = document.getElementById("emailCheck");
 		let birthUpdate = document.getElementById("birthUpdate");
@@ -18,6 +20,13 @@
 		if (nameUpdate.value === "") {
 			check = false;
 			nameCheck.innerText = "Please write a name.";
+		} else {
+
+		}
+
+		if (lastnameUpdate.value === "") {
+			check = false;
+			lastnameCheck.innerText = "Please write a last name.";
 		} else {
 
 		}
@@ -101,11 +110,11 @@ if (isset($_GET['search'])) {
 	// Prepare the SQL statement.
 	if ($_GET['rdbSearch'] == "name") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
-	}
-	else if ($_GET['rdbSearch'] == "email") {
+	} else if ($_GET['rdbSearch'] == "last name") {
+		$sql = "SELECT * FROM `tblklant` WHERE `klantachternaam` LIKE ? AND `active` = 1";
+	} else if ($_GET['rdbSearch'] == "email") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantemail` LIKE ? AND `active` = 1";
-	}
-	else {
+	} else {
 		$sql = "SELECT * FROM `tblklant` WHERE `rol` LIKE ? AND `active` = 1";
 	}
 	// Prepare the statement.
@@ -156,6 +165,9 @@ if ($result->num_rows > 0) {
 					</div>
 					<div class="modal-body">
 						<div class="row">
+							<div class="col-6">
+								<p class="card-text"><b>Achternaam:</b><br> <?php echo $row['klantachternaam']; ?></p>
+							</div>
 							<div class="col-12">
 								<p class="card-text"><b>Email:</b><br> <?php echo $row['klantemail']; ?></p>
 							</div>
@@ -198,9 +210,9 @@ if ($result->num_rows > 0) {
 							</div>
 
 							<div class="col-md-6">
-											<label for="lastnameNew" class="form-label">Last name:</label>
-											<input type="text" name="lastnameNew" id="lastnameNew" class="form-control" value="">
-											<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
+								<label for="lastnameUpdate" class="form-label">Last name:</label>
+								<input type="text" name="lastnameUpdate" id="lastnameUpdate" class="form-control" value="">
+								<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
 							</div>
 
 							<div class="col-md-6">

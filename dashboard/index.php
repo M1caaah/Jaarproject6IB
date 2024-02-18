@@ -185,6 +185,11 @@
 						</div>
 
 						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "lastname") { echo "checked"; } }?>/>
+							<label class="form-check-label" for="rdbName">Last Name</label>
+						</div>
+
+						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="email" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "email") { echo "checked"; } }?>/>
 							<label class="form-check-label" for="rdbEmail">Email</label>
 						</div>

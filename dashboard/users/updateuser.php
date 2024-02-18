@@ -10,10 +10,10 @@ if (isset($_POST['nameUpdate']) && $_POST['klantID'] == $row['klantID']) {
 	$update_registratiedatum = htmlspecialchars($_POST['registrationUpdate']);
 	$update_id = htmlspecialchars($row['klantID']);
 
-	$insertSql = "UPDATE tblklant SET klantnaam = ?, klantachternaam, klantemail = ?, geboortedatum = ?, passwoord = ?, rol = ?, registratiedatum = ? WHERE klantID = ?";
+	$insertSql = "UPDATE tblklant SET klantnaam = ?, klantachternaam = ?, klantemail = ?, geboortedatum = ?, passwoord = ?, rol = ?, registratiedatum = ? WHERE klantID = ?";
 
 	$stmtUpdate = $mysql->prepare($insertSql);
-	$stmtUpdate->bind_param("ssssssss", $update_klantnaam, $update_klantemail, $update_geboortedatum, $update_passwoord, $update_rol, $update_registratiedatum, $update_id);
+	$stmtUpdate->bind_param("ssssssss", $update_klantnaam, $update_klantachternaam, $update_klantemail, $update_geboortedatum, $update_passwoord, $update_rol, $update_registratiedatum, $update_id);
 	$stmtUpdate->execute();
 	$stmtUpdate->close();
 
