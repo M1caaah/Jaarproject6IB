@@ -15,9 +15,9 @@ if (isset($_POST['btnAddProduct'])) {
     $target_dir = 'assets/img/productimages';
 
     $new_productname = htmlspecialchars($_POST['nameNew']);
-    $new_productamount = htmlspecialchars($_POST['stockNew']);
+    $new_productamount = max(0, intval(htmlspecialchars($_POST['stockNew'])));
     $new_productprice = htmlspecialchars($_POST['priceNew']);
-    $new_productMinAge = htmlspecialchars($_POST['minAgeNew']);
+    $new_productMinAge = max(0, intval(htmlspecialchars($_POST['minAgeNew'])));
     $new_productimage = '';
 
     if (isset($_FILES["imageNew"])) {
@@ -46,8 +46,7 @@ if (isset($_POST['btnAddProduct'])) {
 
     $stmt->close();
 
-}
-?>
+}?>
 
 <?php
 //This is very much bruteforcing the problem of not making it regenerating on refresh.

@@ -1,3 +1,26 @@
+<script>
+    function validateEditForm() {
+        var stockEdit = document.getElementById("stockEdit").value;
+        var minAgeEdit = document.getElementById("minAgeEdit").value;
+
+        if (stockEdit < 0) {
+            document.getElementById("stockCheck").innerHTML = "Stock cannot be less than 0";
+            return false;
+        } else {
+            document.getElementById("stockCheck").innerHTML = "";
+        }
+
+        if (minAgeEdit < 0) {
+            document.getElementById("minAgeCheck").innerHTML = "Minimum age cannot be less than 0";
+            return false;
+        } else {
+            document.getElementById("minAgeCheck").innerHTML = "";
+        }
+
+        return true;
+    }
+</script>
+
 <?php
 include 'connection.php';
 
@@ -36,15 +59,14 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-//Hey micaaaaaaaaaa, if you do this bbg, i will give you Rayan's private maid dress image collection
 if ($result->num_rows > 0) {
     echo '<div class="row">';
     while ($row = $result->fetch_assoc()) {
-        ?>
+?>
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3" style="width: 200px;">
                 <div class="bg-image hover-overlay">
-                    <img src="<?php echo IMGSOURCE.$row['artikelAfbeelding'] ?>" class="img-fluid" alt="<?php echo $row['artikelAfbeelding'] ?>" style="width: 200px; height: 200px;"/>
+                    <img src="<?php echo IMGSOURCE . $row['artikelAfbeelding'] ?>" class="img-fluid" alt="<?php echo $row['artikelAfbeelding'] ?>" style="width: 200px; height: 200px;" />
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $row['artikelNaam']; ?></h5>
@@ -142,7 +164,7 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
         </div>
-        <?php
+    <?php
     }
     echo '</div>';
 } else {
@@ -151,7 +173,7 @@ if ($result->num_rows > 0) {
         <h1 style="display: inline-block;">No users found</h1>
         <img src="assets/img/notfound.png" alt="notfound.png" style="display: block;" class="mt-5" width="300px">
     </div>
-    <?php
+<?php
 }
 
 $stmt->close();

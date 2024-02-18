@@ -3,10 +3,10 @@ if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['arti
 
     $update_productid = htmlspecialchars($_POST['productID']);
     $update_productname = htmlspecialchars($_POST['nameEdit']);
-    $update_productamount = htmlspecialchars($_POST['stockEdit']);
+    $update_productamount = max(0, intval(htmlspecialchars($_POST['stockEdit'])));
     $update_productprice = htmlspecialchars($_POST['priceEdit']);
 //    $update_productimage = htmlspecialchars($_POST['']);
-    $update_productMinAge = htmlspecialchars($_POST['minAgeEdit']);
+    $update_productMinAge = max(0, intval(htmlspecialchars($_POST['minAgeEdit'])));
 
     $insertSql = "UPDATE tblartikel SET artikelID = ?, artikelNaam = ?, artikelVoorraad = ?, artikelPrijs = ?, artikelMinLeeftijd = ? WHERE artikelID = ?";
 
@@ -19,4 +19,5 @@ if (isset($_POST['btnUpdateProduct']) && (int)$_POST['productID'] === $row['arti
 
     echo '<script> if (window.history.replaceState) { window.history.replaceState(null, null, window.location.href) } </script>';
 }
+
 ?>
