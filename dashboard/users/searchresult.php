@@ -198,6 +198,12 @@ if ($result->num_rows > 0) {
 							</div>
 
 							<div class="col-md-6">
+											<label for="lastnameNew" class="form-label">Last name:</label>
+											<input type="text" name="lastnameNew" id="lastnameNew" class="form-control" value="">
+											<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
+							</div>
+
+							<div class="col-md-6">
 								<label for="passwordUpdate" class="form-label">Password:</label>
 								<input type="text`" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>">
 								<label name="passwordCheck" id="passwordCheck" value=""></label>

@@ -22,6 +22,8 @@
 
 		let nameNew = document.getElementById("nameNew");
 		let nameNewCheck = document.getElementById("nameNewCheck");
+		let lastnameNew = document.getElementById("lastnameNew");
+		let lastnameNewCheck = document.getElementById("lastnameNewCheck");
 		let emailNew = document.getElementById("emailNew");
 		let emailNewCheck = document.getElementById("emailNewCheck");
 		let birthNew = document.getElementById("birthNew");
@@ -213,6 +215,12 @@
 											<label for="nameNew" class="form-label">Name:</label>
 											<input type="text" name="nameNew" id="nameNew" class="form-control" value="">
 											<label name="nameNewCheck" id="nameNewCheck" value="">
+										</div>
+
+										<div class="col-md-6">
+											<label for="lastnameNew" class="form-label">Last name:</label>
+											<input type="text" name="lastnameNew" id="lastnameNew" class="form-control" value="">
+											<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
 										</div>
 
 										<div class="col-md-6">

@@ -11,6 +11,7 @@ $success = false;
 
 if (isset($_POST['nameNew'])) {
     $new_klantnaam = htmlspecialchars($_POST['nameNew']);
+    $new_klantacternaam = htmlspecialchars($_POST['lastnameNew']);
     $new_klantemail = htmlspecialchars($_POST['emailNew']);
     $new_geboortedatum = htmlspecialchars($_POST['birthNew']);
     $new_passwoord = htmlspecialchars($_POST['passwordNew']);
@@ -29,10 +30,10 @@ if (isset($_POST['nameNew'])) {
         echo "Error: Email already in use";
     } else {
         // Email is unique, proceed with the insertion
-        $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum) VALUES (?, ?, ?, ?, ?, ?)";
+        $insertSql = "INSERT INTO tblklant (Klantnaam, Klantemail, Geboortedatum, Passwoord, Rol, Registratiedatum, Klantachternaam) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $mysqli->prepare($insertSql);
-        $stmt->bind_param("ssssss", $new_klantnaam, $new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
+        $stmt->bind_param("sssssss", $new_klantnaam, $new_klantacternaam ,$new_klantemail, $new_geboortedatum, $new_passwoord, $new_rol, $new_registratiedatum);
 
         if ($stmt->execute()) {
             $success = true;
