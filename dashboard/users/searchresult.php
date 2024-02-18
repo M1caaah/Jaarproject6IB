@@ -139,7 +139,7 @@ if ($result->num_rows > 0) {
 		<div class="col-md-4 col-sm-6 col-12">
 			<div class="card my-3">
 				<div class="card-body">
-					<h5 class="card-title"><?php echo $row['klantnaam']; ?></h5>
+					<h5 class="card-title"><?php echo $row['klantnaam'] . ' ' . $row['klantachternaam']; ?></h5>
 					<p class="card-text text-muted"><?php echo $row['klantemail']; ?></p>
 					<a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['klantID']; ?>" href="#">
 						More info
@@ -211,9 +211,10 @@ if ($result->num_rows > 0) {
 
 							<div class="col-md-6">
 								<label for="lastnameUpdate" class="form-label">Last name:</label>
-								<input type="text" name="lastnameUpdate" id="lastnameUpdate" class="form-control" value="">
+								<input type="text" name="lastnameUpdate" id="lastnameUpdate" class="form-control" value="<?php echo $row['klantachternaam']; ?>">
 								<label name="lastnameNewCheck" id="lastnameNewCheck" value="">
 							</div>
+
 
 							<div class="col-md-6">
 								<label for="passwordUpdate" class="form-label">Password:</label>
