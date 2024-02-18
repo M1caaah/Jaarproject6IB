@@ -186,19 +186,17 @@
 						</div>
 						<br>
 						<div class="col-4">
-							<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-								<div class="input-group">
-									<select class="form-select" name="sortBy" aria-label="Sort By">
-										<option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>First Name (A-Z)</option>
-										<option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>First Name (Z-A)</option>
-										<option value="lastname_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Last Name (A-Z)</option>
-										<option value="lastname_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Last Name (Z-A)</option>
-										</select>
-										<button type="submit" class="btn btn-primary">
-											<i class="fas fa-sort"></i> Sort
-										</button>
-								</div>
-							</form>
+                            <div class="input-group">
+                                <select class="form-select" name="sortBy" aria-label="Sort By">
+                                    <option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>First Name (A-Z)</option>
+                                    <option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>First Name (Z-A)</option>
+                                    <option value="lastname_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Last Name (A-Z)</option>
+                                    <option value="lastname_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Last Name (Z-A)</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-sort"></i> Sort
+                                    </button>
+                            </div>
 						</div>
 						<br>
 						<span class="me-3">Search by: </span>
