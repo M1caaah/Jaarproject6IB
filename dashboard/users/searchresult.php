@@ -93,7 +93,6 @@
 </script>
 
 <?php
-
 include 'connection.php';
 
 $mysql = new MySQLi($server, $user, $password, $database);
@@ -115,9 +114,10 @@ if (isset($_GET['search'])) {
     $searchTerm = "%" . $searchTerm . "%";
 
     // Prepare the SQL statement.
+	
 	if ($_GET['rdbSearch'] == "name") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantnaam` LIKE ? AND `active` = 1";
-	} else if ($_GET['rdbSearch'] == "last name") {
+	} else if ($_GET['rdbSearch'] == "lastname") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantachternaam` LIKE ? AND `active` = 1";
 	} else if ($_GET['rdbSearch'] == "email") {
 		$sql = "SELECT * FROM `tblklant` WHERE `klantemail` LIKE ? AND `active` = 1";
@@ -153,7 +153,6 @@ if (isset($_GET['search'])) {
     // Prepare the SQL statement.
     $sql = "SELECT * FROM `tblklant` WHERE `active` = 1";
 
-    // Apply sorting if specified
     if(isset($_GET['sortBy'])) {
         switch($_GET['sortBy']) {
             case 'name_asc':
@@ -266,7 +265,7 @@ if ($result->num_rows > 0) {
 
 							<div class="col-md-6">
 								<label for="passwordUpdate" class="form-label">Password:</label>
-								<input type="text`" name="passwordUpdate" id="passwordUpdate" class="form-control" value="<?php echo $row['passwoord'] ?>">
+								<input type="password" name="passwordUpdate" id="passwordUpdate" class="form-control">
 								<label name="passwordCheck" id="passwordCheck" value=""></label>
 							</div>
 
