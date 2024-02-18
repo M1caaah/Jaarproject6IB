@@ -1,8 +1,6 @@
 <script>
 	function validateForm() {
-
 		let check = true;
-
 		let nameUpdate = document.getElementById("nameUpdate");
 		let nameCheck = document.getElementById("nameCheck");
 		let lastnameUpdate = document.getElementById("lastnameUpdate");
@@ -70,10 +68,11 @@
 			roleCheck.innerHTML = "Please write a role.";
 		} else {
 
-		}
+		}	
 
 		if (check) {
-			document.forms.editUser.submit();
+		console.log(forms[id]);
+		 forms[id].submit();
 		}
 	}
 
@@ -210,7 +209,7 @@ if ($result->num_rows > 0) {
 						<button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form name="editUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+						<form name="editUser<?php echo $row['klantID'];?>" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3 editForm">
 
 							<div class="col-md-6">
 								<label for="nameUpdate" class="form-label">Name:</label>
@@ -255,7 +254,7 @@ if ($result->num_rows > 0) {
 								<input type="date" name="registrationUpdate" id="registrationUpdate" class="form-control" value="<?php echo $row['registratiedatum'] ?>">
 								<label name="registrationCheck" id="registrationCheck" value="">
 							</div>
-							<input type="hidden" name="klantID" value="<?php echo $row['klantID'] ?>">
+							<input type="text" id="id" name="klantID" value="<?php echo $row['klantID'] ?>">
 							<input type="button" value="Update user" class="btn btn-primary" name="btnUpdate" onclick="validateForm()">
 						</form>
 						<?php include 'updateuser.php'; ?>

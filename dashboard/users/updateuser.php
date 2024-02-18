@@ -1,6 +1,10 @@
 <?php
 if (isset($_POST['nameUpdate']) && $_POST['klantID'] == $row['klantID']) {
 
+	echo '<pre>';
+	var_dump($_POST);
+	echo '</pre>';
+	exit;
 	$update_klantnaam = htmlspecialchars($_POST['nameUpdate']);
 	$update_klantachternaam = htmlspecialchars($_POST['lastnameUpdate']);
 	$update_klantemail = htmlspecialchars($_POST['emailUpdate']);
@@ -8,7 +12,7 @@ if (isset($_POST['nameUpdate']) && $_POST['klantID'] == $row['klantID']) {
 	$update_passwoord = htmlspecialchars($_POST['passwordUpdate']);
 	$update_rol = htmlspecialchars($_POST['roleUpdate']);
 	$update_registratiedatum = htmlspecialchars($_POST['registrationUpdate']);
-	$update_id = htmlspecialchars($row['klantID']);
+	$update_id = htmlspecialchars($_POST['klantID']);
 
 	$insertSql = "UPDATE tblklant SET klantnaam = ?, klantachternaam = ?, klantemail = ?, geboortedatum = ?, passwoord = ?, rol = ?, registratiedatum = ? WHERE klantID = ?";
 
