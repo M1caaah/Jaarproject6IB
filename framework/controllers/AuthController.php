@@ -38,10 +38,17 @@ class AuthController extends Controller
             {
                 Application::$app->session->setFlash('success', 'Thanks for registering');
                 $response->redirect('/');
+                return true;
             }
             return $this->render('register', 'auth', ['model' => $user]);
         }
 
         return $this->render('register', 'auth', ['model' => $user]);
+    }
+
+    public function logout(Request $request, Response $response)
+    {
+        Application::$app->logout();
+        $response->redirect('/');
     }
 }

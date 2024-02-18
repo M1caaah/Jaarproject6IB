@@ -4,9 +4,11 @@ namespace app\models;
 
 use app\core\DbModel;
 use app\core\Model;
+use app\core\UserModel;
 
-class User extends DbModel
+class User extends UserModel
 {
+    public int $client_id = 0;
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
@@ -25,9 +27,9 @@ class User extends DbModel
     {
         return 'tblClients';
     }
-    public function primaryKey(): string
+    public static function primaryKey(): string
     {
-        return 'id';
+        return 'client_id';
     }
 
     public function attributes(): array
@@ -60,5 +62,10 @@ class User extends DbModel
         'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min'=>8], [self::RULE_MAX, 'max'=>24]],
         'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
     ];
-}
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }

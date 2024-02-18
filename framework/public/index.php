@@ -6,12 +6,14 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\Application;
 
-$config =
-    [
+$config = [
+    'db' => [
         'host' => 'localhost',
         'user' => 'root',
         'password' => '',
-        'dbname' => 'bytebazaar',
+        'dbname' => 'bytebazaar'
+    ],
+    'userClass' => \app\models\User::class
     ];
 
 $app = new Application(dirname(__DIR__), $config);
@@ -28,5 +30,6 @@ $app->router->get('/login', [AuthController::class, 'login']);
 $app->router->post('/login', [AuthController::class, 'login']);
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
+$app->router->get('/logout', [AuthController::class, 'logout']);
 
 $app->run();

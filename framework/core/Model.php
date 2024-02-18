@@ -76,7 +76,6 @@ abstract class Model
                 }
             }
         }
-        echo empty($this->errors);
         return empty($this->errors);
     }
 
