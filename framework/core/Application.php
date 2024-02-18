@@ -12,6 +12,7 @@ class Application
     public Session $session;
     public Controller $controller;
     public Database $db;
+    public ?DbModel $user;
 
     public function __construct($rootPath, array $config)
     {
@@ -29,5 +30,13 @@ class Application
     public function run()
     {
         echo $this->router->resolve();
+    }
+
+    public function login($user)
+    {
+        $primaryKey = $user->primaryKey();
+        $value = $user->{$primaryKey};
+        $this->session->set('user', $value);
+        return true;
     }
 }

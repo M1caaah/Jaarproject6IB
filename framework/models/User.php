@@ -16,13 +16,20 @@ class User extends DbModel
 
     public function register()
     {
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
         return $this->save();
     }
 
-    public function tableName(): string
+    public static function tableName(): string
     {
         return 'tblClients';
     }
+    public function primaryKey(): string
+    {
+        return 'id';
+    }
+
     public function attributes(): array
     {
         return ['firstname', 'lastname', 'email', 'birthdate','password'];
