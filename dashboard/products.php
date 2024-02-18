@@ -103,9 +103,25 @@
                         </div>
                         <button type="submit" class="btn btn-primary">
 								<i class="fas fa-search"></i>
-							</button>
+						</button>
 						</div>
-						<br>
+                    <br>
+                    <div class="col-4">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
+                            <div class="input-group">
+                                <select class="form-select" name="sortBy" aria-label="Sort By">
+                                    <option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>Name (A-Z)</option>
+                                    <option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>Name (Z-A)</option>
+                                    <option value="price_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Price (Low to High)</option>
+                                    <option value="price_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Price (High to Low)</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-sort"></i> Sort
+                                    </button>
+                            </div>
+                        </form>
+                    </div>
+					<br>
 						<span class="me-3">Search by: </span>
                         <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
