@@ -102,15 +102,27 @@
                             <label class="form-label" for="form1">Search</label>
                         </div>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-search"></i>
-                        </button>
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+						<br>
+						<span class="me-3">Search by: </span>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio1" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "name") { echo "checked"; } } else { echo "checked"; }?>/>
+							<label class="form-check-label" for="rdbName">Name</label>
+						</div>
+
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="rdbSearch" id="inlineRadio2" value="name" <?php if (isset($_GET['rdbSearch'])) { if ($_GET['rdbSearch'] == "price") { echo "checked"; } }?>/>
+							<label class="form-check-label" for="rdbName">Price</label>
+						</div>
                     </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
+                            Add new product
+                        </button>
                 </form>
             </div>
-            <div class="col-4">
-                <button type="button" class="btn btn-primary btn-rounded" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#exampleModal">
-                    Add new product
-                </button>
 
                 <!-- Add modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

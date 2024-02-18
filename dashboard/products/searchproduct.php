@@ -34,7 +34,6 @@ if ($mysql->connect_error) {
 }
 
 if (isset($_GET['search'])) {
-
     // Prepare the search statement statement.
     $searchTerm = $_GET['search'];
     $searchTerm = mysqli_real_escape_string($mysql, $searchTerm);
@@ -43,12 +42,22 @@ if (isset($_GET['search'])) {
     $searchTerm = strtolower($searchTerm);
     $searchTerm = "%" . $searchTerm . "%";
 
+    $searchCriteria = isset($_GET['rdbSearch']) ? $_GET['rdbSearch'] : '';
+
+    // Prepare the SQL statement based on the selected search criteria.
+    if ($searchCriteria == "name") {
+        $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
+    } else if ($searchCriteria == "price") {
+        $sql = "SELECT * FROM `tblartikel` WHERE `artikelPrijs` LIKE ? AND `active` = 1";
+    } else {
+        // Default to searching by name if no criteria is selected.
+        $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
+    }
+
     // Prepare the statement.
-    $sql = "SELECT * FROM `tblartikel` WHERE `artikelNaam` LIKE ? AND `active` = 1";
     $stmt = $mysql->prepare($sql);
     $stmt->bind_param('s', $searchTerm);
 } else {
-
     // Prepare the SQL statement.
     $sql = "SELECT * FROM `tblartikel` WHERE `active` = 1";
 
@@ -170,7 +179,7 @@ if ($result->num_rows > 0) {
 } else {
     ?>
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <h1 style="display: inline-block;">No users found</h1>
+        <h1 style="display: inline-block;">No products found</h1>
         <img src="assets/img/notfound.png" alt="notfound.png" style="display: block;" class="mt-5" width="300px">
     </div>
 <?php
