@@ -1,172 +1,69 @@
-<?php
-use app\core\Application;
-?>
+<?php use \app\core\Application; ?>
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" style="--bs-primary: #7214ff;--bs-primary-rgb: 114,20,255;">
 
-<!doctype html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home page</title>
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet"/>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - ByteBazaar</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.reflowhq.com/v2/toolkit.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
+
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-        <!-- Toggle button -->
-        <button
-            data-mdb-collapse-init
-            class="navbar-toggler"
-            type="button"
-            data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                <img
-                    src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                    height="15"
-                    alt="MDB Logo"
-                    loading="lazy"
-                />
-            </a>
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-                <?php if (Application::isGuest()): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?> (Logout)</a>
-                    </li>
-                <?php endif; ?>
+<!-- Start: Navbar Centered Links -->
+<nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <span><img src="assets/img/icon.svg" width="50" height="50" class="me-2"></span>
+            <span class="fs-3">ByteBazaar</span>
+        </a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contacts</a></li>
             </ul>
-            <!-- Left links -->
-        </div>
-        <!-- Collapsible wrapper -->
+            <?php if (Application::isGuest()): ?>
+                <span class="navbar-text">
+                    <a class="btn btn-primary" href="/login">Login</a>
+                    <a class="btn btn-primary" href="/register">Register</a>
+                </span>
+            <?php endif; ?>
 
-        <!-- Right elements -->
-        <div class="d-flex align-items-center">
-            <!-- Icon -->
-            <a class="text-reset me-3" href="#">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
-
-            <!-- Notifications -->
-            <div class="dropdown">
-                <a
-                    data-mdb-dropdown-init
-                    class="text-reset me-3 dropdown-toggle hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    aria-expanded="false"
-                >
-                    <i class="fas fa-bell"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
-                <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuLink"
-                >
-                    <li>
-                        <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Avatar -->
-            <div class="dropdown">
-                <a
-                    data-mdb-dropdown-init
-                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuAvatar"
-                    role="button"
-                    aria-expanded="false"
-                >
-                    <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        class="rounded-circle"
-                        height="25"
-                        alt="Black and White Portrait of a Man"
-                        loading="lazy"
-                    />
-                </a>
-                <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuAvatar"
-                >
-                    <li>
-                        <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                </ul>
-            </div>
         </div>
-        <!-- Right elements -->
     </div>
-    <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
+</nav><!-- End: Navbar Centered Links -->
+
+{{content}}
 
 
-<div class="container">
-    <?php if (Application::$app->session->getFlash('success')): ?>
-        <div class="alert alert-success">
-            <?php echo Application::$app->session->getFlash('success') ?>
+<!-- Start: Footer Multi Column -->
+<footer class="bg-dark">
+    <div class="container py-4 py-lg-5">
+        <div class="row justify-content-center">
+            <!-- Start: Social Icons -->
+            <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
+                <div class="fw-bold d-flex align-items-center mb-2">
+                    <span><img src="assets/img/icon.svg" width="25" height="25" class="me-2"></span>
+                    <span>ByteBazaar</span>
+                </div>
+                <p class="text-muted">Insert footer here :D</p>
+            </div><!-- End: Social Icons -->
         </div>
-    <?php endif; ?>
-    {{content}}
-</div>
-
-
-
-
-<!-- MDB -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
-
+        <hr>
+        <div class="text-muted d-flex justify-content-between align-items-center pt-3">
+            <p class="mb-0">Copyright © 2024 ByteBazaar</p>
+        </div>
+    </div>
+</footer><!-- End: Footer Multi Column -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+<script src="assets/js/script.min.js"></script>
 </body>
+
 </html>
