@@ -15,92 +15,6 @@
 	<link rel="stylesheet" href="assets/css/styles.min.css" />
 </head>
 
-<script>
-	function validateNewForm(formType) {
-
-		let check = true;
-
-		let nameNew = document.getElementById("nameNew");
-		let nameNewCheck = document.getElementById("nameNewCheck");
-		let lastnameNew = document.getElementById("lastnameNew");
-		let lastnameNewCheck = document.getElementById("lastnameNewCheck");
-		let emailNew = document.getElementById("emailNew");
-		let emailNewCheck = document.getElementById("emailNewCheck");
-		let birthNew = document.getElementById("birthNew");
-		let birthNewCheck = document.getElementById("birthNewCheck");
-		let passwordNew = document.getElementById("passwordNew");
-		let passwordNewCheck = document.getElementById("passwordNewCheck");
-		let roleNew = document.getElementById("roleNew");
-		let roleNewCheck = document.getElementById("roleNewCheck");
-
-
-		if (nameNew.value === "") {
-			check = false;
-			nameNewCheck.innerText = "Please write a name.";
-		} else {
-
-		}
-
-		if (lastnameNew.value === "") {
-			check = false;
-			nameNewCheck.innerText = "Please write a last name.";
-		} else {
-
-		}
-
-		if (emailNew.value === "" || !isValidEmail(emailNew.value)) {
-			check = false;
-			emailNewCheck.innerText = "Please write a valid email.";
-		} else {
-
-		}
-
-		let birthDate = new Date(birthNew.value);
-		let today = new Date();
-		if (birthNew.value === "") {
-			check = false;
-			birthNewCheck.innerText = "Please write a date of birth.";
-		} else if (birthDate > today) {
-			// Check if birth date is later than today
-			check = false;
-			birthNewCheck.innerText = "Birth date cannot be later than today.";
-		}
-
-		if (passwordNew.value === "") {
-			check = false;
-			passwordNewCheck.innerText = "Please write a password.";
-		} else {
-
-		}
-
-		if (roleNew.value === "") {
-			check = false
-			roleNewCheck.innerHTML = "Please write a role.";
-		} else {
-
-		}
-
-		if (check) {
-			document.forms.addUser.submit();
-		}
-	}
-
-	function isValidEmail(email) {
-		// Use a regular expression to validate email format
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-		if (!email) {
-			return false;
-		}
-
-		if (!emailRegex.test(email)) {
-			return false;
-		}
-
-		return true;
-	}
-</script>
-
 <body>
 
 	<!--Main Navigation-->
@@ -224,6 +138,21 @@
 						Add new user
 					</button>
 
+
+                    <?php
+                    $mysqli = new mysqli("localhost", "root", "", "jaarproject");
+                    if ($mysqli->connect_errno) {
+                        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+                        exit();
+                    }
+                    $sql = "SELECT * FROM tblrol";
+                    $stmt = $mysqli->prepare($sql);
+                    $stmt->execute();
+                    $roles = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                    $stmt->close();
+                    $mysqli->close();
+
+                    ?>
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -233,7 +162,7 @@
 									<button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
 								</div>
 								<div class="modal-body">
-									<form name="addUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
+									<form name="addNewUser" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
 
 										<div class="col-md-6">
 											<label for="nameNew" class="form-label">Name:</label>
@@ -262,7 +191,12 @@
 
 										<div class="col-md-6">
 											<label for="roleNew" class="form-label">Role:</label>
-											<input type="text" name="roleNew" id="roleNew" class="form-control" value="">
+											<select name="roleNew" id="roleNew" class="form-control">
+                                                <?php foreach ($roles as $role) {
+                                                    echo "<option value='{$role['rol_id']}'>{$role['rolnaam']}</option>";
+                                                }
+                                                ?>
+                                            </select>
 											<label name="roleNewCheck" id="roleNewCheck" value="">
 										</div>
 
@@ -301,3 +235,79 @@
 </body>
 
 </html>
+
+
+<script>
+    function validateNewForm() {
+
+        let check = true;
+
+        let nameNew = document.getElementById("nameNew");
+        let nameNewCheck = document.getElementById("nameNewCheck");
+        let lastnameNew = document.getElementById("lastnameNew");
+        let lastnameNewCheck = document.getElementById("lastnameNewCheck");
+        let emailNew = document.getElementById("emailNew");
+        let emailNewCheck = document.getElementById("emailNewCheck");
+        let birthNew = document.getElementById("birthNew");
+        let birthNewCheck = document.getElementById("birthNewCheck");
+        let passwordNew = document.getElementById("passwordNew");
+        let passwordNewCheck = document.getElementById("passwordNewCheck");
+        let registrationCheck = document.getElementById("registrationCheck");
+        let registrationDate = new Date(document.getElementById("registrationNew").value);
+
+        if (nameNew.value === "") {
+            check = false;
+            nameNewCheck.innerText = "Please write a name.";
+        } else {
+            nameNewCheck.innerText = "";
+        }
+
+        if (lastnameNew.value === "") {
+            check = false;
+            lastnameNewCheck.innerText = "Please write a last name.";
+        } else {
+            lastnameNewCheck.innerText = "";
+        }
+
+        if (emailNew.value === "" || !isValidEmail(emailNew.value)) {
+            check = false;
+            emailNewCheck.innerText = "Please write a valid email.";
+        } else {
+            emailNewCheck.innerText = "";
+        }
+
+        let birthDate = new Date(birthNew.value);
+        let today = new Date();
+        if (birthNew.value === "") {
+            check = false;
+            birthNewCheck.innerText = "Please write a date of birth.";
+        } else if (birthDate > today) {
+            // Check if birth date is later than today
+            check = false;
+            birthNewCheck.innerText = "Birth date cannot be later than today.";
+        } else if (registrationDate < birthDate) {
+            check = false;
+            registrationCheck.innerText = "Registration date cannot be earlier than birth date.";
+        } else {
+            birthNewCheck.innerText = "";
+        }
+
+        if (passwordNew.value === "") {
+            check = false;
+            passwordNewCheck.innerText = "Please write a password.";
+        } else {
+            passwordNewCheck.innerText = "";
+        }
+
+        if (check) {
+            document.forms.addNewUser.submit();
+        }
+    }
+
+    function isValidEmail(email) {
+        // Use a regular expression to validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        return email && emailRegex.test(email);
+    }
+</script>

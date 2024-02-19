@@ -29,7 +29,7 @@ foreach ($data as $key) {
 $action = $_POST["ID-$id"];
 
 if($action === 'Delete') {
-    $sql = "DELETE FROM tblklant WHERE klantID = $id";
+    $sql = "UPDATE tblklant SET active = 0 WHERE klantID = $id";
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
     $stmt->close();
@@ -60,7 +60,6 @@ else if($action === 'Edit') {
 else if($action === 'Update') {
     $sql = "UPDATE tblklant SET klantnaam = ?, klantachternaam = ?, klantemail = ?, geboortedatum = ?, rol_id = ?, registratiedatum = ?, passwoord = ? WHERE klantID = ? AND active = 1";
     $stmt = $mysqli->prepare($sql);
-    $id = htmlspecialchars($_POST['id']);
     $name = htmlspecialchars($_POST['nameUpdate']);
     $lastname = htmlspecialchars($_POST['lastnameUpdate']);
     $email = htmlspecialchars($_POST['emailUpdate']);

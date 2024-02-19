@@ -104,8 +104,8 @@ if ($result) {
                         <div class="dropdown manage-user" style="position: absolute; top: 10px; right: 10px;">
                             <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
                             <ul class="dropdown-menu">
-                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Edit"></li>
-                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Delete"></li>
+                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Edit" style="background: none; border: none; padding: 10px; color: inherit"></li>
+                                <li><input type="submit" name="ID-<?php echo $row['klantID']; ?>" value="Delete" style="background: none; border: none; padding: 10px; color: inherit"></li>
                             </ul>
                         </div>
                     </form>
@@ -124,19 +124,19 @@ if ($result) {
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-6">
-								<p class="card-text"><b>Achternaam:</b><br> <?php echo $row['klantachternaam']; ?></p>
+								<p class="card-text"><b>Naam:</b><br> <?php echo $row['klantnaam']; ?></p>
 							</div>
                             <div class="col-6">
                                 <p class="card-text"><b>Achternaam:</b><br> <?php echo $row['klantachternaam']; ?></p>
                             </div>
-							<div class="col-12">
+							<div class="col-6">
 								<p class="card-text"><b>Email:</b><br> <?php echo $row['klantemail']; ?></p>
 							</div>
+                            <div class="col-6">
+                                <p class="card-text"><b>Rol:</b><br> <?php echo $row['rolnaam']; ?></p>
+                            </div>
 							<div class="col-6">
 								<p class="card-text"><b>Geboortedatum:</b><br> <?php echo $row['geboortedatum']; ?></p>
-							</div>
-							<div class="col-6">
-								<p class="card-text"><b>Rol:</b><br> <?php echo $row['rolnaam']; ?></p>
 							</div>
 							<div class="col-6">
 								<p class="card-text"><b>Registratiedatum:</b><br> <?php echo $row['registratiedatum']; ?></p>

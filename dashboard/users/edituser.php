@@ -161,6 +161,7 @@
 <script>
     function validateForm() {
         let check = true;
+
         let nameUpdate = document.getElementById("nameUpdate");
         let nameCheck = document.getElementById("nameCheck");
         let lastnameUpdate = document.getElementById("lastnameUpdate");
@@ -169,10 +170,7 @@
         let emailCheck = document.getElementById("emailCheck");
         let birthUpdate = document.getElementById("birthUpdate");
         let birthCheck = document.getElementById("birthCheck");
-        let passwordUpdate = document.getElementById("passwordUpdate");
-        let passwordCheck = document.getElementById("passwordCheck");
 
-        console.log(lastnameCheck)
         if (nameUpdate.value === "") {
             check = false;
             console.log(nameCheck)
@@ -213,6 +211,10 @@
         if (registrationUpdate.value === "") {
             check = false;
             registrationUpdate.innerText = "Please write a date of birth.";
+        }  else if (birthDate > today) {
+            // Check if birth date is later than today
+            check = false;
+            birthNewCheck.innerText = "Birth date cannot be later than today.";
         } else if (registrationDate < birthDate) {
             check = false;
             registrationCheck.innerText = "Registration date cannot be earlier than birth date.";

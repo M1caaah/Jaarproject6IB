@@ -106,11 +106,10 @@ if (isset($_GET['search'])) {
 // Execute the statement.
 $stmt->execute();
 
-$result = $stmt->get_result();
-
-if ($result->num_rows > 0) {
+$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+if ($result) {
     echo '<div class="row">';
-    while ($row = $result->fetch_assoc()) {
+    foreach ($result as $row) {
 ?>
         <div class="col-md-4 col-sm-6 col-12" style="width: auto">
             <div class="card my-3" style="width: 200px;">
@@ -123,15 +122,15 @@ if ($result->num_rows > 0) {
                     <a type="button" class="btn btn-primary btn-rounded" data-mdb-modal-init data-mdb-target="#klant<?php echo $row['artikelID']; ?>" href="#">
                         More info
                     </a>
-                    <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
-                        <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
-                        <ul class="dropdown-menu shadow-3-strong">
-                            <li>
-                                <a type="button" class="d-inline-block dropdown-item" data-mdb-modal-init data-mdb-target="#edit<?php echo $row['artikelID']; ?>" href="#">Edit</a>
-                            </li>
-                            <li><?php include 'deleteproduct.php'; ?></li>
-                        </ul>
-                    </div>
+                    <form action="products/handleproducts.php" method="post">
+                        <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
+                            <button class="dropdown-toggle btn btn-primary btn-floating" style="width: 28px; height: 28px;" type="button" data-mdb-dropdown-init aria-expanded="false"></button>
+                            <ul class="dropdown-menu shadow-3-strong">
+                                <li><input type="submit" name="ID-<?php echo $row['artikelID']; ?>" value="Edit" style="background: none; border: none; padding: 10px; color: inherit"></li>
+                                <li><input type="submit" name="ID-<?php echo $row['artikelID']; ?>" value="Delete" style="background: none; border: none; padding: 10px; color: inherit"></li>
+                            </ul>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -150,9 +149,6 @@ if ($result->num_rows > 0) {
                                 <p class="card-text"><b>Name:</b><br> <?php echo $row['artikelNaam']; ?></p>
                             </div>
                             <div class="col-6">
-                                <p class="card-text"><b>Product ID:</b><br> <?php echo $row['artikelID']; ?></p>
-                            </div>
-                            <div class="col-6">
                                 <p class="card-text"><b>Price:</b><br> &euro;<?php echo $row['artikelPrijs']; ?></p>
                             </div>
                             <div class="col-6">
@@ -165,50 +161,6 @@ if ($result->num_rows > 0) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Edit -->
-        <div class="modal fade" id="edit<?php echo $row['artikelID']; ?>" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit product: <?php echo $row['artikelNaam'] ?></h5>
-                        <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form name="editProduct" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="row g-3">
-
-                            <div class="col-md-6">
-                                <label for="nameEdit" class="form-label">Name:</label>
-                                <input required type="text" name="nameEdit" id="nameEdit" class="form-control" value="<?php echo $row['artikelNaam'] ?>">
-                                <label id="nameCheck"></label>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="priceEdit" class="form-label">Price:</label>
-                                <input required type="number" step="0.01" name="priceEdit" id="priceEdit" class="form-control" value="<?php echo $row['artikelPrijs'] ?>">
-                                <label id="priceCheck"></label>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="stockEdit" class="form-label">Stock:</label>
-                                <input required type="number" step="1" name="stockEdit" id="stockEdit" class="form-control" value="<?php echo $row['artikelVoorraad'] ?>">
-                                <label id="stockCheck"></label>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="minAgeEdit" class="form-label">Minimum age:</label>
-                                <input required type="number" step="1" name="minAgeEdit" id="minAgeEdit" class="form-control" value="<?php echo $row['artikelMinLeeftijd'] ?>">
-                                <label id="minAgeCheck"></label>
-                            </div>
-
-                            <input type="hidden" name="productID" value="<?php echo $row['artikelID'] ?>">
-                            <input type="submit" value="Update product" class="btn btn-primary" name="btnUpdateProduct">
-                        </form>
-                        <?php include 'products/updateproduct.php'; ?>
                     </div>
                 </div>
             </div>

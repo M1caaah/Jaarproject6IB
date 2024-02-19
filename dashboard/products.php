@@ -107,19 +107,17 @@
 						</div>
                     <br>
                     <div class="col-4">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-                            <div class="input-group">
-                                <select class="form-select" name="sortBy" aria-label="Sort By">
-                                    <option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>Name (A-Z)</option>
-                                    <option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>Name (Z-A)</option>
-                                    <option value="price_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Price (Low to High)</option>
-                                    <option value="price_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Price (High to Low)</option>
-                                    </select>
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-sort"></i> Sort
-                                    </button>
-                            </div>
-                        </form>
+                        <div class="input-group">
+                            <select class="form-select" name="sortBy" aria-label="Sort By">
+                                <option value="name_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_asc') echo 'selected'; ?>>Name (A-Z)</option>
+                                <option value="name_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'name_desc') echo 'selected'; ?>>Name (Z-A)</option>
+                                <option value="price_asc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc') echo 'selected'; ?>>Price (Low to High)</option>
+                                <option value="price_desc" <?php if(isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc') echo 'selected'; ?>>Price (High to Low)</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sort"></i> Sort
+                                </button>
+                        </div>
                     </div>
 					<br>
 						<span class="me-3">Search by: </span>
@@ -153,35 +151,35 @@
 
                                     <div class="col-md-6">
                                         <label for="nameNew" class="form-label">Name:</label>
-                                        <input required type="text" name="nameNew" id="nameNew" class="form-control">
+                                        <input type="text" name="nameNew" id="nameNew" class="form-control">
                                         <label id="nameCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="priceNew" class="form-label">Price:</label>
-                                        <input required type="number" step="0.01" name="priceNew" id="priceNew" class="form-control">
+                                        <input type="number" step="0.01" name="priceNew" id="priceNew" class="form-control">
                                         <label id="priceCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="stockNew" class="form-label">Stock:</label>
-                                        <input required type="number" step="1" name="stockNew" id="stockNew" class="form-control">
+                                        <input type="number" step="1" name="stockNew" id="stockNew" class="form-control">
                                         <label id="stockCheck"></label>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="minAgeNew" class="form-label">Minimum age:</label>
-                                        <input required type="number" step="1" name="minAgeNew" id="minAgeNew" class="form-control">
+                                        <input type="number" step="1" name="minAgeNew" id="minAgeNew" class="form-control">
                                         <label id="minAgeCheck"></label>
                                     </div>
 
                                     <div class="col-md-12">
                                         <label for="imageNew" class="form-label">Image:</label>
-                                        <input required type="file" accept="image/*" name="imageNew" id="imageNew" class="form-control">
+                                        <input type="file" accept="image/*" name="imageNew" id="imageNew" class="form-control">
                                         <label id="imageCheck"></label>
                                     </div>
 
-                                    <input type="submit" value="Add product" class="btn btn-primary" name="btnAddProduct">
+                                    <input type="button" value="Add product" class="btn btn-primary" name="btnAddProduct" onclick="validateForm()">
                                 </form>
                             </div>
                         </div>
@@ -200,5 +198,70 @@
 <!-- MDB -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
 </body>
-
 </html>
+
+
+<script>
+    function validateForm() {
+        let check = true;
+
+        let name = document.getElementById("nameNew");
+        let nameCheck = document.getElementById("nameCheck");
+        let price = document.getElementById("priceNew");
+        let priceCheck = document.getElementById("priceCheck");
+        let stock = document.getElementById("stockNew");
+        let stockCheck = document.getElementById("stockCheck");
+        let minAge = document.getElementById("minAgeNew");
+        let minAgeCheck = document.getElementById("minAgeCheck");
+        let image = document.getElementById("imageNew");
+        let imageCheck = document.getElementById("imageCheck");
+
+        if (name.value === "") {
+            nameCheck.innerText = "Name is required";
+            check = false;
+        } else {
+            nameCheck.innerText = "";
+        }
+
+        if (price.value === "") {
+            priceCheck.innerText = "Price is required";
+            check = false;
+        } else if (price.value < 0) {
+            priceCheck.innerText = "Price cannot be negative";
+            check = false;
+        } else {
+            priceCheck.innerText = "";
+        }
+
+        if (stock.value === "") {
+            stockCheck.innerText = "Stock is required";
+            check = false;
+        } else if (stock.value < 0) {
+            stockCheck.innerText = "Stock cannot be negative";
+            check = false;
+        } else {
+            stockCheck.innerText = "";
+        }
+
+        if (minAge.value === "") {
+            minAgeCheck.innerText = "Minimum age is required";
+            check = false;
+        } else if (minAge.value < 0) {
+            minAgeCheck.innerText = "Minimum age cannot be negative";
+            check = false;
+        } else {
+            minAgeCheck.innerText = "";
+        }
+
+        if (image.value === "") {
+            imageCheck.innerText = "Image is required";
+            check = false;
+        } else {
+            imageCheck.innerText = "";
+        }
+
+        if (check) {
+            document.editUser.submit();
+        }
+    }
+</script>
