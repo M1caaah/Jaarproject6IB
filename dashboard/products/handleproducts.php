@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $data = array_keys($_POST);
 $id = null;
 foreach ($data as $key) {
-    if (str_contains($key, 'ID-')) {
+    if (strpos($key, 'ID-') !== false) {
         $id = substr($key, 3);
     }
 }
