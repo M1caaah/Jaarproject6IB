@@ -9,6 +9,7 @@ use app\core\UserModel;
 class User extends UserModel
 {
     public int $client_id = 0;
+    public int $role_id = 0;
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
@@ -59,6 +60,7 @@ class User extends UserModel
         'firstname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max'=>255]],
         'lastname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max'=>255]],
         'email' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max'=>255], self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class, 'attribute' => 'email']],
+        'birthdate' => [self::RULE_REQUIRED, self::RULE_BDATE],
         'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min'=>8], [self::RULE_MAX, 'max'=>24]],
         'confirmPassword' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']],
     ];

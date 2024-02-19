@@ -24,9 +24,10 @@ class Field
 
     public function __toString(): string
     {
-        return sprintf(' <input type="%s" name="%s" placeholder="%s" class="form-control %s"><div class="invalid-feedback">%s</div>',
+        return sprintf(' <input type="%s" name="%s" value="%s" placeholder="%s" class="form-control %s"><div class="invalid-feedback">%s</div>',
             $this->type,
             $this->attribute,
+            $this->model->{$this->attribute},
             $this->model->getLabel($this->attribute),
             $this->model->hasError($this->attribute) ? ' is-invalid' : '',
             $this->model->getFirstError($this->attribute)

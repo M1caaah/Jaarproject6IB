@@ -5,6 +5,7 @@ namespace app\core;
 abstract class Model
 {
     public const RULE_REQUIRED = 'required';
+    public const RULE_BDATE = 'bdate';
     public const RULE_EMAIL = 'email';
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
@@ -39,9 +40,13 @@ abstract class Model
                     $ruleCode = $rule[0];
                 }
 
-                if ($ruleCode === self::RULE_REQUIRED && !$value)
+                if ($ruleCode === self::RULE_REQUIRED && !$value && $value !== '0')
                 {
                     $this->addErrorForRule($attribute, self::RULE_REQUIRED);
+                }
+                if ($ruleCode === self::RULE_BDATE && strtotime($value) > time())
+                {
+                    $this->addErrorForRule($attribute, self::RULE_BDATE);
                 }
                 if ($ruleCode === self::RULE_EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL))
                 {
@@ -98,6 +103,7 @@ abstract class Model
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
+            self::RULE_BDATE => 'Date cannot be in the future',
             self::RULE_EMAIL => 'This field must be a valid email adress',
             self::RULE_MIN => 'Minimum length of this field bust be {min}',
             self::RULE_MAX => 'Maximum length of this field bust be {max}',

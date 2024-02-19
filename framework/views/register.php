@@ -46,6 +46,9 @@ $form = new Form();
                                         <div class="col"><?php echo $form->field($model, 'confirmPassword')->passwordField(); ?></div>
                                     </div>
                                 </div>
+                            <script>
+                                console.log(document.getElementsByName('birthdate')[0].value)
+                            </script>
                                 <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Sign up</button></div>
                                 <p class="text-muted">Already have an account?&nbsp;<a href="/login">Log in</a></p>
                             <?php Form::end(); ?>
