@@ -24,7 +24,7 @@ class AuthController extends Controller
                 return true;
             }
         }
-        return $this->render('login', 'auth', ['model' => $loginForm]);
+        return $this->render('login', 'main', ['model' => $loginForm]);
     }
 
     public function register(Request $request, Response $response)
@@ -40,10 +40,10 @@ class AuthController extends Controller
                 $response->redirect('/');
                 return true;
             }
-            return $this->render('register', 'auth', ['model' => $user]);
+            return $this->render('register', 'main', ['model' => $user]);
         }
 
-        return $this->render('register', 'auth', ['model' => $user]);
+        return $this->render('register', 'main', ['model' => $user]);
     }
 
     public function logout(Request $request, Response $response)
