@@ -10,10 +10,7 @@ class SiteController extends Controller
 {
     public function home()
     {
-        $params = [
-            'name' => "M1caaah"
-        ];
-        return $this->render('home', 'main', $params);
+        return $this->render('home');
     }
 
     public function handleHome()
@@ -23,10 +20,7 @@ class SiteController extends Controller
 
     public function contact()
     {
-        $params = [
-            'name' => "M1caaah"
-        ];
-        return $this->render('contact', 'main', $params);
+        return $this->render('contact');
     }
 
     public function handleContact(Request $request)
