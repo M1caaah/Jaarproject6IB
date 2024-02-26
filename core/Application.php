@@ -39,9 +39,6 @@ class Application
         }
     }
 
-
-
-
     public function run()
     {
         echo $this->router->resolve();
@@ -49,7 +46,6 @@ class Application
 
     public function login($user)
     {
-        echo 'logging in';
         $this->user = $user;
         $className = get_class($user);
         $primaryKey = $className::primaryKey();

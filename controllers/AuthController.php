@@ -38,6 +38,8 @@ class AuthController extends Controller
             if ($user->validate() && $user->register())
             {
                 Application::$app->session->setFlash('success', 'Thanks for registering');
+                $userLogin = User::findOne(['email' => $user->email]);
+                Application::$app->login($userLogin);
                 $response->redirect('/');
                 return true;
             }
