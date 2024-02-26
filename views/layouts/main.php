@@ -14,22 +14,19 @@
 
 <body>
 
-
-
-
 <!-- Start: Navbar Centered Links -->
 <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
     <div class="container">
 
         <?php if (Application::$app->session->getFlash('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert" style=" width: 400px; text-align: center; position: absolute; left: calc(50% - 200px); top: 50px;">
-                    <?php echo Application::$app->session->getFlash('success') ?>
+            <?php echo Application::$app->session->getFlash('success') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <?php endif; ?>
 
         <a class="navbar-brand d-flex align-items-center" href="/">
-            <span><img src="assets/main/img/icon.svg" width="50" height="50" class="me-2"></span>
+            <span><img src="assets/img/logo.svg" width="50" height="50" class="me-2"></span>
             <span class="fs-3">ByteBazaar</span>
         </a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">

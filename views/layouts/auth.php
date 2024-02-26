@@ -17,7 +17,7 @@
 <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
-            <span><img src="assets/main/img/icon.svg" width="50" height="50" class="me-2"></span>
+            <span><img src="assets/img/logo.svg" width="50" height="50" class="me-2"></span>
             <span class="fs-3">ByteBazaar</span>
         </a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">

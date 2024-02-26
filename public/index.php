@@ -35,5 +35,11 @@ $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 
 // Dashboard routes
-$app->router->get('/dashboard', [DashboardController::class, 'dashMain']);
+$app->router->get('/dashboard', [DashboardController::class, 'main']);
+$app->router->get('/dashboard/users', [DashboardController::class, 'users']);
+$app->router->get('/dashboard/users/add', [DashboardController::class, 'addUsers']);
+$app->router->get('/dashboard/orders', [DashboardController::class, 'orders']);
+$app->router->get('/dashboard/orders/add', [DashboardController::class, 'addOrders']);
+$app->router->get('/dashboard/products', [DashboardController::class, 'products']);
+$app->router->get('/dashboard/products/add', [DashboardController::class, 'addProducts']);
 $app->run();
