@@ -41,6 +41,7 @@ class Application
 
 
 
+
     public function run()
     {
         echo $this->router->resolve();
@@ -66,5 +67,9 @@ class Application
     public static function isGuest()
     {
         return !self::$app->user;
+    }
+    public static function isAdmin()
+    {
+        return self::$app->user->role_id === 1;
     }
 }

@@ -24,21 +24,12 @@ class Field
 
     public function __toString(): string
     {
-        return sprintf('
-            <div class="form-outline mb-4" data-mdb-input-init>
-                <input type="%s" name="%s" value="%s" class="form-control %s"/>
-                <label class="form-label" for="%s">%s</label>
-                <div class="invalid-feedback">
-                    %s
-                </div>
-            </div>',
-
+        return sprintf(' <input type="%s" name="%s" value="%s" placeholder="%s" class="form-control %s"><div class="invalid-feedback">%s</div>',
             $this->type,
             $this->attribute,
             $this->model->{$this->attribute},
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
-            $this->attribute,
             $this->model->getLabel($this->attribute),
+            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
             $this->model->getFirstError($this->attribute)
         );
     }

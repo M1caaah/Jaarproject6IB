@@ -99,7 +99,7 @@
 	<!--Main Navigation-->
 	<header>
 		<!-- Sidebar -->
-		<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+		<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
 			<div class="position-sticky">
 				<div class="list-group list-group-flush mx-3 mt-4">
 					<a href="index.php" class="list-group-item list-group-item-action rounded-9 py-2 ripple active" aria-current="true">

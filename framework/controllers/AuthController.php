@@ -20,6 +20,7 @@ class AuthController extends Controller
 
             if ($loginForm->validate() && $loginForm->login())
             {
+                Application::$app->session->setFlash('success', 'Logged in successfully');
                 $response->redirect('/');
                 return true;
             }
@@ -49,6 +50,7 @@ class AuthController extends Controller
     public function logout(Request $request, Response $response)
     {
         Application::$app->logout();
+        Application::$app->session->setFlash('success', 'Logged out successfully');
         $response->redirect('/');
     }
 }
