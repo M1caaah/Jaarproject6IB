@@ -6,8 +6,6 @@
                 <div class="text-center">
                     <p class="fw-bold text-success mb-2">Play Cheaper</p>
                     <h1 class="fw-bold">Dive Into The Gaming World With ByteBazaar</h1>
-                    <div><button class="btn btn-primary shadow d-block w-100" type="submit">View</button></div>
-                    <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send</button></div>
                 </div>
             </div>
         </div>
