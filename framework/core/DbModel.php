@@ -27,6 +27,24 @@ abstract class DbModel extends Model
         return true;
     }
 
+    public static function findAll()
+    {
+        $tableName = static::tableName();
+        $statement = self::prepare("SELECT * FROM $tableName");
+        $statement->execute();
+        return $statement->get_result()->fetch_all();
+    }
+
+    public function findAllActive()
+    {
+        $tableName = static::tableName();
+        $statement = self::prepare("SELECT * FROM $tableName WHERE active = 1");
+        $statement->execute();
+        return $statement->get_result()->fetch_all();
+    }
+
+
+
     public static function findOne($where)
     {
         $tableName = static::tableName();
