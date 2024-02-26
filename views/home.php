@@ -4,8 +4,10 @@
         <div class="row pt-5">
             <div class="col-md-8 col-xl-6 text-center text-md-start mx-auto">
                 <div class="text-center">
-                    <p class="fw-bold text-success mb-2">Voted #1 Worldwide</p>
-                    <h1 class="fw-bold">The best solution for you and your customers</h1>
+                    <p class="fw-bold text-success mb-2">Play Cheaper</p>
+                    <h1 class="fw-bold">Dive Into The Gaming World With ByteBazaar</h1>
+                    <div><button class="btn btn-primary shadow d-block w-100" type="submit">View</button></div>
+                    <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send</button></div>
                 </div>
             </div>
         </div>
@@ -17,7 +19,7 @@
     <div class="container py-5">
         <div class="mx-auto" style="max-width: 900px;">
             <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center">
-                <div class="col mb-4">
+                <div class="col mb-3">
                     <div class="card bg-primary-light">
                         <div class="card-body text-center px-4 py-5 px-md-5">
                             <p class="fw-bold text-primary card-text mb-2">F</p>
@@ -54,7 +56,7 @@
                         <!-- Start: Error Example -->
                         <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Email"></div><!-- End: Error Example -->
                         <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="6" placeholder="Message"></textarea></div>
-                        <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send </button></div>
+                        <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send</button></div>
                     </form>
                 </div>
             </div>
@@ -66,7 +68,8 @@
                             </svg></div>
                         <div class="px-2">
                             <h6 class="fw-bold mb-0">Phone</h6>
-                            <p class="text-muted mb-0">+123456789</p>
+                            <p class="text-muted mb-0">+320472835953</p>
+                            <p class="text-muted mb-0">+320472835953</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center p-3">
