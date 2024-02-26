@@ -20,8 +20,8 @@
                 <div class="col mb-4">
                     <div class="card bg-primary-light">
                         <div class="card-body text-center px-4 py-5 px-md-5">
-                            <p class="fw-bold text-primary card-text mb-2">Fully Managed</p>
-                            <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-primary btn-sm" type="button">Learn more</button>
+                            <p class="fw-bold text-primary card-text mb-2">F</p>
+                            <h5 class="fw-bold card-title mb-3">Test&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-primary btn-sm" type="button">Learn more</button>
                         </div>
                     </div>
                 </div>
@@ -30,14 +30,6 @@
                         <div class="card-body text-center px-4 py-5 px-md-5">
                             <p class="fw-bold text-secondary card-text mb-2">Fully Managed</p>
                             <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-secondary btn-sm" type="button">Learn more</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card bg-info-light">
-                        <div class="card-body text-center px-4 py-5 px-md-5">
-                            <p class="fw-bold text-info card-text mb-2">Fully Managed</p>
-                            <h5 class="fw-bold card-title mb-3">Lorem ipsum dolor sit&nbsp;nullam et quis ad cras porttitor</h5><button class="btn btn-info btn-sm" type="button">Learn more</button>
                         </div>
                     </div>
                 </div>
@@ -83,7 +75,8 @@
                             </svg></div>
                         <div class="px-2">
                             <h6 class="fw-bold mb-0">Email</h6>
-                            <p class="text-muted mb-0">info@example.com</p>
+                            <p class="text-muted mb-0">verheyenobi@gmail.com</p>
+                            <p class="text-muted mb-0">bothamicah@gmail.com</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center p-3">
@@ -100,18 +93,3 @@
         </div>
     </div>
 </section><!-- End: Contact Details -->
-<!-- Start: Newsletter Subscription Color -->
-<section class="py-5">
-    <div class="container">
-        <div class="bg-dark border rounded border-dark d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5">
-            <div class="text-center text-lg-start py-3 py-lg-1">
-                <h2 class="fw-bold mb-2">Subscribe to our newsletter</h2>
-                <p class="mb-0">Imperdiet consectetur dolor.</p>
-            </div>
-            <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
-                <div class="my-2"><input class="border rounded-pill shadow-sm form-control" type="email" name="email" placeholder="Your Email"></div>
-                <div class="my-2"><button class="btn btn-primary shadow ms-2" type="submit">Subscribe </button></div>
-            </form>
-        </div>
-    </div>
-</section><!-- End: Newsletter Subscription Color -->
