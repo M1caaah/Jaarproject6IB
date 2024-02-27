@@ -10,7 +10,7 @@ abstract class DbModel extends Model
     abstract public function datatypes(): array;
     abstract public function labels(): array;
 
-    public function save()
+    public function insert()
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
@@ -27,36 +27,21 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public static function findAll()
+    public function select(array $columns, string $where): array|null
     {
-        $tableName = static::tableName();
-        $statement = self::prepare("SELECT * FROM $tableName");
+        $tableName = $this->tableName();
+        $columns = implode(",", $columns);
+        $sql = "SELECT $columns FROM $tableName WHERE $where AND `active` = 1";
+        $statement = self::prepare($sql);
         $statement->execute();
-        return $statement->get_result()->fetch_all();
+        return $statement->get_result()->fetch_assoc();
     }
 
-    public function findAllActive()
-    {
-        $tableName = static::tableName();
-        $statement = self::prepare("SELECT * FROM $tableName WHERE active = 1");
-        $statement->execute();
-        return $statement->get_result()->fetch_all();
-    }
-
-    public function findActive($where)
-    {
-        $tableName = static::tableName();
-
-        $statement = self::prepare("SELECT * FROM $tableName WHERE active = 1 AND $where");
-        $statement->execute();
-        return $statement->get_result()->fetch_all();
-    }
-
-    public static function findOne($where)
+    public static function findOne(array $where)
     {
         $tableName = static::tableName();
         $attributes = array_keys($where);
-        $sql = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes));
+        $sql = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes)) . ' AND `active` = 1';
         $datatypes = implode('', array_map(fn($attr) => 's', $attributes));
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
         foreach ($where as $item) {
@@ -67,7 +52,7 @@ abstract class DbModel extends Model
         return $statement->get_result()->fetch_object(static::class);
     }
 
-    public static function prepare($sql)
+    public static function prepare(string $sql): false|\mysqli_stmt
     {
         return Application::$app->db->mysqli->prepare($sql);
     }

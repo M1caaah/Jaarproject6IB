@@ -108,7 +108,7 @@ abstract class Model
             self::RULE_MIN => 'Minimum length of this field bust be {min}',
             self::RULE_MAX => 'Maximum length of this field bust be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
-            self::RULE_UNIQUE => 'Record with this {field} already exists'
+            self::RULE_UNIQUE => '{field} already exists'
         ];
     }
 

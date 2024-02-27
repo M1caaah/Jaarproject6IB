@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use app\controllers\AuthController;
 use app\controllers\DashboardController;
 use app\controllers\SiteController;
+use app\controllers\UserController;
 use app\core\Application;
 
 $config = [
@@ -34,6 +35,11 @@ $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 
+// User routes
+$app->router->get('/profile', [UserController::class, 'profile']);
+$app->router->get('/profile/edit', [UserController::class, 'editProfile']);
+$app->router->post('/profile/edit', [UserController::class, 'editProfile']);
+
 // Dashboard routes
 $app->router->get('/dashboard', [DashboardController::class, 'main']);
 $app->router->get('/dashboard/users', [DashboardController::class, 'users']);
@@ -42,4 +48,5 @@ $app->router->get('/dashboard/orders', [DashboardController::class, 'orders']);
 $app->router->get('/dashboard/orders/add', [DashboardController::class, 'addOrders']);
 $app->router->get('/dashboard/products', [DashboardController::class, 'products']);
 $app->router->get('/dashboard/products/add', [DashboardController::class, 'addProducts']);
+
 $app->run();

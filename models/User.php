@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\Application;
 use app\core\DbModel;
 use app\core\Model;
 use app\core\UserModel;
@@ -21,7 +22,8 @@ class User extends UserModel
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 
-        return $this->save();
+        // Returns true if successful
+        return $this->insert();
     }
 
     public static function tableName(): string
