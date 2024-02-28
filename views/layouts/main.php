@@ -39,7 +39,7 @@ use \app\core\Application; ?>
                 <span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
-                    <input class="navbar-brand align-items-left" type="text" placeholder="Search" aria-label="Search">
+                <input class="navbar-brand align-items-left" type="text" placeholder="Search" aria-label="Search">
                 </ul>
                 <?php if (Application::isGuest()) : ?>
                     <span class="navbar-text text-light">
@@ -106,5 +106,4 @@ use \app\core\Application; ?>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
     <script src="assets/main/js/script.min.js"></script>
 </body>
-
 </html>
