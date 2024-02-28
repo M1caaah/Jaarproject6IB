@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - ByteBazaar</title>
-    <link rel="stylesheet" href="assets/main/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/main/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.reflowhq.com/v2/toolkit.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="assets/main/css/styles.min.css">
+    <link rel="stylesheet" href="/assets/main/css/styles.min.css">
 </head>
 
 <body>
