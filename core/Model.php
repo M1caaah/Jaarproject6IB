@@ -11,6 +11,7 @@ abstract class Model
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
     public const RULE_UNIQUE = 'unique';
+    public const RULE_UNIQUE_UPDATE = 'uniqueUpdate';
 
     public array $errors = [];
 
@@ -79,6 +80,22 @@ abstract class Model
                         $this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
                     }
                 }
+                if ($ruleCode === self::RULE_UNIQUE_UPDATE)
+                {
+                    $className = $rule['class'];
+                    $uniqueAttr = $rule['attribute'] ?? $attribute;
+                    $id = $rule['id'];
+                    $primaryKey = $className::primaryKey();
+                    $tableName = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = ? AND ".$primaryKey." != ?");
+                    $statement->bind_param('si', $value, $id);
+                    $statement->execute();
+                    $record = $statement->get_result()->fetch_assoc();
+                    if ($record)
+                    {
+                        $this->addErrorForRule($attribute, self::RULE_UNIQUE_UPDATE, ['field' => $attribute]);
+                    }
+                }
             }
         }
         return empty($this->errors);
@@ -108,7 +125,8 @@ abstract class Model
             self::RULE_MIN => 'Minimum length of this field bust be {min}',
             self::RULE_MAX => 'Maximum length of this field bust be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
-            self::RULE_UNIQUE => '{field} already exists'
+            self::RULE_UNIQUE => '{field} already exists',
+            self::RULE_UNIQUE_UPDATE => '{field} already exists'
         ];
     }
 
