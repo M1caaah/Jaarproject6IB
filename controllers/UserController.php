@@ -14,11 +14,7 @@ class UserController extends Controller
     {
         $profile = new Profile();
         $profile->loadData($profile->getUserData());
-        echo '<pre>';
-        var_dump($profile);
-        echo '</pre>';
-        exit;
-        return $this->render('editProfile', 'main', ['model' => $profile]);
+        return $this->render('profile', 'main', ['model' => $profile]);
     }
 
     public function editProfile(Request $request, Response $response)
