@@ -51,7 +51,7 @@ $form = new Form();
                                                 <div class="col"><?php echo $form->field($model, 'email') ?></div>
                                                 <div class="col"><?php echo $form->field($model, 'birthdate')->dateField() ?></div>
                                             </div>
-                                            <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" name="submit" value="info" type="submit">Update</button></div>
+                                            <button class="btn btn-primary shadow d-block w-100" name="submit" value="info" type="submit">Update</button>
                                             <?php Form::end() ?>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@ $form = new Form();
                                                 <div class="col"><?php echo $form->field($passwordModel, 'newPassword')->passwordField() ?></div>
                                                 <div class="col"><?php echo $form->field($passwordModel, 'confirmPassword')->passwordField() ?></div>
                                             </div>
-                                            <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" name="submit" value="password" type="submit">Update</button></div>
+                                            <button class="btn btn-primary shadow d-block w-100" name="submit" value="password" type="submit">Update</button>
                                             <?php Form::end() ?>
                                         </div>
                                     </div>
