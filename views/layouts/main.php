@@ -15,65 +15,61 @@ use \app\core\Application; ?>
 </head>
 
 <body>
-
-
-
-
     <!-- Start: Navbar Centered Links -->
     <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
         <div class="container">
-
             <?php if (Application::$app->session->getFlash('success')) : ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert" style=" width: 400px; text-align: center; position: absolute; left: calc(50% - 200px); top: 50px;">
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style=" width: 400px; text-align: center; position: absolute; left: calc(50% - 200px); top: 100px;">
                     <?php echo Application::$app->session->getFlash('success') ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
 
-            <a class="navbar-brand d-flex align-items-center" href="/">
-                <span><img src="assets/main/img/icon.svg" width="50" height="50" class="me-2"></span>
+            <a class="navbar-brand" href="/">
+                <img src="assets/main/img/icon.svg" width="50" height="50" class="me-2" alt="">
                 <span class="fs-3">ByteBazaar</span>
             </a>
-            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#nav">
                 <span class="visually-hidden">Toggle navigation</span>
-                <span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav mx-auto">
-                <input class="navbar-brand align-items-left" type="text" placeholder="Search" aria-label="Search">
-                </ul>
-                <?php if (Application::isGuest()) : ?>
-                    <span class="navbar-text text-light">
-                        <a class="btn btn-primary" href="/login">Login</a>
-                        <a class="btn btn-primary" href="/register">Register</a>
-                    </span>
-                <?php elseif (Application::isAdmin()) : ?>
-                    <span class="navbar-text text-light">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php echo Application::$app->user->getDisplayName() ?>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                            </ul>
-                        </div>
-                    </span>
-                <?php else : ?>
-                    <span class="navbar-text text-light">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <?php echo Application::$app->user->getDisplayName() ?>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <span class="text-light">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav d-flex justify-content-between align-items-center w-100">
+                    <li class="nav-item input-group" style="width: 40%">
+                        <button class="btn btn-outline-primary" type="button" id="button-addon1">Button</button>
+                        <input type="text" class="form-control" placeholder="">
+                    </li>
+                    <li class="nav-item d-flex flex-row">
+                        <?php if (Application::isGuest()) : ?>
+                            <a class="btn btn-primary mx-1" href="/login">Login</a>
+                            <a class="btn btn-primary mx-1" href="/register">Register</a>
+                        <?php elseif (Application::isAdmin()) : ?>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php echo Application::$app->user->getDisplayName() ?>
+                                </button>
+                                <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                </span>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                            </ul>
-                        </div>
-                    </span>
-                <?php endif; ?>
+                                    <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        <?php else : ?>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php echo Application::$app->user->getDisplayName() ?>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <span class="text-light">
+                                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                    </span>
+                                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav><!-- End: Navbar Centered Links -->
