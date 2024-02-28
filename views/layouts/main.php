@@ -38,7 +38,7 @@ use \app\core\Application; ?>
                 <ul class="navbar-nav d-flex justify-content-between align-items-center w-100">
                     <li class="nav-item input-group" style="width: 40%">
                         <button class="btn btn-outline-primary" type="button" id="button-addon1">Button</button>
-                        <input type="text" class="form-control" placeholder="">
+                        <input type="text" class="form-control rounded-end-5" placeholder="">
                     </li>
                     <li class="nav-item d-flex flex-row">
                         <?php if (Application::isGuest()) : ?>
