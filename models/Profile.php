@@ -34,9 +34,9 @@ class Profile extends DbModel
         return ['firstname', 'lastname', 'email', 'password'];
     }
 
-    public function datatypes(): array
+    public function datatypes(): string
     {
-        return ['s', 's', 's', 's'];
+        return 'ssss';
     }
 
     public function labels(): array
@@ -57,5 +57,12 @@ class Profile extends DbModel
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
             'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 24]],
         ];
+    }
+
+    public function update()
+    {
+        $id = Application::$app->session->get('user');
+
+        return true;
     }
 }

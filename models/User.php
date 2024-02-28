@@ -39,9 +39,9 @@ class User extends UserModel
     {
         return ['firstname', 'lastname', 'email', 'birthdate','password'];
     }
-    public function datatypes(): array
+    public function datatypes(): string
     {
-        return ['s', 's', 's', 's', 's'];
+        return 'sssss';
     }
 
     public function labels(): array

@@ -7,14 +7,14 @@ abstract class DbModel extends Model
     abstract public static function tableName(): string;
     abstract public static function primaryKey(): string;
     abstract public function attributes(): array;
-    abstract public function datatypes(): array;
+    abstract public function datatypes(): string;
     abstract public function labels(): array;
 
     public function insert()
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $datatypes = implode('', $this->datatypes());
+        $datatypes = $this->datatypes();
         $params = array_map(fn($attr) => "?", $attributes);
 
         $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") VALUES (".implode(',', $params).")");
@@ -37,12 +37,20 @@ abstract class DbModel extends Model
         return $statement->get_result()->fetch_assoc();
     }
 
+    public function update()
+    {
+        $tableName = $this->tableName();
+        $attributes = $this->attributes();
+        $datatypes = $this->datatypes();
+
+    }
+
     public static function findOne(array $where)
     {
         $tableName = static::tableName();
         $attributes = array_keys($where);
+        $datatypes = str_repeat('s', count($attributes));
         $sql = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes)) . ' AND `active` = 1';
-        $datatypes = implode('', array_map(fn($attr) => 's', $attributes));
         $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
         foreach ($where as $item) {
             $values[] = $item;

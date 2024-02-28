@@ -14,15 +14,23 @@ class UserController extends Controller
     {
         $profile = new Profile();
         $profile->loadData($profile->getUserData());
-        return $this->render('editProfile', 'main', ['model' => Application::$app->user]);
+        echo '<pre>';
+        var_dump($profile);
+        echo '</pre>';
+        exit;
+        return $this->render('editProfile', 'main', ['model' => $profile]);
     }
 
     public function editProfile(Request $request, Response $response)
     {
         $profile = new Profile();
         if ($request->isPost()) {
-
             $profile->loadData($request->getBody());
+            if ($profile->validate() && $profile->update()) {
+                Application::$app->session->setFlash('success', 'Profile updated successfully');
+                $response->redirect('/profile');
+                return true;
+            }
         }
         return $this->render('profile', 'main', ['model' => $profile]);
 
