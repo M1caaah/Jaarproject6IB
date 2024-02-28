@@ -38,7 +38,7 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 // User routes
 $app->router->get('/profile', [UserController::class, 'profile']);
 $app->router->get('/profile/edit', [UserController::class, 'editProfile']);
-$app->router->post('/profile/edit', [UserController::class, 'editProfile']);
+$app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
 
 // Dashboard routes
 $app->router->get('/dashboard', [DashboardController::class, 'main']);

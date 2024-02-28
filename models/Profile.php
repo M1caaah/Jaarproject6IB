@@ -11,7 +11,7 @@ class Profile extends DbModel
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
-    public string $password = '';
+    public string $birthdate = '';
 
     public function getUserData()
     {
@@ -31,7 +31,7 @@ class Profile extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password'];
+        return ['firstname', 'lastname', 'email', 'birthdate'];
     }
 
     public function datatypes(): string
@@ -45,7 +45,7 @@ class Profile extends DbModel
             'firstname' => 'First Name',
             'lastname' => 'Last Name',
             'email' => 'Email',
-            'password' => 'Password'
+            'birthdate' => 'Birthdate'
         ];
     }
 
@@ -55,11 +55,11 @@ class Profile extends DbModel
             'firstname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
             'lastname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 24]],
+            'birthdate' => [self::RULE_REQUIRED],
         ];
     }
 
-    public function update()
+    public function updateInfo()
     {
         $id = Application::$app->session->get('user');
 

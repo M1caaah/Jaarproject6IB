@@ -1,10 +1,6 @@
 <?php
 
-use app\core\form\Form;
 use app\core\Application;
-
-$form = new Form();
-
 /** @var $model \app\models\Profile */
 
 ?>
