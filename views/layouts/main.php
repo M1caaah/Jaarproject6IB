@@ -31,7 +31,7 @@ use \app\core\Application; ?>
             <?php endif; ?>
 
             <a class="navbar-brand d-flex align-items-center" href="/">
-                <span><img src="assets/img/logo.svg" width="50" height="50" class="me-2"></span>
+                <span><img src="assets/main/img/icon.svg" width="50" height="50" class="me-2"></span>
                 <span class="fs-3">ByteBazaar</span>
             </a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
@@ -39,8 +39,7 @@ use \app\core\Application; ?>
                 <span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contacts</a></li>
+                <input class="navbar-brand align-items-left" type="text" placeholder="Search" aria-label="Search">
                 </ul>
                 <?php if (Application::isGuest()) : ?>
                     <span class="navbar-text text-light">
@@ -49,9 +48,9 @@ use \app\core\Application; ?>
                     </span>
                 <?php elseif (Application::isAdmin()) : ?>
                     <span class="navbar-text text-light">
-                    <div class="dropdown">
+                        <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo Application::$app->user->getDisplayName() ?>
+                                <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
@@ -64,7 +63,7 @@ use \app\core\Application; ?>
                     <span class="navbar-text text-light">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo Application::$app->user->getDisplayName() ?>
+                                <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
                                 <span class="text-light">
@@ -83,16 +82,18 @@ use \app\core\Application; ?>
 
 
     <!-- Start: Footer Multi Column -->
-    <footer class="bg-dark">
+    <footer class="navbar-dark">
         <div class="container py-4 py-lg-5">
-            <div class="row justify-content-center">
+            <div class="row justify-content-left">
                 <!-- Start: Social Icons -->
                 <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
-                    <div class="fw-bold d-flex align-items-center mb-2">
+                    <div class="fw-bold d-flex align-items-left mb-2">
                         <span><img src="assets/main/img/icon.svg" width="25" height="25" class="me-2"></span>
                         <span>ByteBazaar</span>
                     </div>
                     <p class="text-muted">Insert footer here :D</p>
+                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contacts</a></li>
                 </div><!-- End: Social Icons -->
             </div>
             <hr>
@@ -105,5 +106,4 @@ use \app\core\Application; ?>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
     <script src="assets/main/js/script.min.js"></script>
 </body>
-
 </html>
