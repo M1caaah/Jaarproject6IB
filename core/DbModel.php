@@ -37,12 +37,26 @@ abstract class DbModel extends Model
         return $statement->get_result()->fetch_assoc();
     }
 
-    public function update()
+    public function delete($id)
+    {
+        $tableName = $this->tableName();
+        $primaryKey = $this->primaryKey();
+        $sql = "UPDATE $tableName SET `active` = 0 WHERE $primaryKey = ?";
+        $statement = self::prepare($sql);
+        $statement->bind_param('i', $id);
+        $statement->execute();
+    }
+
+    public function update($id)
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $datatypes = $this->datatypes();
-
+        $set = implode(', ', array_map(fn($attr) => "$attr = '".$this->{$attr}."'", $attributes));
+        $sql = "UPDATE $tableName SET $set WHERE `".static::primaryKey()."` = ? AND `active` = 1";
+        $statement = self::prepare($sql);
+        $statement->bind_param('i', $id);
+        $statement->execute();
+        return true;
     }
 
     public static function findOne(array $where)
@@ -50,8 +64,10 @@ abstract class DbModel extends Model
         $tableName = static::tableName();
         $attributes = array_keys($where);
         $datatypes = str_repeat('s', count($attributes));
-        $sql = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes)) . ' AND `active` = 1';
-        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
+        $params = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes));
+        $sql = "SELECT * FROM $tableName WHERE $params AND `active` = 1";
+        $statement = self::prepare($sql);
+        $values = [];
         foreach ($where as $item) {
             $values[] = $item;
         }

@@ -7,7 +7,6 @@ use app\core\DbModel;
 
 class Profile extends DbModel
 {
-
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
@@ -62,7 +61,7 @@ class Profile extends DbModel
     public function updateInfo()
     {
         $id = Application::$app->session->get('user');
-
+        $this->update($id);
         return true;
     }
 }

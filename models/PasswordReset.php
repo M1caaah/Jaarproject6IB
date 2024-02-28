@@ -49,7 +49,7 @@ class PasswordReset extends DbModel
         ];
     }
 
-    public function update()
+    public function resetPassword()
     {
 
     }
