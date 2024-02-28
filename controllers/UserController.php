@@ -6,6 +6,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\PasswordReset;
 use app\models\Profile;
 
 class UserController extends Controller
@@ -20,15 +21,40 @@ class UserController extends Controller
     public function editProfile(Request $request, Response $response)
     {
         $profile = new Profile();
-        if ($request->isPost()) {
+        $passwordModel = new PasswordReset();
+
+        $profile->loadData($profile->getUserData());
+        return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordModel]);
+    }
+
+    public function handleProfile(Request $request, Response $response)
+    {
+        $profile = new Profile();
+        $passwordReset = new PasswordReset();
+
+        if ($request->formNamePost() === 'info')
+        {
             $profile->loadData($request->getBody());
-            if ($profile->validate() && $profile->update()) {
+            if ($profile->validate() && $profile->updateInfo())
+            {
                 Application::$app->session->setFlash('success', 'Profile updated successfully');
                 $response->redirect('/profile');
                 return true;
             }
         }
-        return $this->render('profile', 'main', ['model' => $profile]);
 
+        if ($request->formNamePost() === 'password')
+        {
+            $profile->loadData($profile->getUserData());
+            $passwordReset->loadData($request->getBody());
+            if ($passwordReset->validate() && $passwordReset->updatePassword())
+            {
+                Application::$app->session->setFlash('success', 'Password updated successfully');
+                $response->redirect('/profile');
+                return true;
+            }
+        }
+
+        return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordReset]);
     }
 }

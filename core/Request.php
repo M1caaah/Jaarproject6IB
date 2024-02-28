@@ -31,6 +31,16 @@ class Request
         return $this->method() === 'post';
     }
 
+    public function formNamePost()
+    {
+        return $_POST['submit'] ?? '';
+    }
+
+    public function formNameGet()
+    {
+        return $_GET['type'] ?? '';
+    }
+
     public function getBody()
     {
         $body = [];
