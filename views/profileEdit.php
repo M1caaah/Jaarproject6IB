@@ -82,9 +82,16 @@ $form = new Form();
                             </div>
                         </div>
                     </div>
+                    <div class="row pt-5">
+                        <div class="col-12">
+                            <h2 class="text-white mb-3">Deactivate account</h2>
+                            <?php Form::begin('', 'post') ?>
+                            <button class="btn btn-danger shadow d-block w-100" name="submit" value="deactivate" type="submit">Deactivate</button>
+                            <?php Form::end() ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </main>

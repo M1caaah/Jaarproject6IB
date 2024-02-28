@@ -55,6 +55,17 @@ class UserController extends Controller
             }
         }
 
+        if ($request->formNamePost() === 'deactivate')
+        {
+            if ($profile->deactivateUser())
+            {
+                Application::$app->session->setFlash('success', 'Profile deactivated successfully');
+                Application::$app->logout();
+                $response->redirect('/');
+                return true;
+            }
+        }
+
         return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordReset]);
     }
 }

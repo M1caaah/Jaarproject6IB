@@ -71,7 +71,7 @@ abstract class Model
                     $className = $rule['class'];
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
                     $tableName = $className::tableName();
-                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = ?");
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = ? AND `active` = 1");
                     $statement->bind_param('s', $value);
                     $statement->execute();
                     $record = $statement->get_result()->fetch_assoc();
