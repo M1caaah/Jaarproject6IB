@@ -3,17 +3,30 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Request;
+use app\core\Response;
+use app\models\DashUsers;
 
 class DashboardController extends Controller
 {
     public function main()
     {
-        return $this->render('dashMain', 'dashboard');
+        $dashUsers = new DashUsers();
+        return $this->render('dashMain', 'dashboard', ['model' => $dashUsers]);
     }
 
     public function users()
     {
-        return $this->render('dashUsers', 'dashboard');
+        $dashUsers = new DashUsers();
+        return $this->render('dashUsers', 'dashboard', ['model' => $dashUsers]);
+    }
+
+    public function delete(Request $request, Response $response)
+    {
+        $dashUsers = new DashUsers();
+        $dashUsers->loadData($request->getBody());
+        $dashUsers->delete($dashUsers->client_id);
+        $response->redirect('/dashboard/users');
     }
 
     public function addUsers()

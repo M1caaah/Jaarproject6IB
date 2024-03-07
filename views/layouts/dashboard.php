@@ -41,7 +41,7 @@
                     </a>
                     <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="/dashboard/users" class="sidebar-link">View users</a>
+                            <a href="/dashboard/users" class="sidebar-link">Manage users</a>
                         </li>
                         <li class="sidebar-item">
                             <a href="/dashboard/users/add" class="sidebar-link">Add user</a>

@@ -34,7 +34,17 @@ abstract class DbModel extends Model
         $sql = "SELECT $columns FROM $tableName WHERE $where AND `active` = 1";
         $statement = self::prepare($sql);
         $statement->execute();
-        return $statement->get_result()->fetch_assoc();
+        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function selectAll(array $columns): array|null
+    {
+        $tableName = $this->tableName();
+        $columns = implode(",", $columns);
+        $sql = "SELECT $columns FROM $tableName WHERE `active` = 1";
+        $statement = self::prepare($sql);
+        $statement->execute();
+        return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
     public function delete($id)
