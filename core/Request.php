@@ -7,6 +7,7 @@ class Request
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? false;
+        $path = str_contains($path, '?') ? explode('?',$path)[0] : $path;
         $position = strpos($path, '?');
 
         if (!$position)

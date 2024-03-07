@@ -1,3 +1,10 @@
+<?php
+
+use app\models\DashUsers;
+/** @var $model DashUsers */
+
+?>
+
 <main class="content px-3 py-2">
     <div class="container-fluid">
         <div class="my-3">
@@ -16,7 +23,7 @@
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total users</p>
-                        <h5 class="fw-bold card-title mb-3">3</h5>
+                        <h5 class="fw-bold card-title mb-3"><?= $model->countUsers() ?></h5>
                     </div>
                 </div>
             </div>
@@ -24,7 +31,7 @@
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Earnings</p>
-                        <h5 class="fw-bold card-title mb-3">$ 78.00</h5>
+                        <h5 class="fw-bold card-title mb-3">$ ????</h5>
                     </div>
                 </div>
             </div>
@@ -32,7 +39,7 @@
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Orders</p>
-                        <h5 class="fw-bold card-title mb-3">26</h5>
+                        <h5 class="fw-bold card-title mb-3">??</h5>
                     </div>
                 </div>
             </div>
