@@ -65,9 +65,6 @@ class DashUsers extends DbModel
 
     public function getUserData()
     {
-        echo '<pre>';
-        var_dump($this->select($this->attributes(), self::primaryKey(). " = $this->client_id AND `active`  = 1"));
-        echo '</pre>';
-        exit;
+        return $this->select($this->attributes(), self::primaryKey(). " = $this->client_id AND c.role_id = r.role_id")[0];
     }
 }
