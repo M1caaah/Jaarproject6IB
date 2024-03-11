@@ -25,7 +25,7 @@ class DashUsers extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password'];
+        return ['firstname', 'lastname', 'email', 'password', "c.role_id"];
     }
 
     public function datatypes(): string
@@ -39,7 +39,8 @@ class DashUsers extends DbModel
             'firstname' => 'First Name',
             'lastname' => 'Last Name',
             'email' => 'Email',
-            'password' => 'Password'
+            'password' => 'Password',
+            'role_id' => 'Role'
         ];
     }
 
@@ -60,5 +61,13 @@ class DashUsers extends DbModel
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         return (int)$result['COUNT(*)'];
+    }
+
+    public function getUserData()
+    {
+        echo '<pre>';
+        var_dump($this->select($this->attributes(), self::primaryKey(). " = $this->client_id AND `active`  = 1"));
+        echo '</pre>';
+        exit;
     }
 }

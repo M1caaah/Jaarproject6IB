@@ -30,7 +30,7 @@ use app\models\DashUsers;
                             <div class="dropdown mt-3">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="#">Edit User</a></li>
+                                    <li><a class="dropdown-item" href="users/edit?client_id=<?= $user['client_id'] ?>">Edit User</a></li>
                                     <li><a class="dropdown-item" href="users/delete?client_id=<?= $user['client_id'] ?>">Delete User</a></li>
                                 </ul>
                             </div>

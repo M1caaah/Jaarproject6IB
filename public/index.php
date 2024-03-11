@@ -43,7 +43,8 @@ $app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
 // Dashboard routes
 $app->router->get('/dashboard', [DashboardController::class, 'main']);
 $app->router->get('/dashboard/users', [DashboardController::class, 'users']);
-$app->router->get('/dashboard/users/delete', [DashboardController::class, 'delete']);
+$app->router->get('/dashboard/users/edit', [DashboardController::class, 'editUser']);
+$app->router->get('/dashboard/users/delete', [DashboardController::class, 'deleteUser']);
 $app->router->get('/dashboard/users/add', [DashboardController::class, 'addUsers']);
 $app->router->get('/dashboard/orders', [DashboardController::class, 'orders']);
 $app->router->get('/dashboard/orders/add', [DashboardController::class, 'addOrders']);
