@@ -29,13 +29,6 @@ class DashboardController extends Controller
         return $this->render('dashEditUsers', 'dashboard', ['model' => $dashUsers]);
     }
 
-    public function handleEdit(Request $request, Response $response)
-    {
-        $dashUsers = new DashUsers();
-        $dashUsers->loadData($request->getBody());
-        return $this->render('dashEditUsers', 'dashboard', ['model' => $dashUsers]);
-    }
-
     public function deleteUser(Request $request, Response $response)
     {
         $dashUsers = new DashUsers();

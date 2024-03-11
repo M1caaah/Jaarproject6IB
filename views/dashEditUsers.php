@@ -6,7 +6,7 @@ use app\core\Form;
 
 ?>
 
-<h1>Edit User: </h1>
+<h1>Edit User: <?= $model->getDisplayName() ?></h1>
 <?php
     echo '<pre>';
     var_dump($model);

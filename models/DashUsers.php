@@ -67,4 +67,9 @@ class DashUsers extends DbModel
     {
         return $this->select($this->attributes(), self::primaryKey(). " = $this->client_id AND c.role_id = r.role_id")[0];
     }
+
+    public function getDisplayName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }
