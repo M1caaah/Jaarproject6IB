@@ -105,28 +105,26 @@ use app\models\DashUsers;
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Registration Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>M1cah</td>
-                                    <td>
-                                        <a href="mailto:"></a>
-                                    </td>
-                                    <td>Admin</td>
-                                </tr>
+                                <?php foreach ($model->getRecentUsers() as $user): ?>
+                                    <tr>
+                                        <td><?= $user['firstname'] . ' ' . $user['lastname'] ?></td>
+                                        <td><?= $user['email'] ?></td>
+                                        <td><?= $user['roleName'] ?></td>
+                                        <td><?= $user['regDate'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-
     </div>
 </main>

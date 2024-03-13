@@ -25,7 +25,7 @@ class DashUsers extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password', "c.role_id"];
+        return ['firstname', 'lastname', 'email', 'password', "c.role_id", "roleName", "regDate"];
     }
 
     public function datatypes(): string
@@ -40,7 +40,7 @@ class DashUsers extends DbModel
             'lastname' => 'Last Name',
             'email' => 'Email',
             'password' => 'Password',
-            'role_id' => 'Role'
+            'roleName' => 'Role'
         ];
     }
 
@@ -61,6 +61,11 @@ class DashUsers extends DbModel
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         return (int)$result['COUNT(*)'];
+    }
+
+    public function getRecentUsers($limit = 5)
+    {
+        return $this->select($this->attributes(),  "c.role_id = r.role_id", "client_id DESC", $limit);
     }
 
     public function getUserData()
