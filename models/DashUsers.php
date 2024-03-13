@@ -10,8 +10,11 @@ class DashUsers extends DbModel
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
+    public string $birthdate = '';
+    public string $regDate = '';
     public string $password = '';
     public string $role_id = '';
+    public string $roleName = '';
 
     public static function tableName(): string
     {
@@ -25,7 +28,7 @@ class DashUsers extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password', "c.role_id", "roleName", "regDate"];
+        return ['firstname', 'lastname', 'email', 'password', 'c.role_id', 'roleName', 'regDate', 'birthdate'];
     }
 
     public function datatypes(): string
