@@ -68,6 +68,14 @@ class DashUsers extends DbModel
         return (int)$result['COUNT(*)'];
     }
 
+    public function getRoles()
+    {
+        echo '<pre>';
+        var_dump($this->select(['tr.role_id', 'roleName'], tableName: 'tblroles tr', checkActive: false));
+        echo '</pre>';
+        exit;
+    }
+
     public function getRecentUsers($limit = 5)
     {
         return $this->select($this->attributes(),  "c.role_id = r.role_id", "client_id DESC", $limit);
@@ -82,4 +90,11 @@ class DashUsers extends DbModel
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function addUser()
+    {
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        return $this->insert();
+    }
+
 }

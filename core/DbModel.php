@@ -27,12 +27,15 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public function select(array $columns, string $where, string $oderby = "", int $limit = null): array|null
+    public function select(array $columns, string $where = "", string $oderby = "", int $limit = null, string $tableName = "", bool $checkActive = true): array|null
     {
-        $tableName = $this->tableName();
+        $tableName = $tableName ?: $this->tableName();
         $columns = implode(",", $columns);
 
-        $sql = "SELECT $columns FROM $tableName WHERE $where AND `active` = 1";
+        $sql = "SELECT $columns FROM $tableName";
+
+        if ($where) $sql .= " WHERE $where";
+        else if ($checkActive) $sql .= " WHERE `active` = 1";
         if ($oderby) $sql .= " ORDER BY $oderby";
         if ($limit) $sql .= " LIMIT $limit";
 
