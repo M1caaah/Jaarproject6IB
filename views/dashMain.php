@@ -11,15 +11,7 @@ use app\models\DashUsers;
             <h4>Admin Dashboard</h4>
         </div>
         <div class="row">
-            <div class="col-md-3 col-6 mb-4">
-                <div class="card border-0">
-                    <div class="card-body px-4 py-3 px-md-3">
-                        <p class="fw-bold text-primary card-text mb-2">Welcome M1cah</p>
-                        <h5 class="fw-bold card-title mb-3">Manage all users, products and order easily from here</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 mb-4">
+           <div class="col-md-3 col-6 mb-4">
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total users</p>
@@ -40,6 +32,14 @@ use app\models\DashUsers;
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Orders</p>
                         <h5 class="fw-bold card-title mb-3">??</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="card border-0">
+                    <div class="card-body px-4 py-3 px-md-3">
+                        <p class="fw-bold text-primary card-text mb-2">Total Products</p>
+                        <h5 class="fw-bold card-title mb-3">????</h5>
                     </div>
                 </div>
             </div>
