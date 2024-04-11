@@ -13,6 +13,7 @@ class DashUsers extends DbModel
     public string $birthdate = '';
     public string $regDate = '';
     public string $password = '';
+    public string $confirmPassword = '';
     public string $role_id = '';
     public string $roleName = '';
 
@@ -43,7 +44,8 @@ class DashUsers extends DbModel
             'lastname' => 'Last Name',
             'email' => 'Email',
             'password' => 'Password',
-            'roleName' => 'Role'
+            'roleName' => 'Role',
+            'confirmPassword' => 'Confirm Password',
         ];
     }
 

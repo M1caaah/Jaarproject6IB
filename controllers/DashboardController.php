@@ -39,7 +39,8 @@ class DashboardController extends Controller
 
     public function addUsers()
     {
-        return $this->render('dashAddUsers', 'dashboard');
+        $dashUsers = new DashUsers();
+        return $this->render('dashAddUsers', 'dashboard', ['model' => $dashUsers]);
     }
 
     public function orders()
