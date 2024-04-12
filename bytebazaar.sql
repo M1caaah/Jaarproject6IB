@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2024 at 05:30 PM
+-- Generation Time: Mar 07, 2024 at 06:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,22 +32,20 @@ CREATE TABLE `tblclients` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
   `birthdate` date NOT NULL,
+  `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `active` tinyint(4) NOT NULL DEFAULT 1
+  `regDate` date NOT NULL DEFAULT current_timestamp(),
+  `active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblclients`
 --
 
-INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `password`, `birthdate`, `role_id`, `active`) VALUES
-(1, 'Micah', 'Botha', 'micah.botha@gmail.com', '$2y$10$BZI5n0Cq77AJHIj24MK6pO1qejbbVXdzl34rJ5JkrriGSqKWhVgnG', '2006-08-21', 1, 1),
-(2, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '$2y$10$rFtlJ3BNwTDk4BSh8TbYiexN.Y0FyZh/P8thhSKPibNj0rNImcFe2', '2004-06-01', 0, 1),
-(4, 'Maggie', 'Van Damme', 'vandammemaggie@lyceumgent.be', '$2y$10$9PiU1YXkNM8cQPF2FUvI3u/BNI7eccOe6lBmDuBA2EGdLczBQg6zO', '1970-05-05', 0, 1),
-(6, 'Steffy', 'De Scheijter', 'descheijterstef@lyceumgent.be', '$2y$10$Bo4QAA5d7G9LLZBSoeQ2Duu8zleWEA1cPUSUvE46GH8sQI8HgNe92', '2004-10-10', 0, 1),
-(7, 'Tim', 'Meesen', 'meesentim@lyceumgent.be', '$2y$10$ssRsA/cjPLjIwAsjp0u3VekiysLwup3sbEgX.9fiuon0Pwe4C17lO', '2006-03-03', 0, 1);
+INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `birthdate`, `password`, `role_id`, `regDate`, `active`) VALUES
+(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$CRZH/FoHV7BSf4bMKog.c.iy5GeXanBUW4mU0Aos1zVZMIHxyVcrG', 1, '2024-02-19', 1),
+(33, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', '$2y$10$cftQ1Jp7ZfX3HB0zYuNZoOcQmS9cWwqYIrwysMzEmjv.tayN4PoUK', 0, '2024-02-19', 1);
 
 -- --------------------------------------------------------
 
@@ -56,12 +54,10 @@ INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `passwo
 --
 
 CREATE TABLE `tblproducts` (
-  `product_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `imagepath` varchar(255) NOT NULL,
-  `price` decimal(10,0) NOT NULL,
-  `age_id` int(11) NOT NULL
+  `productID` int(11) NOT NULL,
+  `productName` text NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -72,14 +68,14 @@ CREATE TABLE `tblproducts` (
 
 CREATE TABLE `tblroles` (
   `role_id` int(11) NOT NULL,
-  `rolename` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+  `roleName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblroles`
 --
 
-INSERT INTO `tblroles` (`role_id`, `rolename`) VALUES
+INSERT INTO `tblroles` (`role_id`, `roleName`) VALUES
 (0, 'User'),
 (1, 'Admin');
 
@@ -92,13 +88,13 @@ INSERT INTO `tblroles` (`role_id`, `rolename`) VALUES
 --
 ALTER TABLE `tblclients`
   ADD PRIMARY KEY (`client_id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `role` (`role_id`);
 
 --
 -- Indexes for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`productID`);
 
 --
 -- Indexes for table `tblroles`
@@ -114,19 +110,19 @@ ALTER TABLE `tblroles`
 -- AUTO_INCREMENT for table `tblclients`
 --
 ALTER TABLE `tblclients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblroles`
 --
 ALTER TABLE `tblroles`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

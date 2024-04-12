@@ -98,7 +98,9 @@ abstract class Model
                 }
             }
         }
-        return empty($this->errors);
+        if (!empty($this->errors))
+            return $this->errors;
+        return true;
     }
 
     public function addErrorForRule(string $attribute, string $rule, $params = [])

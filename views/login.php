@@ -27,6 +27,7 @@ $form = new Form();
                             <div class="mb-3"><?php echo $form->field($model, 'password')->passwordField(); ?></div>
                             <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Login</button></div>
                         <?php Form::end(); ?>
+                        <p class="text-muted">Don't have an acount yet? <a href="/register">Register</a></p>
                     </div>
                 </div>
             </div>
