@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2024 at 06:57 PM
+-- Generation Time: Apr 12, 2024 at 08:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `tblclients` (
 --
 
 INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `birthdate`, `password`, `role_id`, `regDate`, `active`) VALUES
-(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$CRZH/FoHV7BSf4bMKog.c.iy5GeXanBUW4mU0Aos1zVZMIHxyVcrG', 1, '2024-02-19', 1),
+(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$uNc.XdUCDYk.wyuw5IzDFuZrjrXqmQp2G6zCeLxddIlVu16hBPTuy', 1, '2024-02-19', 1),
 (33, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', '$2y$10$cftQ1Jp7ZfX3HB0zYuNZoOcQmS9cWwqYIrwysMzEmjv.tayN4PoUK', 0, '2024-02-19', 1);
 
 -- --------------------------------------------------------
@@ -57,7 +57,8 @@ CREATE TABLE `tblproducts` (
   `productID` int(11) NOT NULL,
   `productName` text NOT NULL,
   `description` text DEFAULT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,2) NOT NULL,
+  `imagePath` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -110,7 +111,7 @@ ALTER TABLE `tblroles`
 -- AUTO_INCREMENT for table `tblclients`
 --
 ALTER TABLE `tblclients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`
