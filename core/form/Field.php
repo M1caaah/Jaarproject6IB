@@ -16,7 +16,7 @@ class Field
     public string $attribute;
     public string $type;
 
-    public function __construct(Model $model, string $attribute)
+    public function __construct(Model $model = null, string $attribute)
     {
         $this->type = self::TYPE_TEXT;
         $this->model = $model;
@@ -31,13 +31,18 @@ class Field
                 $this->model->hasError($this->attribute) ? ' is-invalid' : ''
             );
 
-            return sprintf('<select name="%s" class="form-select %s"><option value="">Select</option></select>',
-                $this->attribute,
-                $this->model->hasError($this->attribute) ? ' is-invalid' : ''
-            );
+            foreach ($this->model->getRoles() as $role) {
+                $string .= sprintf('<option value="%s" ', $role['role_id']);
+                if ($role['role_id'] == $this->model->{$this->attribute}) {
+                    $string .= ' selected';
+                }
+                $string .= sprintf('>%s</option>', $role['roleName']);
+            }
+
+            $string .= '</select><div class="invalid-feedback">'.$this->model->getFirstError($this->attribute).'</div>';
         }
         else {
-            return sprintf('<input type="%s" name="%s" value="%s" placeholder="%s" class="form-control %s"><div class="invalid-feedback">%s</div>',
+            $string = sprintf('<input type="%s" name="%s" value="%s" placeholder="%s" class="form-control %s"><div class="invalid-feedback">%s</div>',
                 $this->type,
                 $this->attribute,
                 $this->model->{$this->attribute},
@@ -46,6 +51,7 @@ class Field
                 $this->model->getFirstError($this->attribute)
             );
         }
+        return $string;
     }
 
     public function passwordField()

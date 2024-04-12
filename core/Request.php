@@ -60,4 +60,22 @@ class Request
         }
         return $body;
     }
+    public function getBodyPost()
+    {
+        $body = [];
+
+        foreach ($_POST as $key => $value) {
+            $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        return $body;
+    }
+    public function getBodyGet()
+    {
+        $body = [];
+
+        foreach ($_GET as $key => $value) {
+            $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        return $body;
+    }
 }

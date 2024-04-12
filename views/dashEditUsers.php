@@ -1,11 +1,11 @@
 <?php
 
 use app\core\form\Form;
-use app\models\DashUsers;
+use app\models\DashAddUsers;
 
 $form = new Form();
 
-/* @var $model DashUsers */
+/* @var $model DashAddUsers */
 
 ?>
 
@@ -30,6 +30,12 @@ $form = new Form();
                             <div class="row">
                                 <div class="col"><?php echo $form->field($model, 'email') ?></div>
                                 <div class="col"><?php echo $form->field($model, 'birthdate')->dateField() ?></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col"><?php echo $form->field($model, 'password') ?></div>
+                                <div class="col"><?php echo $form->field($model, 'role_id')->selectField() ?></div>
                             </div>
                         </div>
                         <button class="btn btn-primary shadow d-block w-100" name="submit" value="info" type="submit">Update</button>

@@ -1,7 +1,7 @@
 <?php
 
-use app\models\DashUsers;
-/** @var $model DashUsers */
+use app\models\DashAddUsers;
+/** @var $model DashAddUsers */
 
 ?>
 

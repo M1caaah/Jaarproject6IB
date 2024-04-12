@@ -11,11 +11,15 @@ class DashUsers extends DbModel
     public string $lastname = '';
     public string $email = '';
     public string $birthdate = '';
-    public string $regDate = '';
-    public string $password = '';
-    public string $confirmPassword = '';
     public string $role_id = '';
     public string $roleName = '';
+    public string $password = '';
+
+
+    public function getDisplayName()
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 
     public static function tableName(): string
     {
@@ -29,12 +33,12 @@ class DashUsers extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password', 'c.role_id', 'roleName', 'regDate', 'birthdate'];
+        return ['firstname', 'lastname', 'email', 'password', ['c', 'role_id'], 'birthdate', 'regDate', 'roleName'];
     }
 
     public function datatypes(): string
     {
-        return 'ssss';
+        return 'ssssisss';
     }
 
     public function labels(): array
@@ -51,12 +55,7 @@ class DashUsers extends DbModel
 
     public function rules(): array
     {
-        return [
-            'firstname' => [self::RULE_REQUIRED],
-            'lastname' => [self::RULE_REQUIRED],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
-            'password' => [self::RULE_REQUIRED, [self::RULE_MIN, 'min' => 8], [self::RULE_MAX, 'max' => 24]]
-        ];
+        return [];
     }
 
     public function countUsers()
@@ -68,33 +67,9 @@ class DashUsers extends DbModel
         return (int)$result['COUNT(*)'];
     }
 
-    public function getRoles()
-    {
-        echo '<pre>';
-        var_dump($this->select(['tr.role_id', 'roleName'], tableName: 'tblroles tr', checkActive: false));
-        echo '</pre>';
-        exit;
-    }
-
     public function getRecentUsers($limit = 5)
     {
-        return $this->select($this->attributes(),  "c.role_id = r.role_id", "client_id DESC", $limit);
-    }
-
-    public function getUserData()
-    {
-        return $this->select($this->attributes(), self::primaryKey(). " = $this->client_id AND c.role_id = r.role_id")[0];
-    }
-
-    public function getDisplayName()
-    {
-        return $this->firstname . ' ' . $this->lastname;
-    }
-
-    public function addUser()
-    {
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-        return $this->insert();
+        return $this->select($this->attributes(), "c.role_id = r.role_id", "client_id DESC", $limit);
     }
 
 }
