@@ -12,11 +12,11 @@ class DashProducts extends DbModel
     public string $imagePath = '';
     public string $price = '';
 
-
     public static function tableName(): string
     {
         return 'tblproducts';
     }
+
     public static function primaryKey(): string
     {
         return 'product_id';
@@ -47,13 +47,27 @@ class DashProducts extends DbModel
             'productName' => [self::RULE_REQUIRED],
             'description' => [self::RULE_REQUIRED],
             'price' => [self::RULE_REQUIRED],
-            'imagePath' => [self::RULE_FILE_REQUIRED]
+            'imagePath' => [self::RULE_FILE_REQUIRED, [self::RULE_FILE_SIZE, 'size' => 1024 * 1024 * 3]]
         ];
     }
 
     public function save()
     {
+        $file = $_FILES['imagePath'];
+        $fileName = $file['name'];
+        $fileTmp = $file['tmp_name'];
 
+        $imageDir = '/productImages/';
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $imageDir;
+
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        if (move_uploaded_file($fileTmp, $uploadDir . $fileName)) {
+            $this->imagePath = $imageDir. $fileName;
+        }
+        $this->insert();
+        return true;
     }
-
 }

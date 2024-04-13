@@ -60,6 +60,7 @@ class Request
         }
         return $body;
     }
+
     public function getBodyPost()
     {
         $body = [];
