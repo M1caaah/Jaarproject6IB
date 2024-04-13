@@ -9,14 +9,8 @@ use app\models\DashAddUsers;
 use app\models\DashEditUsers;
 use app\models\DashUsers;
 
-class DashboardController extends Controller
+class DashUserController extends Controller
 {
-    public function main(): array|bool|string
-    {
-        $dashUsers = new DashUsers();
-        return $this->render('dashMain', 'dashboard', ['model' => $dashUsers]);
-    }
-
     public function users(): array|bool|string
     {
         $dashUsers = new DashUsers();
@@ -66,23 +60,4 @@ class DashboardController extends Controller
         return $this->render('dashAddUsers', 'dashboard', ['model' => $dashUsers]);
     }
 
-    public function orders(): array|bool|string
-    {
-        return $this->render('dashOrders', 'dashboard');
-    }
-
-    public function addOrders(): array|bool|string
-    {
-        return $this->render('dashAddOrders', 'dashboard');
-    }
-
-    public function products(): array|bool|string
-    {
-        return $this->render('dashProducts', 'dashboard');
-    }
-
-    public function addProducts(): array|bool|string
-    {
-        return $this->render('dashAddProducts', 'dashboard');
-    }
 }
