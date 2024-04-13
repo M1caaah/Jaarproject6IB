@@ -3,7 +3,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
-use app\controllers\DashboardController;
+use app\controllers\DashMainController;
+use app\controllers\DashProductController;
+use app\controllers\DashUserController;
 use app\controllers\SiteController;
 use app\controllers\UserController;
 use app\core\Application;
@@ -41,16 +43,23 @@ $app->router->get('/profile/edit', [UserController::class, 'editProfile']);
 $app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
 
 // Dashboard routes
-$app->router->get('/dashboard', [DashboardController::class, 'main']);
-$app->router->get('/dashboard/users', [DashboardController::class, 'users']);
-$app->router->get('/dashboard/users/edit', [DashboardController::class, 'editUser']);
-$app->router->post('/dashboard/users/edit', [DashboardController::class, 'editUser']);
-$app->router->get('/dashboard/users/delete', [DashboardController::class, 'deleteUser']);
-$app->router->get('/dashboard/users/add', [DashboardController::class, 'addUsers']);
-$app->router->post('/dashboard/users/add', [DashboardController::class, 'addUsers']);
-$app->router->get('/dashboard/orders', [DashboardController::class, 'orders']);
-$app->router->get('/dashboard/orders/add', [DashboardController::class, 'addOrders']);
-$app->router->get('/dashboard/products', [DashboardController::class, 'products']);
-$app->router->get('/dashboard/products/add', [DashboardController::class, 'addProducts']);
+$app->router->get('/dashboard', [DashMainController::class, 'main']);
+
+$app->router->get('/dashboard/users', [DashUserController::class, 'users']);
+$app->router->get('/dashboard/users/edit', [DashUserController::class, 'editUser']);
+$app->router->post('/dashboard/users/edit', [DashUserController::class, 'editUser']);
+$app->router->get('/dashboard/users/add', [DashUserController::class, 'addUsers']);
+$app->router->post('/dashboard/users/add', [DashUserController::class, 'addUsers']);
+$app->router->get('/dashboard/users/delete', [DashUserController::class, 'deleteUser']);
+
+$app->router->get('/dashboard/products', [DashProductController::class, 'products']);
+$app->router->get('/dashboard/products/add', [DashProductController::class, 'addProduct']);
+$app->router->post('/dashboard/products/add', [DashProductController::class, 'addProduct']);
+$app->router->get('/dashboard/products/edit', [DashProductController::class, 'editProduct']);
+$app->router->post('/dashboard/products/edit', [DashProductController::class, 'editProduct']);
+$app->router->get('/dashboard/products/delete', [DashProductController::class, 'deleteProduct']);
+
+//$app->router->get('/dashboard/orders', [DashUserController::class, 'products']);
+//$app->router->get('/dashboard/orders/add', [DashUserController::class, 'addProducts']);
 
 $app->run();

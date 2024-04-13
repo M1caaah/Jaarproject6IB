@@ -5,6 +5,8 @@ namespace app\core;
 abstract class Model
 {
     public const RULE_REQUIRED = 'required';
+    public const RULE_FILE_REQUIRED = 'fileRequired';
+    public const RULE_FILE_SIZE = 'fileSize';
     public const RULE_BDATE = 'bdate';
     public const RULE_EMAIL = 'email';
     public const RULE_MIN = 'min';
@@ -96,6 +98,20 @@ abstract class Model
                         $this->addErrorForRule($attribute, self::RULE_UNIQUE_UPDATE, ['field' => $attribute]);
                     }
                 }
+                if ($ruleCode === self::RULE_FILE_REQUIRED)
+                {
+                    if (empty($_FILES[$attribute]['name']))
+                    {
+                        $this->addErrorForRule($attribute, self::RULE_FILE_REQUIRED);
+                    }
+                }
+                if ($ruleCode === self::RULE_FILE_SIZE)
+                {
+                    if ($_FILES[$attribute]['size'] > $rule['size'])
+                    {
+                        $this->addErrorForRule($attribute, self::RULE_FILE_SIZE, $rule);
+                    }
+                }
             }
         }
         if (!empty($this->errors))
@@ -122,6 +138,8 @@ abstract class Model
     {
         return [
             self::RULE_REQUIRED => 'This field is required',
+            self::RULE_FILE_REQUIRED => 'This field is required',
+            self::RULE_FILE_SIZE => 'File size too big',
             self::RULE_BDATE => 'Date cannot be in the future',
             self::RULE_EMAIL => 'This field must be a valid email adress',
             self::RULE_MIN => 'Minimum length of this field bust be {min}',

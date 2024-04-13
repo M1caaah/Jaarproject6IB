@@ -58,7 +58,7 @@ abstract class DbModel extends Model
         return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function delete(int $id, string $tableName = "", string $primaryKey = "")
+    public function delete(int $id, string $tableName = "", string $primaryKey = ""): bool
     {
         $tableName = $tableName ?: $this->tableName();
         $primaryKey = $primaryKey ?: $this->primaryKey();
@@ -66,6 +66,7 @@ abstract class DbModel extends Model
         $statement = self::prepare($sql);
         $statement->bind_param('i', $id);
         $statement->execute();
+        return true;
     }
 
     public function update(int $id, array $attributes = [], string $tableName = "", string $primaryKey = "")

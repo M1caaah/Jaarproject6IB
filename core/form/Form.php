@@ -8,7 +8,7 @@ class Form
 {
     public static function begin($action, $method): void
     {
-        echo "<form action='$action' method='$method'>";
+        echo "<form action='$action' method='$method' enctype='multipart/form-data'>";
     }
 
     public static function end(): void

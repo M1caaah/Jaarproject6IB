@@ -6,7 +6,7 @@ use app\core\DbModel;
 
 class DashUsers extends DbModel
 {
-    public string $client_id = '';
+    public int $client_id = 0;
     public string $firstname = '';
     public string $lastname = '';
     public string $email = '';
