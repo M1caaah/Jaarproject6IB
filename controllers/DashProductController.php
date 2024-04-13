@@ -33,9 +33,6 @@ class DashProductController extends Controller
         $dashEditProduct = new DashEditProduct();
         $dashEditProduct->loadData($request->getBodyGet());
         $dashEditProduct->loadData($dashEditProduct->findOne(['product_id' => $request->getBody()['product_id']]));
-        echo '<pre>';
-        var_dump($dashEditProduct);
-        echo '</pre>';
         if ($request->isPost()) {
             $dashEditProduct->loadData($request->getBody());
             if ($dashEditProduct->validate() && $dashEditProduct->save()) {

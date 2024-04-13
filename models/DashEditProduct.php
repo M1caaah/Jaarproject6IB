@@ -19,9 +19,6 @@ class DashEditProduct extends DashProducts
     public function save()
     {
         if (!$_FILES) {
-            echo '<pre>';
-            var_dump($this->select(['imagePath'], 'product_id = '.$this->product_id)[0]);
-            echo '</pre>';
             $this->imagePath = $this->select(['imagePath'], 'product_id = '.$this->product_id)[0]['imagePath'];
             return $this->update($this->product_id);
         }
