@@ -18,7 +18,7 @@ class DashEditProduct extends DashProducts
 
     public function save()
     {
-        if (!$_FILES) {
+        if ($_FILES['imagePath']['error'] === 4) {
             $this->imagePath = $this->select(['imagePath'], 'product_id = '.$this->product_id)[0]['imagePath'];
             return $this->update($this->product_id);
         }
@@ -30,10 +30,7 @@ class DashEditProduct extends DashProducts
 
         $this->imagePath = $imageDir . $fileName;
 
-        if (move_uploaded_file($fileTmp, dirname(__DIR__) . '/public' . $this->imagePath)) {
-            return $this->update($this->product_id);
-        }
-
-        return false;
+        move_uploaded_file($fileTmp, dirname(__DIR__) . '/public' . $this->imagePath);
+        return $this->update($this->product_id);
     }
 }

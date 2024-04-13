@@ -32,7 +32,7 @@ class DashProductController extends Controller
     {
         $dashEditProduct = new DashEditProduct();
         $dashEditProduct->loadData($request->getBodyGet());
-        $dashEditProduct->loadData($dashEditProduct->findOne(['product_id' => $request->getBody()['product_id']]));
+        $dashEditProduct->loadData($dashEditProduct->findOne(['product_id' => $dashEditProduct->product_id]));
         if ($request->isPost()) {
             $dashEditProduct->loadData($request->getBody());
             if ($dashEditProduct->validate() && $dashEditProduct->save()) {
