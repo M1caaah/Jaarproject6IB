@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\models\DashEditProduct;
 use app\models\DashProducts;
 
 class DashProductController extends Controller
@@ -29,8 +30,19 @@ class DashProductController extends Controller
 
     public function editProduct(Request $request, Response $response): array|bool|string
     {
-        $dashProducts = new DashProducts();
-        return $this->render('dashEditProduct', 'dashboard', ['model' => $dashProducts]);
+        $dashEditProduct = new DashEditProduct();
+        $dashEditProduct->loadData($request->getBodyGet());
+        $dashEditProduct->loadData($dashEditProduct->findOne(['product_id' => $request->getBody()['product_id']]));
+        echo '<pre>';
+        var_dump($dashEditProduct);
+        echo '</pre>';
+        if ($request->isPost()) {
+            $dashEditProduct->loadData($request->getBody());
+            if ($dashEditProduct->validate() && $dashEditProduct->save()) {
+                $response->redirect('/dashboard/products');
+            }
+        }
+        return $this->render('dashEditProduct', 'dashboard', ['model' => $dashEditProduct]);
     }
 
     public function deleteProduct(Request $request, Response $response): array|bool|string

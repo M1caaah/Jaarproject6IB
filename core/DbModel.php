@@ -107,9 +107,6 @@ abstract class DbModel extends Model
 
     public static function prepare(string $sql): false|\mysqli_stmt
     {
-//        echo '<pre>';
-//        var_dump($sql);
-//        echo '</pre>';
         return Application::$app->db->mysqli->prepare($sql);
     }
 
