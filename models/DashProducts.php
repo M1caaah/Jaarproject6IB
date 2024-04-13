@@ -6,7 +6,7 @@ use app\core\DbModel;
 
 class DashProducts extends DbModel
 {
-    public string $product_id = '';
+    public int $product_id = 0;
     public string $productName = '';
     public string $description = '';
     public string $imagePath = '';
