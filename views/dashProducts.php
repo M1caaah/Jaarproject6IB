@@ -14,17 +14,17 @@ use app\models\DashAddUsers;
             <?php foreach ($model->select(['*']) as $product): ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
                     <div class="card border-0">
+                        <div class="ratio ratio-1x1">
+                            <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-top-3 object-fit-cover">
+                        </div>
                         <div class="card-body">
-                            <div class="ratio ratio-1x1">
-                                <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-3 object-fit-cover">
-                            </div>
                             <h5 class="card-title"></h5>
                             <div class="row fs-5">
                                 <div class="col-12">
-                                    <p class="card-text text-muted"><b>Product name:</b> <?= $product['productName'] ?></p>
+                                    <p class="card-text text-muted"><?= $product['productName'] ?></p>
                                 </div>
                                 <div class="col-12">
-                                    <p class="card-text text-muted"><b>Price: </b>&euro;<?= $product['price'] ?></p>
+                                    <p class="card-text text-muted">&euro;<?= $product['price'] ?></p>
                                 </div>
                             </div>
                             <div class="dropdown mt-3">
