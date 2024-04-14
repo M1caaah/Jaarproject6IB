@@ -83,13 +83,14 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public static function findOne(array $where)
+    public static function findOne(array $where, bool $checkActive = true)
     {
         $tableName = static::tableName();
         $attributes = array_keys($where);
         $datatypes = str_repeat('s', count($attributes));
         $params = implode(" AND ", array_map(fn($attr) => "$attr = ?", $attributes));
-        $sql = "SELECT * FROM $tableName WHERE $params AND `active` = 1";
+        $sql = "SELECT * FROM $tableName WHERE $params";
+        if ($checkActive) $sql .= " AND `active` = 1";
         $statement = self::prepare($sql);
         $values = [];
         foreach ($where as $item) {

@@ -7,6 +7,7 @@ class Application
     public static Application $app;
 
     public string $userClass;
+    public string $cartClass;
     public Router $router;
     public Request $request;
     public Response $response;
@@ -14,11 +15,14 @@ class Application
     public Controller $controller;
     public Database $db;
     public ?UserModel $user;
+    public ?CartModel $cart;
 
     public function __construct($rootPath, $config)
     {
         $this->user = null;
         $this->userClass = $config['userClass'];
+        $this->cart = null;
+        $this->cartClass = $config['cartClass'];
 
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
@@ -34,6 +38,7 @@ class Application
         if ($primaryValue) {
             $primaryKey = $this->userClass::primaryKey();
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
+            $this->cart = $this->cartClass::getCart($this->user->client_id);
         } else {
             $this->user = null;
         }

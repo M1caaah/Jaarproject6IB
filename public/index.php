@@ -17,7 +17,8 @@ $config = [
         'password' => '',
         'dbname' => 'bytebazaar'
     ],
-    'userClass' => \app\models\User::class
+    'userClass' => \app\models\User::class,
+    'cartClass' => \app\models\Cart::class
     ];
 
 $app = new Application(dirname(__DIR__), $config);
@@ -29,6 +30,9 @@ $app->router->get('/contact', [SiteController::class, 'contact']);
 $app->router->post('/', [SiteController::class, 'handleHome']);
 $app->router->post('/home', [SiteController::class, 'handleHome']);
 $app->router->post('/contact', [SiteController::class, 'handleContact']);
+
+// Product routes
+$app->router->get('/addtocart', [SiteController::class, 'addtocart']);
 
 // Auth routes
 $app->router->get('/login', [AuthController::class, 'login']);
@@ -44,7 +48,6 @@ $app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
 
 // Dashboard routes
 $app->router->get('/dashboard', [DashMainController::class, 'main']);
-
 $app->router->get('/dashboard/users', [DashUserController::class, 'users']);
 $app->router->get('/dashboard/users/edit', [DashUserController::class, 'editUser']);
 $app->router->post('/dashboard/users/edit', [DashUserController::class, 'editUser']);

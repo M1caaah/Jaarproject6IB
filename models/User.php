@@ -28,7 +28,7 @@ class User extends UserModel
 
     public static function tableName(): string
     {
-        return 'tblClients';
+        return 'tblclients';
     }
     public static function primaryKey(): string
     {
