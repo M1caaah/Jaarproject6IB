@@ -31,7 +31,7 @@ $app->router->post('/', [SiteController::class, 'handleHome']);
 $app->router->post('/home', [SiteController::class, 'handleHome']);
 $app->router->post('/contact', [SiteController::class, 'handleContact']);
 
-// Product routes
+// Cart routes
 $app->router->get('/addtocart', [SiteController::class, 'addtocart']);
 
 // Auth routes
@@ -41,10 +41,11 @@ $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 $app->router->get('/logout', [AuthController::class, 'logout']);
 
-// User routes
+// Profile routes
 $app->router->get('/profile', [UserController::class, 'profile']);
 $app->router->get('/profile/edit', [UserController::class, 'editProfile']);
 $app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
+$app->router->get('/profile/cart', [SiteController::class, 'cart']);
 
 // Dashboard routes
 $app->router->get('/dashboard', [DashMainController::class, 'main']);
