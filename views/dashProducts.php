@@ -18,7 +18,6 @@ use app\models\DashAddUsers;
                             <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-top-3 object-fit-cover">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
                             <div class="row fs-5">
                                 <div class="col-12">
                                     <p class="card-text text-muted"><?= $product['productName'] ?></p>
