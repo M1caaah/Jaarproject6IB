@@ -4,32 +4,33 @@ namespace app\models;
 
 use app\core\DbModel;
 
-class CartItem extends DbModel
+class OrderItem extends DbModel
 {
-    public int $cart_item_id;
-    public int $cart_id;
+    public int $order_item_id;
     public int $product_id;
+    public int $order_id;
     public int $quantity;
+    public string $price;
 
 
     public static function tableName(): string
     {
-        return 'tblcart_items';
+        return 'tblorder_items';
     }
 
     public static function primaryKey(): string
     {
-        return 'cart_item_id';
+        return 'order_item_id';
     }
 
     public function attributes(): array
     {
-        return ['cart_id', 'product_id', 'quantity'];
+        return ['product_id', 'order_id', 'quantity', 'price'];
     }
 
     public function datatypes(): string
     {
-        return 'iii';
+        return 'iiid';
     }
 
     public function labels(): array
@@ -42,8 +43,5 @@ class CartItem extends DbModel
         return [];
     }
 
-    public function getProduct()
-    {
-        return $this->select(['*'], "product_id = $this->product_id", tableName: "tblproducts", checkActive: false)[0];
-    }
+
 }

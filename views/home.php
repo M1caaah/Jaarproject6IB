@@ -52,7 +52,7 @@ use app\models\HomeProducts;
                             <p class="card-text text-center fs-3"><?= $product['productName'] ?></p>
                             <hr>
                             <p class="card-text fs-5">&euro;<?= $product['price'] ?></p>
-                            <a href="/addtocart/products?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">Add to cart</a>
+                            <a href="/addtocart?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">Add to cart</a>
                         </div>
                     </div>
                 </div>

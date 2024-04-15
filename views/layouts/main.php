@@ -55,6 +55,7 @@ use \app\core\Application; ?>
                             <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile/cart">Shopping cart</a></li>
                                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
@@ -68,9 +69,8 @@ use \app\core\Application; ?>
                             <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
-                                <span class="text-light">
-                                    <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                </span>
+                                <li><a class="dropdown-item" href="/profile/cart">Shopping cart</a></li>
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </div>

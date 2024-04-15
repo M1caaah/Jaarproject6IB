@@ -41,7 +41,7 @@ class DashUserController extends Controller
     {
         $dashUsers = new DashUsers();
         $dashUsers->loadData($request->getBody());
-        $dashUsers->delete($dashUsers->client_id);
+        $dashUsers->deactivate($dashUsers->client_id);
         $response->redirect('/dashboard/users');
     }
 

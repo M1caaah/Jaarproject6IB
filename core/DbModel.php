@@ -58,7 +58,7 @@ abstract class DbModel extends Model
         return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function delete(int $id, string $tableName = "", string $primaryKey = ""): bool
+    public function deactivate(int $id, string $tableName = "", string $primaryKey = ""): bool
     {
         $tableName = $tableName ?: $this->tableName();
         $primaryKey = $primaryKey ?: $this->primaryKey();
@@ -69,14 +69,26 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public function update(int $id, array $attributes = [], string $tableName = "", string $primaryKey = "")
+    public function delete(int $id, string $tableName = "", string $primaryKey = ""): bool
+    {
+        $tableName = $tableName ?: $this->tableName();
+        $primaryKey = $primaryKey ?: $this->primaryKey();
+        $sql = "DELETE FROM $tableName WHERE $primaryKey = ?";
+        $statement = self::prepare($sql);
+        $statement->bind_param('i', $id);
+        $statement->execute();
+        return true;
+    }
+
+    public function update(int $id, array $attributes = [], string $tableName = "", string $primaryKey = "", bool $checkActive = true)
     {
         $tableName = $tableName ?: $this->tableName();
         $primaryKey = $primaryKey ?: $this->primaryKey();
         $attributes = $attributes ?: $this->attributes();
         $attributes = $this->processAliases($attributes, false);
         $set = implode(', ', array_map(fn($attr) => "$attr = '".$this->{$attr}."'", $attributes));
-        $sql = "UPDATE $tableName SET $set WHERE $primaryKey = ? AND `active` = 1";
+        $sql = "UPDATE $tableName SET $set WHERE $primaryKey = ?";
+        if ($checkActive) $sql .= " AND `active` = 1";
         $statement = self::prepare($sql);
         $statement->bind_param('i', $id);
         $statement->execute();
@@ -109,6 +121,11 @@ abstract class DbModel extends Model
     public static function prepare(string $sql): false|\mysqli_stmt
     {
         return Application::$app->db->mysqli->prepare($sql);
+    }
+
+    public static function getRecentInsertID(): int
+    {
+        return Application::$app->db->mysqli->insert_id;
     }
 
     protected function processAliases(array $attributes, bool $keepAlias): array

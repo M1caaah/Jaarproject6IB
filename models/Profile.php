@@ -68,7 +68,7 @@ class Profile extends DbModel
     public function deactivateUser()
     {
         $id = Application::$app->session->get('user');
-        $this->delete($id);
+        $this->deactivate($id);
         return true;
     }
 }

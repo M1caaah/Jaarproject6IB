@@ -14,7 +14,7 @@ class UserController extends Controller
     public function profile(Request $request, Response $response)
     {
         $profile = new Profile();
-        $profile->loadData($profile->getUserData());
+        $profile->loadData($profile->getUserData()[0]);
         return $this->render('profile', 'main', ['model' => $profile]);
     }
 

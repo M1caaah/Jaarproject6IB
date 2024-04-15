@@ -72,4 +72,9 @@ class User extends UserModel
     {
         return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function getOrders()
+    {
+        return $this->select(['*'], "client_id = $this->client_id", tableName: "tblorders", checkActive: false);
+    }
 }

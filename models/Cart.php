@@ -9,6 +9,7 @@ class Cart extends CartModel
 {
     public int $cart_id;
     public int $client_id;
+    public array $cartItems = [];
 
     public static function tableName(): string
     {
@@ -58,13 +59,48 @@ class Cart extends CartModel
             $cart->insert();
             return $cart;
         }
-        return static::findOne(['client_id' => $client_id], false);
+        $cart = static::findOne(['client_id' => $client_id], false);
+        $cart->loadCartItems();
+        return $cart;
     }
 
-    public function addItem($client_id, $product_id)
+    public function loadCartItems()
     {
-        $cart = $this->getCart($client_id);
+        $items = $this->select(['*'], "cart_id = $this->cart_id", tableName:'tblcart_items', checkActive:false);
+        foreach ($items as $item) {
+            $cartItem = new CartItem();
+            $cartItem->loadData($item);
+            $this->cartItems[] = $cartItem;
+        }
+    }
+
+    public function addToCart($product_id)
+    {
+        if (count($this->cartItems) > 0) {
+            foreach ($this->cartItems as $item) {
+                if ($item->product_id == $product_id) {
+                    $item->quantity++;
+                    $item->update($item->cart_item_id, checkActive:false);
+                    return;
+                }
+            }
+        }
         $cartItem = new CartItem();
-        $cartItem->insert(['cart_id' => $cart->cart_id, 'product_id' => $product_id]);
+        $cartItem->cart_id = $this->cart_id;
+        $cartItem->product_id = $product_id;
+        $cartItem->quantity = 1;
+        $cartItem->insert();
+    }
+
+    public function getTotal()
+    {
+        $total = 0.00;
+        if (count($this->cartItems) > 0) {
+            foreach ($this->cartItems as $item) {
+                $product = $item->getProduct();
+                $total += $product['price'] * $item->quantity;
+            }
+        }
+        return $total;
     }
 }
