@@ -28,7 +28,7 @@ class User extends UserModel
 
     public static function tableName(): string
     {
-        return 'tblClients';
+        return 'tblclients';
     }
     public static function primaryKey(): string
     {
@@ -71,5 +71,10 @@ class User extends UserModel
     public function getDisplayName(): string
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function getOrders()
+    {
+        return $this->select(['*'], "client_id = $this->client_id", tableName: "tblorders", checkActive: false);
     }
 }

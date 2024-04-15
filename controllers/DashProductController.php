@@ -46,7 +46,7 @@ class DashProductController extends Controller
     {
         $dashProducts = new DashProducts();
         $dashProducts->loadData($request->getBody());
-        $dashProducts->delete($dashProducts->product_id);
+        $dashProducts->deactivate($dashProducts->product_id);
         $response->redirect('/dashboard/products');
         return true;
     }

@@ -12,6 +12,7 @@ use \app\core\Application; ?>
     <link rel="stylesheet" href="https://cdn.reflowhq.com/v2/toolkit.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="/assets/main/css/styles.min.css">
+    <link rel="stylesheet" href="/assets/main/css/style.css">
 </head>
 
 <body>
@@ -54,6 +55,7 @@ use \app\core\Application; ?>
                             <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile/cart">Shopping cart</a></li>
                                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
@@ -67,9 +69,8 @@ use \app\core\Application; ?>
                             <?php echo Application::$app->user->getDisplayName() ?>
                             </button>
                             <ul class="dropdown-menu">
-                                <span class="text-light">
-                                    <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                </span>
+                                <li><a class="dropdown-item" href="/profile/cart">Shopping cart</a></li>
+                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </div>

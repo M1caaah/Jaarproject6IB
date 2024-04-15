@@ -18,9 +18,9 @@ use app\core\Application;
                 <div class="list-group fs-5">
                     <a href="/profile" class="list-group-item active">Account overview</a>
                     <a href="/profile/edit" class="list-group-item">Manage profile</a>
-                    <a href="/profile/orders" class="list-group-item">Your orders</a>
+                    <a href="/profile/cart" class="list-group-item">Shopping cart</a>
                     <a href="/profile/wishlist" class="list-group-item">Wishlist</a>
-                    <a href="/profile/basket" class="list-group-item">Shopping basket</a>
+                    <a href="/profile/orders" class="list-group-item">Your orders</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -44,6 +44,10 @@ use app\core\Application;
                                         <div class="col-6">
                                             <h5>Email</h5>
                                             <p><?= $model->email ?></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h5>Birthdate</h5>
+                                            <p><?= $model->birthdate ?></p>
                                         </div>
                                     </div>
                                 </div>
