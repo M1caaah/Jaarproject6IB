@@ -71,5 +71,4 @@ class DashUsers extends DbModel
     {
         return $this->select($this->attributes(), "c.role_id = r.role_id", "client_id DESC", $limit);
     }
-
 }
