@@ -51,8 +51,12 @@ use app\models\HomeProducts;
                         <div class="card-body">
                             <p class="card-text text-center fs-3"><?= $product['productName'] ?></p>
                             <hr>
-                            <p class="card-text fs-5">&euro;<?= $product['price'] ?></p>
-                            <a href="/addtocart?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">Add to cart</a>
+                            <!-- Center the price label using Bootstrap text-center class -->
+                            <p class="card-text fs-5 text-center">&euro;<?= $product['price'] ?></p>
+                            <!-- Center the button using Bootstrap utility class -->
+                            <div class="d-flex justify-content-center">
+                                <a href="/product?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">View</a>
+                            </div>
                         </div>
                     </div>
                 </div>
