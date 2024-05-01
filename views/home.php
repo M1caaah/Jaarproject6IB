@@ -42,7 +42,7 @@ use app\models\HomeProducts;
             <h3>Recommended games</h3>
         </div>
         <div class="row">
-            <?php foreach ($model->getProducts() as $product) : ?>
+            <?php foreach ($model->getAllProducts() as $product) : ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
                     <div class="card bg-dark mt-5">
                         <div class="ratio ratio-1x1">

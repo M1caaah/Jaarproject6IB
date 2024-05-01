@@ -49,6 +49,6 @@ class HomeProducts extends DbModel
 
     public function getProduct()
     {
-        return $this->select(['*']);
+        return $this->findOne(['product_id' => $this->product_id]);
     }
 }
