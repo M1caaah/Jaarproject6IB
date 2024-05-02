@@ -79,7 +79,7 @@ class DashOrders extends DbModel
     {
         return $this->select(
             ['o.order_id', 'o.date', 'o.total', 'c.firstname', 'c.lastname'],
-            orderby: "o.date DESC",
+            orderby: "o.order_id DESC",
             limit: 5,
             tableName: 'tblorders o',
             join: ['tblclients c' => 'o.client_id = c.client_id'],

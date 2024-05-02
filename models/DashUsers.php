@@ -33,7 +33,7 @@ class DashUsers extends DbModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'password', ['c', 'role_id'], 'birthdate', 'regDate', 'roleName'];
+        return ['firstname', 'lastname', 'email', 'password', ['c', 'role_id'], 'birthdate', 'regDate', ['r','roleName']];
     }
 
     public function datatypes(): string
@@ -66,6 +66,11 @@ class DashUsers extends DbModel
 
     public function getRecentUsers($limit = 5)
     {
-        return $this->select($this->attributes(), "c.role_id = r.role_id", "client_id DESC", $limit);
+        return $this->select(
+            $this->attributes(),
+            orderby: "regDate DESC",
+            limit: $limit,
+            tableName: 'tblclients c',
+            join: ['tblroles r' => 'c.role_id = r.role_id']);
     }
 }
