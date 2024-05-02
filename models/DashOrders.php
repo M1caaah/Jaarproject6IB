@@ -74,4 +74,16 @@ class DashOrders extends DbModel
         $earnings = $this->select(['SUM(total)'], tableName: 'tblorders', checkActive: false);
         return $earnings[0]['SUM(total)'];
     }
+
+    public function getRecentOrders()
+    {
+        return $this->select(
+            ['o.order_id', 'o.date', 'o.total', 'c.firstname', 'c.lastname'],
+            orderby: "o.date DESC",
+            limit: 5,
+            tableName: 'tblorders o',
+            join: ['tblclients c' => 'o.client_id = c.client_id'],
+            checkActive: false
+        );
+    }
 }

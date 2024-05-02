@@ -61,41 +61,19 @@ use app\models\DashOrders;
                                 <tr>
                                     <th>Order ID</th>
                                     <th>Customer</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>M1cah</td>
-                                    <td>$ 78.00</td>
-                                    <td><span class="badge bg-success">Delivered</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>John</td>
-                                    <td>$ 78.00</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Smith</td>
-                                    <td>$ 78.00</td>
-                                    <td><span class="badge bg-danger">Cancelled</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>John</td>
-                                    <td>$ 78.00</td>
-                                    <td><span class="badge bg-success">Delivered</span></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Smith</td>
-                                    <td>$ 78.00</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
+                                <?php foreach ($dashOrders->getRecentOrders() as $order): ?>
+                                    <tr>
+                                        <td><?= $order['order_id'] ?></td>
+                                        <td><?= $order['firstname']." ".$order['lastname'] ?></td>
+                                        <td><?= $order['date'] ?></td>
+                                        <td>&euro;<?= $order['total'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
