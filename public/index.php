@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use app\controllers\AuthController;
 use app\controllers\DashMainController;
+use app\controllers\DashOrderController;
 use app\controllers\DashProductController;
 use app\controllers\DashUserController;
 use app\controllers\SiteController;
@@ -32,6 +33,7 @@ $app->router->get('/product', [SiteController::class, 'product']);
 
 
 // Cart routes
+$app->router->get('/profile/cart', [SiteController::class, 'cart']);
 $app->router->get('/addtocart', [SiteController::class, 'addtocart']);
 $app->router->get('/cartchange', [SiteController::class, 'cartchange']);
 $app->router->get('/checkout', [SiteController::class, 'checkout']);
@@ -47,7 +49,6 @@ $app->router->get('/logout', [AuthController::class, 'logout']);
 $app->router->get('/profile', [UserController::class, 'profile']);
 $app->router->get('/profile/edit', [UserController::class, 'editProfile']);
 $app->router->post('/profile/edit', [UserController::class, 'handleProfile']);
-$app->router->get('/profile/cart', [SiteController::class, 'cart']);
 $app->router->get('/profile/orders', [SiteController::class, 'orders']);
 
 // Dashboard routes
@@ -66,7 +67,7 @@ $app->router->get('/dashboard/products/edit', [DashProductController::class, 'ed
 $app->router->post('/dashboard/products/edit', [DashProductController::class, 'editProduct']);
 $app->router->get('/dashboard/products/delete', [DashProductController::class, 'deleteProduct']);
 
-//$app->router->get('/dashboard/orders', [DashUserController::class, 'products']);
-//$app->router->get('/dashboard/orders/add', [DashUserController::class, 'addProducts']);
+$app->router->get('/dashboard/orders', [DashOrderController::class, 'orders']);
+
 
 $app->run();

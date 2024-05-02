@@ -57,9 +57,6 @@
                         <li class="sidebar-item">
                             <a href="/dashboard/orders" class="sidebar-link">View orders</a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="/dashboard/orders/add" class="sidebar-link">Place order</a>
-                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">

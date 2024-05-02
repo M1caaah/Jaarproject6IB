@@ -52,6 +52,7 @@ class SiteController extends Controller
         $cart = Application::$app->cart;
         $order = new Order();
         $order->saveOrder($cart);
+        Application::$app->session->setFlash('success', 'Order placed successfully');
         $response->redirect('/');
     }
 
