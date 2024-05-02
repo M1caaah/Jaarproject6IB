@@ -60,11 +60,8 @@ class DashUsers extends DbModel
 
     public function countUsers()
     {
-        $sql = "SELECT COUNT(*) FROM tblclients WHERE active = 1";
-        $stmt = self::prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-        return (int)$result['COUNT(*)'];
+        $userCount = $this->select(['COUNT(*)'], tableName: 'tblclients');
+        return $userCount[0]['COUNT(*)'];
     }
 
     public function getRecentUsers($limit = 5)

@@ -40,10 +40,12 @@ class DashOrders extends DbModel
     public function findAllOrders(): array
     {
         $orders = $this->select(where: 'o.client_id = c.client_id AND o.order_id = i.order_id AND i.product_id = p.product_id');
-        echo '<pre>';
-        var_dump($orders);
-        echo '</pre>';
-        exit;
         return $orders;
+    }
+
+    public function countOrders()
+    {
+        $orderCount = $this->select(['COUNT(*)'], tableName: 'tblorders', checkActive: false);
+        return $orderCount[0]['COUNT(*)'];
     }
 }

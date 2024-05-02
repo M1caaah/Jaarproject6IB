@@ -1,7 +1,12 @@
 <?php
 
-use app\models\DashAddUsers;
-/** @var $model DashAddUsers */
+use app\models\DashUsers;
+use app\models\DashProducts;
+use app\models\DashOrders;
+
+/** @var $dashUsers DashUsers */
+/** @var $dashProducts DashProducts */
+/** @var $dashOrders DashOrders */
 
 ?>
 
@@ -15,7 +20,7 @@ use app\models\DashAddUsers;
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total users</p>
-                        <h5 class="fw-bold card-title mb-3"><?= $model->countUsers() ?></h5>
+                        <h5 class="fw-bold card-title mb-3"><?= $dashUsers->countUsers() ?></h5>
                     </div>
                 </div>
             </div>
@@ -31,7 +36,7 @@ use app\models\DashAddUsers;
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Orders</p>
-                        <h5 class="fw-bold card-title mb-3">??</h5>
+                        <h5 class="fw-bold card-title mb-3"><?= $dashOrders->countOrders() ?></h5>
                     </div>
                 </div>
             </div>
@@ -39,7 +44,7 @@ use app\models\DashAddUsers;
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Products</p>
-                        <h5 class="fw-bold card-title mb-3">????</h5>
+                        <h5 class="fw-bold card-title mb-3"><?= $dashProducts->countProducts() ?></h5>
                     </div>
                 </div>
             </div>
@@ -112,7 +117,7 @@ use app\models\DashAddUsers;
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($model->getRecentUsers() as $user): ?>
+                                <?php foreach ($dashUsers->getRecentUsers() as $user): ?>
                                     <tr>
                                         <td><?= $user['firstname'] . ' ' . $user['lastname'] ?></td>
                                         <td><?= $user['email'] ?></td>
