@@ -14,15 +14,21 @@ use app\models\HomeProducts;
         <div class="row">
             <div id="carouselExampleAutoplaying" class="carousel slide pointer-event" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3" style="height: 500px">
-                    <div class="carousel-item active">
-                        <img src="productImages/hollow-knight-banner.webp" alt="" class="img-fluid">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="productImages/celeste-banner.webp" alt="" class="img-fluid">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="productImages/dark-souls-3-banner.webp" alt="" class="img-fluid">
-                    </div>
+                    <?php
+                    $first = true;
+                    foreach ($model->getAllProducts() as $product) :
+                        if (!empty($product['bannerPath'])) :
+                    ?>
+                            <div class="carousel-item <?= $first ? 'active' : '' ?>">
+                                <a href="/product?product_id=<?= htmlspecialchars($product['product_id']) ?>">
+                                    <img src="<?= htmlspecialchars($product['bannerPath']) ?>" alt="<?= htmlspecialchars($product['productName']) ?>" class="img-fluid">
+                                </a>
+                            </div>
+                    <?php
+                            $first = false;
+                        endif;
+                    endforeach;
+                    ?>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,6 +39,7 @@ use app\models\HomeProducts;
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
         </div>
     </div>
 </section>
