@@ -49,21 +49,18 @@ use app\models\HomeProducts;
         <div class="row">
             <?php foreach ($model->getAllProducts() as $product) : ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
-                    <div class="card bg-dark mt-5">
-                        <div class="ratio ratio-1x1">
-                            <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-top-3 object-fit-cover">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text text-center fs-3"><?= $product['productName'] ?></p>
-                            <hr>
-                            <!-- Center the price label using Bootstrap text-center class -->
-                            <p class="card-text fs-5 text-center">&euro;<?= $product['price'] ?></p>
-                            <!-- Center the button using Bootstrap utility class -->
-                            <div class="d-flex justify-content-center">
-                                <a href="/product?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">View</a>
+                    <a href="/product?product_id=<?= $product['product_id'] ?>" class="text-decoration-none">
+                        <div class="card bg-dark mt-5">
+                            <div class="ratio ratio-1x1">
+                                <img src="<?= $product['imagePath'] ?>" alt="<?= $product['productName'] ?>" class="img-fluid rounded-top-3 object-fit-cover">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text text-center fs-3 text-white"><?= $product['productName'] ?></p>
+                                <hr>
+                                <p class="card-text fs-5 text-center text-white">&euro;<?= $product['price'] ?></p>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
