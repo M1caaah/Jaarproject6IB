@@ -14,19 +14,17 @@ use app\models\HomeProducts;
         <div class="row">
             <div id="carouselExampleAutoplaying" class="carousel slide pointer-event" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3" style="height: 500px">
-                    <?php
-                    $first = true;
-                    foreach ($model->getAllProducts() as $product) :
-                        if (!empty($product['bannerPath'])) :
-                    ?>
+                    <?php $first = true; ?>
+                    <?php foreach ($model->getAllProducts() as $product):
+                        if (!empty($product['bannerPath'])): ?>
                             <div class="carousel-item <?= $first ? 'active' : '' ?>">
                                 <a href="/product?product_id=<?= htmlspecialchars($product['product_id']) ?>">
                                     <img src="<?= htmlspecialchars($product['bannerPath']) ?>" alt="<?= htmlspecialchars($product['productName']) ?>" class="img-fluid">
                                 </a>
                             </div>
                     <?php
-                            $first = false;
-                        endif;
+                    $first = false;
+                    endif;
                     endforeach;
                     ?>
                 </div>
