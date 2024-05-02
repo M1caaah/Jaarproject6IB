@@ -28,7 +28,7 @@ use app\models\DashOrders;
                 <div class="card border-0">
                     <div class="card-body px-4 py-3 px-md-3">
                         <p class="fw-bold text-primary card-text mb-2">Total Earnings</p>
-                        <h5 class="fw-bold card-title mb-3">$ ????</h5>
+                        <h5 class="fw-bold card-title mb-3">&euro;<?= $dashOrders->countEarnings() ?></h5>
                     </div>
                 </div>
             </div>

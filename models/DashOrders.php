@@ -68,4 +68,10 @@ class DashOrders extends DbModel
         $orderCount = $this->select(['COUNT(*)'], tableName: 'tblorders', checkActive: false);
         return $orderCount[0]['COUNT(*)'];
     }
+
+    public function countEarnings()
+    {
+        $earnings = $this->select(['SUM(total)'], tableName: 'tblorders', checkActive: false);
+        return $earnings[0]['SUM(total)'];
+    }
 }

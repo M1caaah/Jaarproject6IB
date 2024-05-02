@@ -48,7 +48,7 @@
                         </tbody>
                     </table>
                 </div>
-                <p class="card-text fs-5"><b>Order Total: </b> <?= $order['total'] ?></p>
+                <p class="card-text fs-5"><b>Order Total: </b> &euro;<?= $order['total'] ?></p>
             </div>
         </div>
     </div>
