@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 06:36 PM
+-- Generation Time: May 02, 2024 at 06:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -159,7 +159,8 @@ INSERT INTO `tblproducts` (`product_id`, `productName`, `description`, `price`, 
 (21, 'ULTRAKILL', 'ULTRAKILL is a fast-paced ultraviolent retro FPS combining the skill-based style scoring from character action games with unadulterated carnage inspired by the best shooters of the &#39;90s. Rip apart your foes with varied destructive weapons and shower in their blood to regain your health.&#13;&#10;', 10.50, '/productImages/ultrakill.webp', 1, NULL),
 (22, 'Guilty Gear Strive', 'The cutting-edge 2D/3D hybrid graphics pioneered in the Guilty Gear series have been raised to the next level in “GUILTY GEAR -STRIVE-“. The new artistic direction and improved character animations will go beyond anything you’ve seen before in a fighting game!&#13;&#10;', 14.99, '/productImages/guilty-gear-strive.webp', 1, NULL),
 (23, 'Half Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve&#39;s debut title wins more than 50 game-of-the-year awards on its way to being named &#34;Best PC Game Ever&#34; by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.&#13;&#10;', 6.00, '/productImages/half-life-2.webp', 1, NULL),
-(24, 'Hollow Knight', 'Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.&#13;&#10;', 9.95, '/productImages/hollow-knight.webp', 1, 'productImages/hollow-knight-banner.webp');
+(24, 'Hollow Knight', 'Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.&#13;&#10;', 9.95, '/productImages/hollow-knight.webp', 1, 'productImages/hollow-knight-banner.webp'),
+(29, 'Dark Souls 3', 'Dark Souls continues to push the boundaries with the latest, ambitious chapter in the critically-acclaimed and genre-defining series. Prepare yourself and Embrace The Darkness!', 2.00, '/productImages/dark-souls-3.webp', 1, 'productImages/dark-souls-3-banner.webp');
 
 -- --------------------------------------------------------
 
@@ -271,7 +272,7 @@ ALTER TABLE `tblorder_items`
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tblroles`
