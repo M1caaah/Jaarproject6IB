@@ -39,7 +39,29 @@ class DashOrders extends DbModel
 
     public function findAllOrders(): array
     {
-        $orders = $this->select(where: 'o.client_id = c.client_id AND o.order_id = i.order_id AND i.product_id = p.product_id');
+        $records = $this->select(
+            ['o.order_id', 'o.date', 'o.total', 'c.firstname', 'c.lastname', 'p.productName', 'p.product_id', 'oi.quantity', 'oi.price'],
+            orderby: "o.order_id ASC",
+            tableName: 'tblorders o',
+            join: ['tblclients c' => 'o.client_id = c.client_id', 'tblorder_items oi' => 'o.order_id = oi.order_id', 'tblproducts p' => 'oi.product_id = p.product_id'],
+            checkActive: false
+
+        );
+
+        $orders = [];
+        foreach ($records as $record) {
+            $orders[$record['order_id']]['order_id'] = $record['order_id'];
+            $orders[$record['order_id']]['date'] = $record['date'];
+            $orders[$record['order_id']]['total'] = $record['total'];
+            $orders[$record['order_id']]['clientName'] = $record['firstname'] . ' ' . $record['lastname'];
+            $orders[$record['order_id']]['items'][] = [
+                'product_id' => $record['product_id'],
+                'productName' => $record['productName'],
+                'quantity' => $record['quantity'],
+                'price' => $record['price'],
+
+            ];
+        }
         return $orders;
     }
 
