@@ -28,6 +28,10 @@ $app = new Application(dirname(__DIR__), $config);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/home', [SiteController::class, 'home']);
 
+// Product page routes
+$app->router->get('/product', [SiteController::class, 'product']);
+
+
 // Cart routes
 $app->router->get('/profile/cart', [SiteController::class, 'cart']);
 $app->router->get('/addtocart', [SiteController::class, 'addtocart']);
