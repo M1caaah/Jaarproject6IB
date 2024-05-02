@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 02:58 AM
+-- Generation Time: May 02, 2024 at 06:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,6 +37,8 @@ CREATE TABLE `tblcarts` (
 --
 
 INSERT INTO `tblcarts` (`cart_id`, `client_id`) VALUES
+(5, 32),
+(6, 33),
 (4, 42);
 
 -- --------------------------------------------------------
@@ -75,8 +77,8 @@ CREATE TABLE `tblclients` (
 --
 
 INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `birthdate`, `password`, `role_id`, `regDate`, `active`) VALUES
-(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$uNc.XdUCDYk.wyuw5IzDFuZrjrXqmQp2G6zCeLxddIlVu16hBPTuy', 1, '2024-02-19', 1),
-(33, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', '$2y$10$cftQ1Jp7ZfX3HB0zYuNZoOcQmS9cWwqYIrwysMzEmjv.tayN4PoUK', 0, '2024-02-19', 1),
+(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$83WqqlS.4VsXQcFw83cLiugll0unYApwlqGAXi14ljDd0DnPaEHu2', 1, '2024-02-19', 1),
+(33, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', '$2y$10$6q1cEdYwKcSQakQCzk8HkewSylWNDDnM7AVscG9DTTIroEUAzKXiG', 0, '2024-02-19', 1),
 (42, 'Rayan', 'Sayah', 'rs@gmail.com', '2004-06-30', '$2y$10$78UyEwaNfb8Fv0tvUeasFuOwbYHhbDwMsNpIeyM.t0QbJN/mKWVKO', 0, '2024-04-14', 1);
 
 -- --------------------------------------------------------
@@ -90,16 +92,17 @@ CREATE TABLE `tblorders` (
   `client_id` int(11) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `total` decimal(10,2) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblorders`
 --
 
-INSERT INTO `tblorders` (`order_id`, `client_id`, `date`, `total`, `status`) VALUES
-(9, 42, '2024-04-15', 16.93, 0),
-(10, 42, '2024-04-15', 3.49, 0);
+INSERT INTO `tblorders` (`order_id`, `client_id`, `date`, `total`, `status`, `active`) VALUES
+(11, 32, '2024-05-02', 71.96, 0, 1),
+(12, 33, '2024-05-02', 50.92, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -120,9 +123,11 @@ CREATE TABLE `tblorder_items` (
 --
 
 INSERT INTO `tblorder_items` (`order_item_id`, `product_id`, `order_id`, `quantity`, `price`) VALUES
-(11, 14, 9, 2, 3.49),
-(12, 24, 9, 1, 9.95),
-(13, 14, 10, 1, 3.49);
+(14, 14, 11, 2, 3.49),
+(15, 16, 11, 1, 49.99),
+(16, 22, 11, 1, 14.99),
+(17, 23, 12, 5, 6.00),
+(18, 20, 12, 1, 20.92);
 
 -- --------------------------------------------------------
 
@@ -236,13 +241,13 @@ ALTER TABLE `tblroles`
 -- AUTO_INCREMENT for table `tblcarts`
 --
 ALTER TABLE `tblcarts`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblcart_items`
 --
 ALTER TABLE `tblcart_items`
-  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tblclients`
@@ -254,13 +259,13 @@ ALTER TABLE `tblclients`
 -- AUTO_INCREMENT for table `tblorders`
 --
 ALTER TABLE `tblorders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tblorder_items`
 --
 ALTER TABLE `tblorder_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`
