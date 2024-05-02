@@ -57,9 +57,13 @@ class DashEditUsers extends DashUsers
 
     public function updateUser(): bool
     {
-        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $attributes = $this->attributes();
-        $attributes[] = "password";
+        if (!empty($this->password))
+        {
+            $attributes[] = "password";
+            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+
+        }
         $attributes = $this->processAliases($attributes, false);
         return $this->update($this->client_id, $attributes);
     }

@@ -1,11 +1,11 @@
 <?php
 
 use app\core\form\Form;
-use app\models\DashAddUsers;
+use app\models\DashEditUsers;
 
 $form = new Form();
 
-/* @var $model DashAddUsers */
+/* @var $model DashEditUsers */
 
 ?>
 
