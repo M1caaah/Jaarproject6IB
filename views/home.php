@@ -14,15 +14,19 @@ use app\models\HomeProducts;
         <div class="row">
             <div id="carouselExampleAutoplaying" class="carousel slide pointer-event" data-bs-ride="carousel">
                 <div class="carousel-inner rounded-3" style="height: 500px">
-                    <div class="carousel-item active">
-                        <img src="productImages/hollow-knight-banner.webp" alt="" class="img-fluid">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="productImages/celeste-banner.webp" alt="" class="img-fluid">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="productImages/dark-souls-3-banner.webp" alt="" class="img-fluid">
-                    </div>
+                    <?php $first = true; ?>
+                    <?php foreach ($model->getAllProducts() as $product):
+                        if (!empty($product['bannerPath'])): ?>
+                            <div class="carousel-item <?= $first ? 'active' : '' ?>">
+                                <a href="/product?product_id=<?= htmlspecialchars($product['product_id']) ?>">
+                                    <img src="<?= htmlspecialchars($product['bannerPath']) ?>" alt="<?= htmlspecialchars($product['productName']) ?>" class="img-fluid">
+                                </a>
+                            </div>
+                    <?php
+                    $first = false;
+                    endif;
+                    endforeach;
+                    ?>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,6 +37,7 @@ use app\models\HomeProducts;
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+
         </div>
     </div>
 </section>
@@ -42,19 +47,20 @@ use app\models\HomeProducts;
             <h3>Recommended games</h3>
         </div>
         <div class="row">
-            <?php foreach ($model->getProducts() as $product) : ?>
+            <?php foreach ($model->getAllProducts() as $product) : ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
-                    <div class="card bg-dark mt-5">
-                        <div class="ratio ratio-1x1">
-                            <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-top-3 object-fit-cover">
+                    <a href="/product?product_id=<?= $product['product_id'] ?>" class="text-decoration-none">
+                        <div class="card bg-dark mt-5">
+                            <div class="ratio ratio-1x1">
+                                <img src="<?= $product['imagePath'] ?>" alt="<?= $product['productName'] ?>" class="img-fluid rounded-top-3 object-fit-cover">
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text text-center fs-3 text-white"><?= $product['productName'] ?></p>
+                                <hr>
+                                <p class="card-text fs-5 text-center text-white">&euro;<?= $product['price'] ?></p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text text-center fs-3"><?= $product['productName'] ?></p>
-                            <hr>
-                            <p class="card-text fs-5">&euro;<?= $product['price'] ?></p>
-                            <a href="/addtocart?product_id=<?= $product['product_id'] ?>" class="btn btn-primary rounded-1">Add to cart</a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>

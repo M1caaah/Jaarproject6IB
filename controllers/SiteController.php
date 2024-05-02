@@ -60,4 +60,12 @@ class SiteController extends Controller
         $orders = new ProfileOrders();
         return $this->render('orders', 'main', ['model' => $orders]);
     }
+
+    public function product(Request $request, Response $response)
+    {
+        $product = new HomeProducts();
+        $product->loadData($request->getBody());
+        $product->loadData($product->getProduct($product->product_id));
+        return $this->render('product', 'main', ['model' => $product]);	
+    }
 }

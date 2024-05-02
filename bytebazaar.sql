@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 02:58 AM
+-- Generation Time: May 02, 2024 at 06:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,7 +37,9 @@ CREATE TABLE `tblcarts` (
 --
 
 INSERT INTO `tblcarts` (`cart_id`, `client_id`) VALUES
-(4, 42);
+(5, 32),
+(4, 42),
+(6, 43);
 
 -- --------------------------------------------------------
 
@@ -75,9 +77,9 @@ CREATE TABLE `tblclients` (
 --
 
 INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `birthdate`, `password`, `role_id`, `regDate`, `active`) VALUES
-(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$uNc.XdUCDYk.wyuw5IzDFuZrjrXqmQp2G6zCeLxddIlVu16hBPTuy', 1, '2024-02-19', 1),
-(33, 'Obi', 'Verheyen', 'verheyenobi@lyceumgent.be', '2004-06-01', '$2y$10$cftQ1Jp7ZfX3HB0zYuNZoOcQmS9cWwqYIrwysMzEmjv.tayN4PoUK', 0, '2024-02-19', 1),
-(42, 'Rayan', 'Sayah', 'rs@gmail.com', '2004-06-30', '$2y$10$78UyEwaNfb8Fv0tvUeasFuOwbYHhbDwMsNpIeyM.t0QbJN/mKWVKO', 0, '2024-04-14', 1);
+(32, 'Micah', 'Botha', 'micah.botha@gmail.com', '2006-08-21', '$2y$10$83WqqlS.4VsXQcFw83cLiugll0unYApwlqGAXi14ljDd0DnPaEHu2', 1, '2024-02-19', 1),
+(42, 'Rayan', 'Sayah', 'rs@gmail.com', '2004-06-30', '$2y$10$78UyEwaNfb8Fv0tvUeasFuOwbYHhbDwMsNpIeyM.t0QbJN/mKWVKO', 0, '2024-04-14', 1),
+(43, 'Obi', 'Verheyen', 'obiverheyen@gmail.com', '2004-01-06', '$2y$10$M4eqk5Ulapry1k/37P7NP.m0YJyH4FiO5IKKSyy2cTcvq9z/n5bXu', 1, '2024-05-01', 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,8 @@ CREATE TABLE `tblorders` (
 
 INSERT INTO `tblorders` (`order_id`, `client_id`, `date`, `total`, `status`) VALUES
 (9, 42, '2024-04-15', 16.93, 0),
-(10, 42, '2024-04-15', 3.49, 0);
+(10, 42, '2024-04-15', 3.49, 0),
+(11, 43, '2024-05-01', 9.95, 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +125,8 @@ CREATE TABLE `tblorder_items` (
 INSERT INTO `tblorder_items` (`order_item_id`, `product_id`, `order_id`, `quantity`, `price`) VALUES
 (11, 14, 9, 2, 3.49),
 (12, 24, 9, 1, 9.95),
-(13, 14, 10, 1, 3.49);
+(13, 14, 10, 1, 3.49),
+(14, 24, 11, 1, 9.95);
 
 -- --------------------------------------------------------
 
@@ -136,25 +140,27 @@ CREATE TABLE `tblproducts` (
   `description` text DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `imagePath` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 1
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `bannerPath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblproducts`
 --
 
-INSERT INTO `tblproducts` (`product_id`, `productName`, `description`, `price`, `imagePath`, `active`) VALUES
-(14, 'Celeste', 'Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain.', 3.49, '/productImages/celeste.webp', 1),
-(15, 'Helldivers 2 ', 'The Galaxy’s Last Line of Offence. Enlist in the Helldivers and join the fight for freedom across a hostile galaxy in a fast, frantic, and ferocious third-person shooter.', 30.49, '/productImages/helldivers-2.webp', 1),
-(16, 'Elden Ring', 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.', 49.99, '/productImages/elden-ring.webp', 1),
-(17, 'Dragon&#39;s Dogma 2', 'Dragon’s Dogma 2 is a single player, narrative driven action-RPG that challenges the players to choose their own experience – from the appearance of their Arisen, their vocation, their party, how to approach different situations and more - in a truly immersive fantasy world.&#13;&#10;', 40.98, '/productImages/dragons-dogma-2.webp', 1),
-(18, 'Horizon Forbidden West', 'Experience the epic Horizon Forbidden West™ in its entirety with bonus content and the Burning Shores expansion included. The Burning Shores add-on contains additional content for Aloy’s adventure, including new storylines, characters, and experiences in a stunning yet hazardous new area.&#13;&#10;', 45.99, '/productImages/horizon-forbidden-west.webp', 1),
-(19, 'Content Warning', 'Film your friends doing scary things to become SpöökTube famous! (strongly advised to not go alone)&#13;&#10;', 2.98, '/productImages/content-warning.webp', 1),
-(20, 'Baldur&#39;s Gate 3', 'Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons &#38; Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.&#13;&#10;', 20.92, '/productImages/baldurs-gate-3.webp', 1),
-(21, 'ULTRAKILL', 'ULTRAKILL is a fast-paced ultraviolent retro FPS combining the skill-based style scoring from character action games with unadulterated carnage inspired by the best shooters of the &#39;90s. Rip apart your foes with varied destructive weapons and shower in their blood to regain your health.&#13;&#10;', 10.50, '/productImages/ultrakill.webp', 1),
-(22, 'Guilty Gear Strive', 'The cutting-edge 2D/3D hybrid graphics pioneered in the Guilty Gear series have been raised to the next level in “GUILTY GEAR -STRIVE-“. The new artistic direction and improved character animations will go beyond anything you’ve seen before in a fighting game!&#13;&#10;', 14.99, '/productImages/guilty-gear-strive.webp', 1),
-(23, 'Half Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve&#39;s debut title wins more than 50 game-of-the-year awards on its way to being named &#34;Best PC Game Ever&#34; by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.&#13;&#10;', 6.00, '/productImages/half-life-2.webp', 1),
-(24, 'Hollow Knight', 'Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.&#13;&#10;', 9.95, '/productImages/hollow-knight.webp', 1);
+INSERT INTO `tblproducts` (`product_id`, `productName`, `description`, `price`, `imagePath`, `active`, `bannerPath`) VALUES
+(14, 'Celeste', 'Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain.', 3.49, '/productImages/celeste.webp', 1, 'productImages/celeste-banner.webp'),
+(15, 'Helldivers 2 ', 'The Galaxy’s Last Line of Offence. Enlist in the Helldivers and join the fight for freedom across a hostile galaxy in a fast, frantic, and ferocious third-person shooter.', 30.49, '/productImages/helldivers-2.webp', 1, NULL),
+(16, 'Elden Ring', 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.', 49.99, '/productImages/elden-ring.webp', 1, NULL),
+(17, 'Dragon&#39;s Dogma 2', 'Dragon’s Dogma 2 is a single player, narrative driven action-RPG that challenges the players to choose their own experience – from the appearance of their Arisen, their vocation, their party, how to approach different situations and more - in a truly immersive fantasy world.&#13;&#10;', 40.98, '/productImages/dragons-dogma-2.webp', 1, NULL),
+(18, 'Horizon Forbidden West', 'Experience the epic Horizon Forbidden West™ in its entirety with bonus content and the Burning Shores expansion included. The Burning Shores add-on contains additional content for Aloy’s adventure, including new storylines, characters, and experiences in a stunning yet hazardous new area.&#13;&#10;', 45.99, '/productImages/horizon-forbidden-west.webp', 1, NULL),
+(19, 'Content Warning', 'Film your friends doing scary things to become SpöökTube famous! (strongly advised to not go alone)&#13;&#10;', 2.98, '/productImages/content-warning.webp', 1, NULL),
+(20, 'Baldur&#39;s Gate 3', 'Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons &#38; Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.&#13;&#10;', 20.92, '/productImages/baldurs-gate-3.webp', 1, NULL),
+(21, 'ULTRAKILL', 'ULTRAKILL is a fast-paced ultraviolent retro FPS combining the skill-based style scoring from character action games with unadulterated carnage inspired by the best shooters of the &#39;90s. Rip apart your foes with varied destructive weapons and shower in their blood to regain your health.&#13;&#10;', 10.50, '/productImages/ultrakill.webp', 1, NULL),
+(22, 'Guilty Gear Strive', 'The cutting-edge 2D/3D hybrid graphics pioneered in the Guilty Gear series have been raised to the next level in “GUILTY GEAR -STRIVE-“. The new artistic direction and improved character animations will go beyond anything you’ve seen before in a fighting game!&#13;&#10;', 14.99, '/productImages/guilty-gear-strive.webp', 1, NULL),
+(23, 'Half Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve&#39;s debut title wins more than 50 game-of-the-year awards on its way to being named &#34;Best PC Game Ever&#34; by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.&#13;&#10;', 6.00, '/productImages/half-life-2.webp', 1, NULL),
+(24, 'Hollow Knight', 'Forge your own path in Hollow Knight! An epic action adventure through a vast ruined kingdom of insects and heroes. Explore twisting caverns, battle tainted creatures and befriend bizarre bugs, all in a classic, hand-drawn 2D style.&#13;&#10;', 9.95, '/productImages/hollow-knight.webp', 1, 'productImages/hollow-knight-banner.webp'),
+(29, 'Dark Souls 3', 'Dark Souls continues to push the boundaries with the latest, ambitious chapter in the critically-acclaimed and genre-defining series. Prepare yourself and Embrace The Darkness!', 2.00, '/productImages/dark-souls-3.webp', 1, 'productImages/dark-souls-3-banner.webp');
 
 -- --------------------------------------------------------
 
@@ -236,37 +242,37 @@ ALTER TABLE `tblroles`
 -- AUTO_INCREMENT for table `tblcarts`
 --
 ALTER TABLE `tblcarts`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblcart_items`
 --
 ALTER TABLE `tblcart_items`
-  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tblclients`
 --
 ALTER TABLE `tblclients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `tblorders`
 --
 ALTER TABLE `tblorders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tblorder_items`
 --
 ALTER TABLE `tblorder_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tblroles`
