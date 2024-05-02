@@ -45,7 +45,6 @@ class DashOrders extends DbModel
             tableName: 'tblorders o',
             join: ['tblclients c' => 'o.client_id = c.client_id', 'tblorder_items oi' => 'o.order_id = oi.order_id', 'tblproducts p' => 'oi.product_id = p.product_id'],
             checkActive: false
-
         );
 
         $orders = [];
@@ -59,7 +58,6 @@ class DashOrders extends DbModel
                 'productName' => $record['productName'],
                 'quantity' => $record['quantity'],
                 'price' => $record['price'],
-
             ];
         }
         return $orders;
