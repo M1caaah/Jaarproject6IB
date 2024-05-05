@@ -64,7 +64,7 @@ class Router
     protected function layoutContent($layout)
     {
         ob_start();
-        include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
+        include_once "views/layouts/$layout.php";
         return ob_get_clean();
     }
 
@@ -74,7 +74,7 @@ class Router
             $$key = $value;
         }
         ob_start();
-        include_once Application::$ROOT_DIR."/views/$view.php";
+        include_once "views/$view.php";
         return ob_get_clean();
     }
 }
