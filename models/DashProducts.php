@@ -70,4 +70,10 @@ class DashProducts extends DbModel
         $this->insert();
         return true;
     }
+
+    public function countProducts()
+    {
+        $productCount = $this->select(['COUNT(*)'], tableName: 'tblproducts');
+        return $productCount[0]['COUNT(*)'];
+    }
 }

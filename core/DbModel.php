@@ -29,7 +29,7 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public function select(array $columns, string $where = "", string $oderby = "", int $limit = null, string $tableName = "", bool $checkActive = true): array|null
+    public function select(array $columns, string $where = "", string $orderby = "", string $groupby = "", int $limit = null, string $tableName = "", array $join = [], bool $checkActive = true): array|null
     {
         $tableName = $tableName ?: $this->tableName();
         $columns = $this->processAliases($columns, true);
@@ -37,9 +37,13 @@ abstract class DbModel extends Model
 
         $sql = "SELECT $columns FROM $tableName";
 
+        foreach ($join as $key => $value) {
+            $sql .= " JOIN $key ON $value";
+        }
         if ($where) $sql .= " WHERE $where";
         else if ($checkActive) $sql .= " WHERE `active` = 1";
-        if ($oderby) $sql .= " ORDER BY $oderby";
+        if ($groupby) $sql .= " GROUP BY $groupby";
+        if ($orderby) $sql .= " ORDER BY $orderby";
         if ($limit) $sql .= " LIMIT $limit";
 
         $statement = self::prepare($sql);

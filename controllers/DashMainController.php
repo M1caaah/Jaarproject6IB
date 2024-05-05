@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\DashOrders;
+use app\models\DashProducts;
 use app\models\DashUsers;
 
 class DashMainController extends Controller
@@ -10,7 +12,10 @@ class DashMainController extends Controller
     public function main(): array|bool|string
     {
         $dashUsers = new DashUsers();
-        return $this->render('dashMain', 'dashboard', ['model' => $dashUsers]);
+        $dashProducts = new DashProducts();
+        $dashOrders = new DashOrders();
+
+        return $this->render('dashMain', 'dashboard', ['dashUsers' => $dashUsers, 'dashProducts' => $dashProducts, 'dashOrders' => $dashOrders]);
     }
 
 }

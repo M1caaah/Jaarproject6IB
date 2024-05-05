@@ -10,10 +10,10 @@ class Database
     {
 
         $this->mysqli = new \MySQLi(
-            $config['db']['host'],
-            $config['db']['user'],
-            $config['db']['password'],
-            $config['db']['dbname'],
+            $config['db']['host'] ?? '',
+            $config['db']['user'] ?? '',
+            $config['db']['password'] ?? '',
+            $config['db']['dbname'] ?? '',
         );
 
         if ($this->mysqli->connect_error) {

@@ -52,6 +52,7 @@ class SiteController extends Controller
         $cart = Application::$app->cart;
         $order = new Order();
         $order->saveOrder($cart);
+        Application::$app->session->setFlash('success', 'Order placed successfully');
         $response->redirect('/');
     }
 
@@ -59,5 +60,13 @@ class SiteController extends Controller
     {
         $orders = new ProfileOrders();
         return $this->render('orders', 'main', ['model' => $orders]);
+    }
+
+    public function product(Request $request, Response $response)
+    {
+        $product = new HomeProducts();
+        $product->loadData($request->getBody());
+        $product->loadData($product->getProduct($product->product_id));
+        return $this->render('product', 'main', ['model' => $product]);	
     }
 }
