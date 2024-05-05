@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use app\controllers\AuthController;
 use app\controllers\DashMainController;
 use app\controllers\DashOrderController;
@@ -11,12 +9,16 @@ use app\controllers\SiteController;
 use app\controllers\UserController;
 use app\core\Application;
 
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
 $config = [
     'db' => [
-        'host' => 'localhost',
-        'user' => 'root',
-        'password' => '',
-        'dbname' => 'bytebazaar'
+        'host' => $_ENV['DB_HOST'] ?? 'localhost',
+        'user' => $_ENV['DB_USER'] ?? 'root',
+        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'dbname' => $_ENV['DB_NAME'] ?? 'bytebazaar',
     ],
     'userClass' => \app\models\User::class,
     'cartClass' => \app\models\Cart::class
