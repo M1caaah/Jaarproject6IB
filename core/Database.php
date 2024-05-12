@@ -14,6 +14,7 @@ class Database
             $config['db']['user'] ?? '',
             $config['db']['password'] ?? '',
             $config['db']['dbname'] ?? '',
+            $config['db']['port'] ?? 3306,
         );
 
         if ($this->mysqli->connect_error) {

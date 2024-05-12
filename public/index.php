@@ -19,6 +19,7 @@ $config = [
         'user' => $_ENV['DB_USER'] ?? 'root',
         'password' => $_ENV['DB_PASSWORD'] ?? '',
         'dbname' => $_ENV['DB_NAME'] ?? 'bytebazaar',
+        'port' => $_ENV['DB_PORT'] ?? 3306,
     ],
     'userClass' => \app\models\User::class,
     'cartClass' => \app\models\Cart::class
