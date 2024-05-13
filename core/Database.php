@@ -18,9 +18,6 @@ class Database
         );
         $query = "SHOW TABLES";
         $result = $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
-        echo "<pre>";
-        var_dump($result);
-        echo "</pre>";
         if (empty($result)) {
 
             // Read the SQL file content
