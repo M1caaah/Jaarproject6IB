@@ -16,8 +16,12 @@ class Database
             $config['db']['dbname'] ?? '',
             $config['db']['port'] ?? 3306,
         );
-        $query = "SELECT * FROM `tblclients` LIMIT 1";
-        if (!$this->mysqli->query($query)) {
+        $query = "SHOW TABLES";
+        $result = $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        echo "<pre>";
+        var_dump($result);
+        echo "</pre>";
+        if ($result) {
 
             // Read the SQL file content
             $sqlContent = file_get_contents("/bytebazaar.sql");
