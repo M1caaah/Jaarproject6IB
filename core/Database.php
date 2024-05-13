@@ -24,7 +24,7 @@ class Database
         if (empty($result)) {
 
             // Read the SQL file content
-            $sqlContent = file_get_contents("bytebazaar.sql");
+            $sqlContent = file_get_contents("../bytebazaar.sql");
 
             // Execute the SQL statements from the file
             $this->mysqli->multi_query($sqlContent);
