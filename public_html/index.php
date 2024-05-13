@@ -17,7 +17,7 @@ $config = [
     'db' => [
         'host' => $_ENV['DB_HOST'] ?? 'localhost',
         'user' => $_ENV['DB_USER'] ?? 'root',
-        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'password' => $_ENV['DB_PASS'] ?? '',
         'dbname' => $_ENV['DB_NAME'] ?? 'bytebazaar',
         'port' => $_ENV['DB_PORT'] ?? 3306,
     ],

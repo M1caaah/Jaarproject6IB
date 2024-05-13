@@ -68,7 +68,7 @@ CREATE TABLE `tblclients` (
   `birthdate` date NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `regDate` date NOT NULL DEFAULT current_timestamp(),
+  `regDate` date NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -90,7 +90,7 @@ INSERT INTO `tblclients` (`client_id`, `firstname`, `lastname`, `email`, `birthd
 CREATE TABLE `tblorders` (
   `order_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` date NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `status` int(11) NOT NULL,
   `active` tinyint(4) NOT NULL DEFAULT 1
