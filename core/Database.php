@@ -16,7 +16,16 @@ class Database
             $config['db']['dbname'] ?? '',
             $config['db']['port'] ?? 3306,
         );
+        $query = "SHOW TABLES";
+        $result = $this->mysqli->query($query)->fetch_all(MYSQLI_ASSOC);
+        if (empty($result)) {
 
+            // Read the SQL file content
+            $sqlContent = file_get_contents("../bytebazaar.sql");
+
+            // Execute the SQL statements from the file
+            $this->mysqli->multi_query($sqlContent);
+        }
         if ($this->mysqli->connect_error) {
             echo "Failed to connect to MySQL: " . $this->mysqli->connect_error;
             exit();

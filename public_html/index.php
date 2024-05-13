@@ -9,6 +9,8 @@ use app\controllers\SiteController;
 use app\controllers\UserController;
 use app\core\Application;
 
+ini_set('display_errors', 1);
+
 require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -17,7 +19,7 @@ $config = [
     'db' => [
         'host' => $_ENV['DB_HOST'] ?? 'localhost',
         'user' => $_ENV['DB_USER'] ?? 'root',
-        'password' => $_ENV['DB_PASSWORD'] ?? '',
+        'password' => $_ENV['DB_PASS'] ?? '',
         'dbname' => $_ENV['DB_NAME'] ?? 'bytebazaar',
         'port' => $_ENV['DB_PORT'] ?? 3306,
     ],

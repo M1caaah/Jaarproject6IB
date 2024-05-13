@@ -30,7 +30,7 @@ class DashEditProduct extends DashProducts
 
         $this->imagePath = $imageDir . $fileName;
 
-        move_uploaded_file($fileTmp, dirname(__DIR__) . '/public' . $this->imagePath);
+        move_uploaded_file($fileTmp, dirname(__DIR__) . '/public_html' . $this->imagePath);
         return $this->update($this->product_id);
     }
 }
