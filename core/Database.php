@@ -21,7 +21,7 @@ class Database
         echo "<pre>";
         var_dump($result);
         echo "</pre>";
-        if ($result) {
+        if (empty($result)) {
 
             // Read the SQL file content
             $sqlContent = file_get_contents("/bytebazaar.sql");
