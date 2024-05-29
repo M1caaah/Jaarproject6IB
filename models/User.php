@@ -16,12 +16,13 @@ class User extends UserModel
     public string $email = '';
     public string $birthdate = '';
     public string $password = '';
+    public string $regDate = '';
     public string $confirmPassword = '';
 
     public function register()
     {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-
+        $this->regDate = date('Y-m-d');
         // Returns true if successful
         return $this->insert();
     }
@@ -37,11 +38,11 @@ class User extends UserModel
 
     public function attributes(): array
     {
-        return ['firstname', 'lastname', 'email', 'birthdate','password'];
+        return ['firstname', 'lastname', 'email', 'birthdate','password', 'regDate'];
     }
     public function datatypes(): string
     {
-        return 'sssss';
+        return 'ssssss';
     }
 
     public function labels(): array
