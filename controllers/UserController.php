@@ -23,7 +23,7 @@ class UserController extends Controller
         $profile = new Profile();
         $passwordModel = new PasswordReset();
 
-        $profile->loadData($profile->getUserData());
+        $profile->loadData($profile->getUserData()[0]);
         return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordModel]);
     }
 
@@ -66,6 +66,7 @@ class UserController extends Controller
             }
         }
 
+        $profile->loadData($profile->getUserData());
         return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordReset]);
     }
 }
