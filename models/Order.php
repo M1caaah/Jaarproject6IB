@@ -8,6 +8,7 @@ class Order extends DbModel
 {
     public int $order_id;
     public int $client_id;
+    public string $date;
 
     public static function tableName(): string
     {
@@ -21,12 +22,12 @@ class Order extends DbModel
 
     public function attributes(): array
     {
-        return ['client_id', 'total', 'status'];
+        return ['client_id', 'total', 'status', 'date'];
     }
 
     public function datatypes(): string
     {
-        return 'ids';
+        return 'idss';
     }
 
     public function labels(): array
@@ -44,6 +45,7 @@ class Order extends DbModel
         $this->client_id = $cart->client_id;
         $this->total = $cart->getTotal();
         $this->status = 0;
+        $this->date = date('Y-m-d');
         $this->insert();
         $this->order_id = self::getRecentInsertID();
         $cartItems = $cart->cartItems;
@@ -57,5 +59,4 @@ class Order extends DbModel
             $cartItem->delete($cartItem->cart_item_id);
         }
     }
-
 }
