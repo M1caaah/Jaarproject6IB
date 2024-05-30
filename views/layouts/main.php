@@ -13,6 +13,7 @@ use \app\core\Application; ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="/assets/main/css/styles.min.css">
     <link rel="stylesheet" href="/assets/main/css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>

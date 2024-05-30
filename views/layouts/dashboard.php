@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/dashboard/css/styles.min.css">
     <link rel="stylesheet" href="/assets/dashboard/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
