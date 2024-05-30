@@ -6,12 +6,18 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\middlewares\AuthMiddleware;
 use app\models\HomeProducts;
 use app\models\Order;
 use app\models\ProfileOrders;
 
 class SiteController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['cart', 'checkout', 'orders', 'profile', 'addtocart', 'cartchange', 'product']));
+    }
+
     public function home()
     {
         $homeProducts = new HomeProducts();
