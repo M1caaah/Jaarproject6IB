@@ -24,9 +24,14 @@ use \app\core\Application; ?>
     <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav">
         <div class="container">
 
-            <?php if (Application::$app->session->getFlash('success')) : ?>
+            <?php if ($success = Application::$app->session->getFlash('success')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert" style=" width: 400px; text-align: center; position: absolute; left: calc(50% - 200px); top: 50px;">
-                    <?php echo Application::$app->session->getFlash('success') ?>
+                    <?php echo $success ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php elseif ($error = Application::$app->session->getFlash('error')): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style=" width: 400px; text-align: center; position: absolute; left: calc(50% - 200px); top: 50px;">
+                    <?php echo $error ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>

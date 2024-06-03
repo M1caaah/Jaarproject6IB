@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\middlewares\DashMiddleware;
 use app\models\DashAddUsers;
 use app\models\DashEditUsers;
 use app\models\DashUsers;
@@ -16,6 +17,13 @@ use app\models\DashUsers;
  */
 class DashUserController extends Controller
 {
+    function __construct()
+    {
+        $this->registerMiddleware(new DashMiddleware(
+            ['users', 'editUser', 'deleteUser', 'addUsers']
+        ));
+    }
+
     public function users(): array|bool|string
     {
         $dashUsers = new DashUsers();
