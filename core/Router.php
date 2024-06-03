@@ -14,8 +14,6 @@ class Router
         $this->response = $response;
     }
 
-
-
     public function get($path, $callback): void
     {
         $this->routes['get'][$path] = $callback;
@@ -48,10 +46,6 @@ class Router
             $controller->action = $callback[1];
             Application::$app->controller = $controller;
             $middlewares = $controller->middlewares;
-            echo '<pre>';
-            var_dump($middlewares);
-            echo '</pre>';
-            exit;
             foreach ($middlewares as $middleware) {
                 $middleware->execute();
             }
