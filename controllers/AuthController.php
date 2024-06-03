@@ -6,6 +6,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\middlewares\AuthMiddleware;
 use app\models\Login;
 use app\models\User;
 
@@ -17,6 +18,13 @@ use app\models\User;
  */
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(
+            ['login', 'register']
+        ));
+    }
+
     public function login(Request $request, Response $response)
     {
         $loginForm = new Login();
