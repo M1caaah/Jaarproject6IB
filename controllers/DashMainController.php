@@ -7,6 +7,10 @@ use app\models\DashOrders;
 use app\models\DashProducts;
 use app\models\DashUsers;
 
+/**
+ * Routes:
+ *  - /dashboard
+ */
 class DashMainController extends Controller
 {
     public function main(): array|bool|string

@@ -9,6 +9,12 @@ use app\core\Response;
 use app\models\Login;
 use app\models\User;
 
+/**
+ * Routes:
+ *  - /login
+ *  - /register
+ *  - /logout
+ */
 class AuthController extends Controller
 {
     public function login(Request $request, Response $response)

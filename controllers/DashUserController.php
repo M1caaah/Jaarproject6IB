@@ -9,6 +9,11 @@ use app\models\DashAddUsers;
 use app\models\DashEditUsers;
 use app\models\DashUsers;
 
+/**
+ * Routes:
+ *  - /dashboard/users
+ *  - /dashboard/users/edit
+ */
 class DashUserController extends Controller
 {
     public function users(): array|bool|string

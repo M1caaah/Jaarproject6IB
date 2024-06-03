@@ -8,6 +8,13 @@ use app\core\Response;
 use app\models\DashEditProduct;
 use app\models\DashProducts;
 
+/**
+ * Routes:
+ *  - /dashboard/products
+ *  - /dashboard/products/add
+ *  - /dashboard/products/edit
+ *  - /dashboard/products/delete
+ */
 class DashProductController extends Controller
 {
     public function products(Request $request, Response $response): array|bool|string

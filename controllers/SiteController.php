@@ -11,11 +11,23 @@ use app\models\HomeProducts;
 use app\models\Order;
 use app\models\ProfileOrders;
 
+/**
+ * Routes:
+ *  - /home
+ *  - /product
+ *  - /profile/cart
+ *  - /addtocart
+ *  - /cartchange
+ *  - /checkout
+ *  - /profile/orders
+ */
 class SiteController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['cart', 'checkout', 'orders', 'profile', 'addtocart', 'cartchange', 'product']));
+        $this->registerMiddleware(new AuthMiddleware(
+            ['cart', 'checkout', 'orders', 'profile', 'addtocart', 'cartchange', 'product']
+        ));
     }
 
     public function home()
