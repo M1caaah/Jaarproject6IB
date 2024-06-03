@@ -14,8 +14,6 @@ class Router
         $this->response = $response;
     }
 
-
-
     public function get($path, $callback): void
     {
         $this->routes['get'][$path] = $callback;
@@ -44,16 +42,19 @@ class Router
 
         if (is_array($callback))
         {
-            $callback[0] = new $callback[0];
+            $controller = new $callback[0];
+            $controller->action = $callback[1];
+            Application::$app->controller = $controller;
+            $middlewares = $controller->middlewares;
+            foreach ($middlewares as $middleware) {
+                $middleware->execute();
+            }
+            $callback[0] = $controller;
         }
         return call_user_func($callback, $this->request, $this->response);
     }
 
-
-
-
     // Rendering the view
-
     public function renderView($view, $layout = 'main', $params = [])
     {
         $layoutContent = $this->layoutContent($layout);

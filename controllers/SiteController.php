@@ -6,12 +6,31 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\middlewares\GuestMiddleware;
 use app\models\HomeProducts;
+use app\models\Login;
 use app\models\Order;
 use app\models\ProfileOrders;
 
+/**
+ * Routes:
+ *  - /home
+ *  - /product
+ *  - /profile/cart
+ *  - /addtocart
+ *  - /cartchange
+ *  - /checkout
+ *  - /profile/orders
+ */
 class SiteController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new GuestMiddleware(
+            ['cart', 'addtocart', 'cartchange', 'checkout', 'orders']
+        ));
+    }
+
     public function home()
     {
         $homeProducts = new HomeProducts();

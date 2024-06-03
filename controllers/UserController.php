@@ -9,6 +9,11 @@ use app\core\Response;
 use app\models\PasswordReset;
 use app\models\Profile;
 
+/**
+ * Routes:
+ *  - /profile
+ *  - /profile/edit
+ */
 class UserController extends Controller
 {
     public function profile(Request $request, Response $response)

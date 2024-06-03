@@ -5,11 +5,26 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
+use app\middlewares\DashMiddleware;
 use app\models\DashEditProduct;
 use app\models\DashProducts;
 
+/**
+ * Routes:
+ *  - /dashboard/products
+ *  - /dashboard/products/add
+ *  - /dashboard/products/edit
+ *  - /dashboard/products/delete
+ */
 class DashProductController extends Controller
 {
+    function __construct()
+    {
+        $this->registerMiddleware(new DashMiddleware(
+            ['products', 'addProduct', 'editProduct', 'deleteProduct']
+        ));
+    }
+
     public function products(Request $request, Response $response): array|bool|string
     {
         $dashProducts = new DashProducts();
