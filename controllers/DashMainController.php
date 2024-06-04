@@ -16,9 +16,7 @@ class DashMainController extends Controller
 {
     function __construct()
     {
-        $this->registerMiddleware(new DashMiddleware(
-            ['main']
-        ));
+        $this->registerMiddleware(new DashMiddleware());
     }
     public function main(): array|bool|string
     {

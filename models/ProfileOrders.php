@@ -39,6 +39,6 @@ class ProfileOrders extends DbModel
 
     public function getOrderItems($order_id)
     {
-        return $this->select($this->attributes(), 'order_id = '.$order_id.' AND i.product_id = p.product_id');
+        return $this->select($this->attributes(), 'order_id = '.$order_id.' AND i.product_id = p.product_id AND active = 1');
     }
 }

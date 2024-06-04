@@ -20,14 +20,13 @@ class DashProductController extends Controller
 {
     function __construct()
     {
-        $this->registerMiddleware(new DashMiddleware(
-            ['products', 'addProduct', 'editProduct', 'deleteProduct']
-        ));
+        $this->registerMiddleware(new DashMiddleware());
     }
 
     public function products(Request $request, Response $response): array|bool|string
     {
         $dashProducts = new DashProducts();
+        $dashProducts->loadData($request->getBody());
         return $this->render('dashProducts', 'dashboard', ['model' => $dashProducts]);
     }
 
@@ -62,6 +61,15 @@ class DashProductController extends Controller
         $dashProducts = new DashProducts();
         $dashProducts->loadData($request->getBody());
         $dashProducts->deactivate($dashProducts->product_id);
+        $response->redirect('/dashboard/products');
+        return true;
+    }
+
+    public function activateProduct(Request $request, Response $response): array|bool|string
+    {
+        $dashProducts = new DashProducts();
+        $dashProducts->loadData($request->getBody());
+        $dashProducts->activate($dashProducts->product_id);
         $response->redirect('/dashboard/products');
         return true;
     }

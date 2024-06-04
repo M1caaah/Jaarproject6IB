@@ -11,6 +11,7 @@ class DashProducts extends DbModel
     public string $description = '';
     public string $imagePath = '';
     public string $price = '';
+    public bool $active = true;
 
     public static function tableName(): string
     {

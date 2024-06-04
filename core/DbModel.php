@@ -41,7 +41,8 @@ abstract class DbModel extends Model
             $sql .= " JOIN $key ON $value";
         }
         if ($where) $sql .= " WHERE $where";
-        else if ($checkActive) $sql .= " WHERE `active` = 1";
+        if (!$where && $checkActive) $sql .= " WHERE active = 1";
+        else if ($checkActive) $sql .= " AND active = 1";
         if ($groupby) $sql .= " GROUP BY $groupby";
         if ($orderby) $sql .= " ORDER BY $orderby";
         if ($limit) $sql .= " LIMIT $limit";
@@ -67,6 +68,17 @@ abstract class DbModel extends Model
         $tableName = $tableName ?: $this->tableName();
         $primaryKey = $primaryKey ?: $this->primaryKey();
         $sql = "UPDATE $tableName SET `active` = 0 WHERE $primaryKey = ?";
+        $statement = self::prepare($sql);
+        $statement->bind_param('i', $id);
+        $statement->execute();
+        return true;
+    }
+
+    public function activate(int $id, string $tableName = "", string $primaryKey = ""): bool
+    {
+        $tableName = $tableName ?: $this->tableName();
+        $primaryKey = $primaryKey ?: $this->primaryKey();
+        $sql = "UPDATE $tableName SET `active` = 1 WHERE $primaryKey = ?";
         $statement = self::prepare($sql);
         $statement->bind_param('i', $id);
         $statement->execute();

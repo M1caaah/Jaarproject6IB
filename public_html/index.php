@@ -64,6 +64,7 @@ $app->router->post('/dashboard/users/edit', [DashUserController::class, 'editUse
 $app->router->get('/dashboard/users/add', [DashUserController::class, 'addUsers']);
 $app->router->post('/dashboard/users/add', [DashUserController::class, 'addUsers']);
 $app->router->get('/dashboard/users/delete', [DashUserController::class, 'deleteUser']);
+$app->router->get('/dashboard/users/activate', [DashUserController::class, 'activateUser']);
 
 $app->router->get('/dashboard/products', [DashProductController::class, 'products']);
 $app->router->get('/dashboard/products/add', [DashProductController::class, 'addProduct']);
@@ -71,8 +72,10 @@ $app->router->post('/dashboard/products/add', [DashProductController::class, 'ad
 $app->router->get('/dashboard/products/edit', [DashProductController::class, 'editProduct']);
 $app->router->post('/dashboard/products/edit', [DashProductController::class, 'editProduct']);
 $app->router->get('/dashboard/products/delete', [DashProductController::class, 'deleteProduct']);
+$app->router->get('/dashboard/products/activate', [DashProductController::class, 'activateProduct']);
 
 $app->router->get('/dashboard/orders', [DashOrderController::class, 'orders']);
-
+$app->router->get('/dashboard/orders/delete', [DashOrderController::class, 'deleteOrder']);
+$app->router->get('/dashboard/orders/activate', [DashOrderController::class, 'activateOrder']);
 
 $app->run();

@@ -13,7 +13,7 @@ class AuthMiddleware extends BaseMiddleware
 
     public function execute()
     {
-        if (!Application::isGuest() && in_array(Application::$app->controller->action, $this->actions)) {
+        if (!Application::isGuest() && (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions))) {
             Application::$app->response->redirect('/');
         }
     }
