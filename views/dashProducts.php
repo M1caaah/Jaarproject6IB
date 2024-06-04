@@ -29,8 +29,8 @@ use app\models\DashAddUsers;
                             <div class="dropdown mt-3">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="products/edit?product_id=<?= $product['product_id'] ?>">Edit User</a></li>
-                                    <li><a class="dropdown-item" href="products/delete?product_id=<?= $product['product_id'] ?>">Delete User</a></li>
+                                    <li><a class="dropdown-item" href="products/edit?product_id=<?= $product['product_id'] ?>">Edit Product</a></li>
+                                    <li><a class="dropdown-item" href="products/delete?product_id=<?= $product['product_id'] ?>">Delete Product</a></li>
                                 </ul>
                             </div>
                         </div>

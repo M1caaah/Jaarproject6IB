@@ -1,6 +1,6 @@
 <?php
 
-/** @var $model \app\models\DashAddUsers*/
+/** @var $model \app\models\DashProducts*/
 
 use app\core\form\Form;
 

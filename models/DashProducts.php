@@ -56,11 +56,19 @@ class DashProducts extends DbModel
         $file = $_FILES['imagePath'];
         $fileName = $file['name'];
         $fileTmp = $file['tmp_name'];
+        echo '<pre>';
+        var_dump($fileName);
+        var_dump($fileTmp);
+        echo '<pre>';
 
         $imageDir = '/productImages/';
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $imageDir;
+        echo '<pre>';
+        var_dump($uploadDir);
+        echo '<pre>';
 
         if (!is_dir($uploadDir)) {
+            echo 'here';
             mkdir($uploadDir, 0777, true);
         }
 
