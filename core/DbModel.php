@@ -74,6 +74,17 @@ abstract class DbModel extends Model
         return true;
     }
 
+    public function activate(int $id, string $tableName = "", string $primaryKey = ""): bool
+    {
+        $tableName = $tableName ?: $this->tableName();
+        $primaryKey = $primaryKey ?: $this->primaryKey();
+        $sql = "UPDATE $tableName SET `active` = 1 WHERE $primaryKey = ?";
+        $statement = self::prepare($sql);
+        $statement->bind_param('i', $id);
+        $statement->execute();
+        return true;
+    }
+
     public function delete(int $id, string $tableName = "", string $primaryKey = ""): bool
     {
         $tableName = $tableName ?: $this->tableName();
