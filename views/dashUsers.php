@@ -11,6 +11,7 @@ use app\models\DashAddUsers;
             <h4>Manage users</h4>
         </div>
         <div class="row">
+            <?php if ($model->active): ?>
             <?php foreach($model->select(['*'], "active = 1 AND r.role_id = c.role_id") as $user): ?>
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card border-0">
@@ -38,6 +39,29 @@ use app\models\DashAddUsers;
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php else: ?>
+            <?php foreach($model->select(['*'], "active = 0 AND r.role_id = c.role_id") as $user): ?>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $user['firstname'].' '.$user['lastname'] ?></h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="card-text text-muted">Email: <?= $user['email'] ?></p>
+                            </div>
+                            <div class="col-12">
+                                <p class="card-text text-muted">Role: <?= $user['roleName'] ?> </p>
+                            </div>
+                            <div class="col-12">
+                                <p class="card-text text-muted">Registration date: <?= $user['regDate'] ?> </p>
+                            </div>
+                        </div>
+                        <a href="/activate/user?client_id=<?= $model->client_id ?>" class="btn btn-primary mt-3">Activate user</a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </main>

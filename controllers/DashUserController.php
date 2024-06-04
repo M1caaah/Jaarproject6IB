@@ -24,9 +24,10 @@ class DashUserController extends Controller
         ));
     }
 
-    public function users(): array|bool|string
+    public function users(Request $request, Response $response): array|bool|string
     {
         $dashUsers = new DashUsers();
+        $dashUsers->loadData($request->getBody());
         return $this->render('dashUsers', 'dashboard', ['model' => $dashUsers]);
     }
 
