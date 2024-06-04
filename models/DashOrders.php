@@ -7,6 +7,7 @@ use app\core\DbModel;
 class DashOrders extends DbModel
 {
     public bool $active = true;
+    public int $order_id = 0;
 
     public static function tableName(): string
     {

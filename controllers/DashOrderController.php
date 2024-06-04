@@ -25,4 +25,13 @@ class DashOrderController extends Controller
         $dashOrders->loadData($request->getBody());
         return $this->render('dashOrders', 'dashboard', ['model' => $dashOrders]);
     }
+
+    public function deleteOrder(Request $request, Response $response)
+    {
+        $dashOrders = new DashOrders();
+        $dashOrders->loadData($request->getBody());
+        $dashOrders->deactivate($dashOrders->order_id, 'tblorders', 'order_id');
+        $response->redirect('/dashboard/orders');
+        return true;
+    }
 }
