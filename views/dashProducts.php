@@ -10,8 +10,13 @@ use app\models\DashAddUsers;
         <div class="my-3">
             <h4>Manage products</h4>
         </div>
+        <?php $active = $model->active ? 'inactive' : 'active'; ?>
+        <div class="my-3">
+            <a href="/dashboard/products?active=<?= $model->active ? 0 : 1 ?>" class="btn btn-primary">View <?= $active ?> products</a>
+        </div>
         <div class="row">
-            <?php foreach ($model->select(['*']) as $product): ?>
+            <?php if ($model->active): ?>
+            <?php foreach ($model->select(['*'], where: 'active = 1') as $product): ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
                     <div class="card border-0">
                         <div class="ratio ratio-1x1">
@@ -37,6 +42,28 @@ use app\models\DashAddUsers;
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php else: ?>
+            <?php foreach ($model->select(['*'], where: 'active = 0') as $product): ?>
+                <div class="col-md-6 col-lg-4 col-xl-2">
+                    <div class="card border-0">
+                        <div class="ratio ratio-1x1">
+                            <img src="<?= $product['imagePath'] ?>" alt="" class="img-fluid rounded-top-3 object-fit-cover">
+                        </div>
+                        <div class="card-body">
+                            <div class="row fs-5">
+                                <div class="col-12">
+                                    <p class="card-text text-muted"><?= $product['productName'] ?></p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="card-text text-muted">&euro;<?= $product['price'] ?></p>
+                                </div>
+                            </div>
+                            <a href="/activate/products?product_id=<?= $product['product_id'] ?>" class="btn btn-primary"></a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </main>

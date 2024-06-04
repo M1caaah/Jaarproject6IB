@@ -28,6 +28,7 @@ class DashProductController extends Controller
     public function products(Request $request, Response $response): array|bool|string
     {
         $dashProducts = new DashProducts();
+        $dashProducts->loadData($request->getBody());
         return $this->render('dashProducts', 'dashboard', ['model' => $dashProducts]);
     }
 
