@@ -64,4 +64,13 @@ class DashProductController extends Controller
         $response->redirect('/dashboard/products');
         return true;
     }
+
+    public function activateProduct(Request $request, Response $response): array|bool|string
+    {
+        $dashProducts = new DashProducts();
+        $dashProducts->loadData($request->getBody());
+        $dashProducts->activate($dashProducts->product_id);
+        $response->redirect('/dashboard/products');
+        return true;
+    }
 }
