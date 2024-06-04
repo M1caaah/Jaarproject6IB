@@ -46,6 +46,7 @@ class DashOrders extends DbModel
             orderby: "o.order_id ASC",
             tableName: 'tblorders o',
             join: ['tblclients c' => 'o.client_id = c.client_id', 'tblorder_items oi' => 'o.order_id = oi.order_id', 'tblproducts p' => 'oi.product_id = p.product_id'],
+            checkActive: false
         );
 
         $orders = [];
