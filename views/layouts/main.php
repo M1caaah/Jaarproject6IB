@@ -85,26 +85,27 @@ use \app\core\Application; ?>
 
 
     <!-- Start: Footer Multi Column -->
-    <footer class="bg-dark">
+    <footer class="bg-dark" style="position: relative; bottom: -50px;">
         <div class="container py-4 py-lg-5">
-            <div class="row d-flex p-2 justify-content-center fixed-bottom">
+            <div class="row d-flex p-2 justify-content-center">
                 <!-- Start: Social Icons -->
                 <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
                     <div class="fw-bold d-flex align-items-center mb-2">
-                        </div>
-                        <p class="text-muted"></p>
-                    </div><!-- End: Social Icons -->
-                </div>
-                <hr>
-                <div class="d-flex align-items-center">
-                        <img src="/assets/img/logo.svg" width="25" height="25" class="me-2">
-                        <span>ByteBazaar</span>
-                </div>
-                <div class="text-muted d-flex justify-content-between align-items-center pt-3">
+                    </div>
+                    <p class="text-muted"></p>
+                </div><!-- End: Social Icons -->
+            </div>
+            <hr>
+            <div class="d-flex align-items-center">
+                <img src="/assets/img/logo.svg" width="25" height="25" class="me-2">
+                <span>ByteBazaar</span>
+            </div>
+            <div class="text-muted d-flex justify-content-between align-items-center pt-3">
                 <p class="mb-0">Copyright © 2024 ByteBazaar</p>
             </div>
         </div>
     </footer><!-- End: Footer Multi Column -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
     <script src="/assets/main/js/script.min.js"></script>
