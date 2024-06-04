@@ -20,9 +20,7 @@ class DashProductController extends Controller
 {
     function __construct()
     {
-        $this->registerMiddleware(new DashMiddleware(
-            ['products', 'addProduct', 'editProduct', 'deleteProduct']
-        ));
+        $this->registerMiddleware(new DashMiddleware());
     }
 
     public function products(Request $request, Response $response): array|bool|string
