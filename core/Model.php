@@ -30,7 +30,7 @@ abstract class Model
         }
     }
 
-    public function validate()
+    public function validate(): bool|array
     {
         foreach ($this->rules() as $attribute => $rules)
         {
@@ -115,7 +115,7 @@ abstract class Model
             }
         }
         if (!empty($this->errors))
-            return $this->errors;
+            return false;
         return true;
     }
 
