@@ -43,7 +43,7 @@ use \app\core\Application; ?>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
+            <div class="collapse navbar-collapse justify-content-end" id="navcol-1">
                 <?php if (Application::isGuest()) : ?>
                     <span class="navbar-text text-light">
                         <a class="btn btn-primary" href="/login">Login</a>
