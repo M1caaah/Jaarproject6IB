@@ -15,7 +15,7 @@ class Profile extends DbModel
     public function getUserData()
     {
         $id = Application::$app->session->get('user');
-        return $this->select($this->attributes(), self::primaryKey()."  = $id");
+        return $this->select($this->attributes(), self::primaryKey()."  = $id")[0];
     }
 
     public static function tableName(): string
