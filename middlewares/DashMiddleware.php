@@ -13,7 +13,7 @@ class DashMiddleware extends BaseMiddleware
 
     public function execute()
     {
-        if (Application::isGuest() || !Application::isAdmin() && in_array(Application::$app->controller->action, $this->actions)) {
+        if (Application::isGuest() || !Application::isAdmin() && (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions))) {
             Application::$app->session->setFlash('error', 'Permission denied.');
             Application::$app->response->redirect('/');
         }
