@@ -43,7 +43,7 @@ use app\models\DashAddUsers;
                 </div>
             <?php endforeach; ?>
             <?php else: ?>
-            <?php foreach ($model->select(['*'], where: 'active = 0') as $product): ?>
+            <?php foreach ($model->select(['*'], where: 'active = 0', checkActive: false) as $product): ?>
                 <div class="col-md-6 col-lg-4 col-xl-2">
                     <div class="card border-0">
                         <div class="ratio ratio-1x1">

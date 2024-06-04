@@ -44,7 +44,7 @@ use app\models\DashAddUsers;
                 </div>
             <?php endforeach; ?>
             <?php else: ?>
-            <?php foreach($model->select(['*'], "active = 0 AND r.role_id = c.role_id") as $user): ?>
+            <?php foreach($model->select(['*'], "active = 0 AND r.role_id = c.role_id", checkActive: false) as $user): ?>
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="card border-0">
                     <div class="card-body">
