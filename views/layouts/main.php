@@ -44,10 +44,6 @@ use \app\core\Application; ?>
                 <span class="visually-hidden">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact">Contacts</a></li>
-                </ul>
                 <?php if (Application::isGuest()) : ?>
                     <span class="navbar-text text-light">
                         <a class="btn btn-primary" href="/login">Login</a>
