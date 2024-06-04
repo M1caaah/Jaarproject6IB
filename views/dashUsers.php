@@ -10,6 +10,10 @@ use app\models\DashAddUsers;
         <div class="my-3">
             <h4>Manage users</h4>
         </div>
+        <?php $active = $model->active ? 'inactive' : 'active'; ?>
+        <div class="my-3">
+            <a href="/dashboard/users?active=<?= $model->active ? 0 : 1 ?>" class="btn btn-primary">View <?= $active ?> users</a>
+        </div>
         <div class="row">
             <?php if ($model->active): ?>
             <?php foreach($model->select(['*'], "active = 1 AND r.role_id = c.role_id") as $user): ?>

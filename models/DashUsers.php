@@ -14,7 +14,7 @@ class DashUsers extends DbModel
     public string $role_id = '';
     public string $roleName = '';
     public string $password = '';
-    public bool $active = false;
+    public bool $active = true;
 
 
     public function getDisplayName()
