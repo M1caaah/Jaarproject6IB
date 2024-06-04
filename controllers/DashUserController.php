@@ -49,12 +49,22 @@ class DashUserController extends Controller
         return $this->render('dashEditUsers', 'dashboard', ['model' => $dashEditUsers]);
     }
 
-    public function deleteUser(Request $request, Response $response): void
+    public function deleteUser(Request $request, Response $response)
     {
         $dashUsers = new DashUsers();
         $dashUsers->loadData($request->getBody());
         $dashUsers->deactivate($dashUsers->client_id);
         $response->redirect('/dashboard/users');
+        return true;
+    }
+
+    public function activateUser(Request $request, Response $response)
+    {
+        $dashUsers = new DashUsers();
+        $dashUsers->loadData($request->getBody());
+        $dashUsers->activate($dashUsers->client_id);
+        $response->redirect('/dashboard/users');
+        return true;
     }
 
     public function addUsers(Request $request, Response $response): array|bool|string

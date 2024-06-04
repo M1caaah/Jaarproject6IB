@@ -62,7 +62,7 @@ use app\models\DashAddUsers;
                         </div>
                         <div class="row">
                             <div class="col d-flex text-start">
-                                <a href="/dashboard/clients/users?client_id=<?= $user['client_id'] ?>" class="btn btn-primary mt-3">Activate user</a>
+                                <a href="/dashboard/users/activate?client_id=<?= $user['client_id'] ?>" class="btn btn-primary mt-3">Activate user</a>
                             </div>
                         </div>
                     </div>
