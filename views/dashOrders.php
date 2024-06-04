@@ -53,7 +53,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="card-text fs-5"><b>Order Total: </b> &euro;<?= $order['total'] ?></p>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text h5"><b>Order Total: </b> &euro;<?= $order['total'] ?></p>
+                                <a href="/dashboard/orders/delete?order_id=<?= $order['order_id'] ?>" class="btn btn-primary ">Delete order</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,7 +99,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="card-text fs-5"><b>Order Total: </b> &euro;<?= $order['total'] ?></p>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text h5"><b>Order Total: </b> &euro;<?= $order['total'] ?></p>
+                                <a href="/dashboard/orders/activate?order_id=<?= $order['order_id'] ?>" class="btn btn-primary ">Activate order</a>
+                            </div>
                         </div>
                     </div>
                 </div>
