@@ -75,7 +75,6 @@ class DashProducts extends DbModel
         if (move_uploaded_file($fileTmp, $uploadDir . $fileName)) {
             $this->imagePath = $imageDir. $fileName;
         }
-        exit;
         $this->insert();
         return true;
     }
