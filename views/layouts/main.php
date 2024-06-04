@@ -87,7 +87,7 @@ use \app\core\Application; ?>
     <!-- Start: Footer Multi Column -->
     <footer class="bg-dark">
         <div class="container py-4 py-lg-5">
-            <div class="row justify-content-center">
+            <div class="row d-flex p-2 justify-content-center fixed-bottom">
                 <!-- Start: Social Icons -->
                 <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
                     <div class="fw-bold d-flex align-items-center mb-2">
