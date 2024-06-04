@@ -60,7 +60,11 @@ use app\models\DashAddUsers;
                                 <p class="card-text text-muted">Registration date: <?= $user['regDate'] ?> </p>
                             </div>
                         </div>
-                        <a href="/activate/users?client_id=<?= $user['client_id'] ?>" class="btn btn-primary mt-3">Activate user</a>
+                        <div class="row">
+                            <div class="col d-flex text-start">
+                                <a href="/dashboard/clients/users?client_id=<?= $user['client_id'] ?>" class="btn btn-primary mt-3">Activate user</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

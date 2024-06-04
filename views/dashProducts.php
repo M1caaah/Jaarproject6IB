@@ -58,7 +58,7 @@ use app\models\DashAddUsers;
                                     <p class="card-text text-muted">&euro;<?= $product['price'] ?></p>
                                 </div>
                             </div>
-                            <a href="/activate/products?product_id=<?= $product['product_id'] ?>" class="btn btn-primary"></a>
+                            <a href="/dashboard/products/activate?product_id=<?= $product['product_id'] ?>" class="btn btn-primary">Activate product</a>
                         </div>
                     </div>
                 </div>
