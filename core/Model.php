@@ -19,7 +19,7 @@ abstract class Model
 
     abstract public function rules(): array;
 
-    public function loadData(array $data)
+    public function loadData($data)
     {
         foreach ($data as $key => $value)
         {
