@@ -69,6 +69,11 @@ class SiteController extends Controller
     public function checkout(Request $request, Response $response)
     {
         $cart = Application::$app->cart;
+        if (!$cart->cartItems) {
+            Application::$app->session->setFlash('error', 'Cart is empty');
+            $response->redirect('/profile/cart');
+            return;
+        }
         $order = new Order();
         $order->saveOrder($cart);
         Application::$app->session->setFlash('success', 'Order placed successfully');
