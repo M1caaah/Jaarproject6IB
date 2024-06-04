@@ -42,7 +42,7 @@ class DashOrders extends DbModel
     {
         $records = $this->select(
             ['o.order_id', 'o.date', 'o.total', 'c.firstname', 'c.lastname', 'p.productName', 'p.product_id', 'oi.quantity', 'oi.price'],
-            where: $active ? 'o.active = 1' : 'o.active = 0',
+            where: $active ? 'o.active = 1 AND c.active = 1' : 'o.active = 0',
             orderby: "o.order_id ASC",
             tableName: 'tblorders o',
             join: ['tblclients c' => 'o.client_id = c.client_id', 'tblorder_items oi' => 'o.order_id = oi.order_id', 'tblproducts p' => 'oi.product_id = p.product_id'],
@@ -67,13 +67,13 @@ class DashOrders extends DbModel
 
     public function countOrders()
     {
-        $orderCount = $this->select(['COUNT(*)'], tableName: 'tblorders', checkActive: false);
+        $orderCount = $this->select(['COUNT(*)'], tableName: 'tblorders');
         return $orderCount[0]['COUNT(*)'];
     }
 
     public function countEarnings()
     {
-        $earnings = $this->select(['SUM(total)'], tableName: 'tblorders', checkActive: false);
+        $earnings = $this->select(['SUM(total)'], tableName: 'tblorders');
         return $earnings[0]['SUM(total)'];
     }
 
@@ -81,6 +81,7 @@ class DashOrders extends DbModel
     {
         return $this->select(
             ['o.order_id', 'o.date', 'o.total', 'c.firstname', 'c.lastname'],
+            where: 'o.active = 1 and c.active = 1',
             orderby: "o.order_id DESC",
             limit: 5,
             tableName: 'tblorders o',
