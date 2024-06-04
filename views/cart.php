@@ -31,18 +31,20 @@ use app\core\Application;
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <table class="table table-dark table-striped">
-                                                <thead>
+                                            <?php if(!empty($model->cartItems)): ?>
+                                            <div class="row">
+                                                <table class="table table-dark table-striped">
+                                                    <thead>
                                                     <tr>
                                                         <th scope="col">Product</th>
                                                         <th scope="col">Price</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Total</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
+                                                    </thead>
+                                                    <tbody>
                                                     <?php foreach ($model->cartItems as $item) : ?>
-                                                    <?php $product = $item->getProduct(); ?>
+                                                        <?php $product = $item->getProduct(); ?>
                                                         <tr>
                                                             <td>
                                                                 <?= $product["productName"] ?>
@@ -56,8 +58,10 @@ use app\core\Application;
                                                             <td>&euro;<?= $product["price"] * $item->quantity ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <h5>Total:  &euro;<?= $model->getTotal() ?></h5>
@@ -68,6 +72,9 @@ use app\core\Application;
                                                     <a href="/checkout" class="btn btn-primary shadow d-block w-100">Checkout</a>
                                                 </div>
                                             </div>
+                                            <?php else: ?>
+                                                <h5 class="text-center py-5">Your cart is empty</h5>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
