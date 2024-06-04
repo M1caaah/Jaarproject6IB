@@ -41,7 +41,9 @@ abstract class DbModel extends Model
             $sql .= " JOIN $key ON $value";
         }
         if ($where) $sql .= " WHERE $where";
-        else if ($checkActive) $sql .= " WHERE `active` = 1";
+        if (!$where && $checkActive) $sql .= " WHERE active = 1";
+        else if ($checkActive) $sql .= " AND active = 1";
+        else if ($checkActive) $sql .= " WHERE active = 1";
         if ($groupby) $sql .= " GROUP BY $groupby";
         if ($orderby) $sql .= " ORDER BY $orderby";
         if ($limit) $sql .= " LIMIT $limit";
