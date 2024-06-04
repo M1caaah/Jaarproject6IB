@@ -32,7 +32,7 @@ class UserController extends Controller
         $profile = new Profile();
         $passwordReset = new PasswordReset();
 
-        if ($request->formNamePost() === 'info')
+        if ($request->formName() === 'info')
         {
             $profile->loadData($request->getBody());
             if ($profile->validate() && $profile->updateInfo())
@@ -43,7 +43,7 @@ class UserController extends Controller
             }
         }
 
-        if ($request->formNamePost() === 'password')
+        if ($request->formName() === 'password')
         {
             $profile->loadData($profile->getUserData());
             $passwordReset->loadData($request->getBody());
@@ -55,7 +55,7 @@ class UserController extends Controller
             }
         }
 
-        if ($request->formNamePost() === 'deactivate')
+        if ($request->formName() === 'deactivate')
         {
             if ($profile->deactivateUser())
             {
