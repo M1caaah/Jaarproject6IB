@@ -76,6 +76,6 @@ class User extends UserModel
 
     public function getOrders()
     {
-        return $this->select(['*'], "client_id = $this->client_id", tableName: "tblorders", checkActive: false);
+        return $this->select(['*'], "client_id = $this->client_id", tableName: "tblorders");
     }
 }
