@@ -46,16 +46,16 @@ use app\models\HomeProducts;
         <div class="row">
             <h3>Recommended games</h3>
         </div>
-        <div class="row">
+        <div class="row d-flex flex-wrap">
             <?php foreach ($model->getAllProducts() as $product) : ?>
-                <div class="col-md-6 col-lg-4 col-xl-2">
-                    <a href="/product?product_id=<?= $product['product_id'] ?>" class="text-decoration-none">
-                        <div class="card bg-dark mt-5">
+                <div class="col-md-6 col-lg-4 col-xl-2 d-flex">
+                    <a href="/product?product_id=<?= $product['product_id'] ?>" class="text-decoration-none w-100 d-flex flex-column">
+                        <div class="card bg-dark mt-5 d-flex flex-column flex-grow-1">
                             <div class="ratio ratio-1x1">
                                 <img src="<?= $product['imagePath'] ?>" alt="<?= $product['productName'] ?>" class="img-fluid rounded-top-3 object-fit-cover">
                             </div>
-                            <div class="card-body">
-                                <p class="card-text text-center fs-3 text-white"><?= $product['productName'] ?></p>
+                            <div class="card-body d-flex flex-column justify-content-between flex-grow-1">
+                                <p class="card-text text-center fs-5 text-white"><?= $product['productName'] ?></p>
                                 <hr>
                                 <p class="card-text fs-5 text-center text-white">&euro;<?= $product['price'] ?></p>
                             </div>
