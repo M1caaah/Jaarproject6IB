@@ -19,7 +19,7 @@ class UserController extends Controller
     public function profile(Request $request, Response $response)
     {
         $profile = new Profile();
-        $profile->loadData($profile->getUserData()[0]);
+        $profile->loadData($profile->getUserData());
         return $this->render('profile', 'main', ['model' => $profile]);
     }
 
@@ -37,7 +37,7 @@ class UserController extends Controller
         $profile = new Profile();
         $passwordReset = new PasswordReset();
 
-        if ($request->formNamePost() === 'info')
+        if ($request->formName() === 'info')
         {
             $profile->loadData($request->getBody());
             if ($profile->validate() && $profile->updateInfo())
@@ -48,7 +48,7 @@ class UserController extends Controller
             }
         }
 
-        if ($request->formNamePost() === 'password')
+        if ($request->formName() === 'password')
         {
             $profile->loadData($profile->getUserData());
             $passwordReset->loadData($request->getBody());
@@ -60,7 +60,7 @@ class UserController extends Controller
             }
         }
 
-        if ($request->formNamePost() === 'deactivate')
+        if ($request->formName() === 'deactivate')
         {
             if ($profile->deactivateUser())
             {
@@ -71,6 +71,7 @@ class UserController extends Controller
             }
         }
 
+        $profile->loadData($profile->getUserData());
         return $this->render('profileEdit', 'main', ['model' => $profile, 'passwordModel' => $passwordReset]);
     }
 }

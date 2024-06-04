@@ -19,7 +19,6 @@ use app\core\Application;
                     <a href="/profile" class="list-group-item active">Account overview</a>
                     <a href="/profile/edit" class="list-group-item">Manage profile</a>
                     <a href="/profile/cart" class="list-group-item">Shopping cart</a>
-                    <a href="/profile/wishlist" class="list-group-item">Wishlist</a>
                     <a href="/profile/orders" class="list-group-item">Your orders</a>
                 </div>
             </div>
@@ -50,23 +49,6 @@ use app\core\Application;
                                             <p><?= $model->birthdate ?></p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt-5">
-                        <div class="col-12">
-                            <h2 class="text-white">Recent orders</h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    <h5 class="card-title pt-2">Coming Soon</h5>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">Our orders page is on the way. Stay tuned!</p>
                                 </div>
                             </div>
                         </div>
