@@ -29,7 +29,6 @@ $form = new Form();
                     <a href="/profile" class="list-group-item">Account overview</a>
                     <a href="/profile/edit" class="list-group-item active">Manage profile</a>
                     <a href="/profile/cart" class="list-group-item">Shopping cart</a>
-                    <a href="/profile/wishlist" class="list-group-item">Wishlist</a>
                     <a href="/profile/orders" class="list-group-item">Your orders</a>
                 </div>
             </div>

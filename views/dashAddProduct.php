@@ -1,6 +1,6 @@
 <?php
 
-/** @var $model \app\models\DashAddUsers*/
+/** @var $model \app\models\DashProducts*/
 
 use app\core\form\Form;
 
@@ -35,7 +35,7 @@ $form = new Form();
                                 <div class="col"><?php echo $form->field($model, 'imagePath')->fileField() ?></div>
                             </div>
                         </div>
-                        <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Sign up</button></div>
+                        <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Add product</button></div>
                         <?php Form::end(); ?>
                     </div>
                 </div>

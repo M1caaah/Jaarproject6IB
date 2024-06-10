@@ -11,6 +11,7 @@ class DashProducts extends DbModel
     public string $description = '';
     public string $imagePath = '';
     public string $price = '';
+    public bool $active = true;
 
     public static function tableName(): string
     {
@@ -61,6 +62,7 @@ class DashProducts extends DbModel
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $imageDir;
 
         if (!is_dir($uploadDir)) {
+            echo 'here';
             mkdir($uploadDir, 0777, true);
         }
 

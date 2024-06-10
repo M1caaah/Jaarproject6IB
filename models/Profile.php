@@ -54,7 +54,7 @@ class Profile extends DbModel
             'firstname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
             'lastname' => [self::RULE_REQUIRED, [self::RULE_MAX, 'max' => 255]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE_UPDATE, 'class' => self::class, 'id' => Application::$app->session->get('user')]],
-            'birthdate' => [self::RULE_REQUIRED],
+            'birthdate' => [self::RULE_REQUIRED, self::RULE_BDATE],
         ];
     }
 
