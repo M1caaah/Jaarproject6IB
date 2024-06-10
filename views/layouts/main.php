@@ -81,13 +81,13 @@ use \app\core\Application; ?>
         </div>
     </nav><!-- End: Navbar Centered Links -->
 
-    <div style="min-height: 100vh;">
+    <div style="min-height: calc(100vh - 330px);">
         {{content}}
     </div>
 
 
     <!-- Start: Footer Multi Column -->
-    <footer class="bg-dark" style="position: relative; bottom: -50px;">
+    <footer class="bg-dark">
         <div class="container py-4 py-lg-5">
             <div class="row d-flex p-2 justify-content-center">
                 <!-- Start: Social Icons -->
