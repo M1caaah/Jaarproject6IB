@@ -85,7 +85,9 @@ use \app\core\Application; ?>
         </div>
     </nav><!-- End: Navbar Centered Links -->
 
-    {{content}}
+    <div style="min-height: 100vh;">
+        {{content}}
+    </div>
 
 
     <!-- Start: Footer Multi Column -->
